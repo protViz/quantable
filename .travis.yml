@@ -7,4 +7,4 @@ r_packages:
   - gplots
   - RColorBrewer
 
-#warnings_are_errors: true
+warnings_are_errors: true
