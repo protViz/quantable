@@ -21,7 +21,10 @@ altmanbland(x, y, main = "", pch = ".", log = "")
 plots abs(x-y) against (y+x)/2
 }
 \examples{
-data(SDat)
-altmanbland(SDat$Intensity[,1],SDat$Intensity[,2],log="xy")
+x <- seq(1:300)/10
+x <- x + rnorm(length(x),0,0.5)
+y <- seq(1:300)/10
+y <- y + rnorm(length(y),0,0.5)
+altmanbland(y,x)
 }
 

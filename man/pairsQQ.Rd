@@ -4,10 +4,10 @@
 \alias{pairsQQ}
 \title{pairsplot of QQ plots}
 \usage{
-pairsQQ(dataframe, main = "")
+pairsQQ(obj, main = "")
 }
 \arguments{
-\item{dataframe}{}
+\item{obj}{dataframe or matrix}
 
 \item{main}{- title}
 }
@@ -15,8 +15,8 @@ pairsQQ(dataframe, main = "")
 pairsplot of QQ plots
 }
 \examples{
-data(SDat)
-pairsQQ( SDat$Intensity )
+tmp = matrix(rep((1:100),times = 4) + rnorm(100*4,0,3),ncol=4)
+pairsQQ( tmp)
 }
 \seealso{
 \code{\link{qqplot}} and  \code{\link{pairs}}

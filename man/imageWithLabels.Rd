@@ -25,6 +25,6 @@ image plot with labels
 }
 \examples{
 x = matrix(rnorm(20*20),ncol=20)
-imagelabels(x)
+imageWithLabels(x)
 }
 

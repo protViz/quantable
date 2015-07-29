@@ -3,8 +3,8 @@
 #' @param ... params usually passed to pairs
 #' @export
 #' @examples
-#' data(SDat)
-#' mypairs(SDat$Intensity,log="xy",main="small data")
+#' tmp = matrix(rep((1:100),times = 4) + rnorm(100*4,0,3),ncol=4)
+#' mypairs(tmp,log="xy",main="small data")
 #' @seealso also \code{\link{pairs}}
 mypairs = function(dataframe,...){
   pairs(dataframe, panel = function(x,y){

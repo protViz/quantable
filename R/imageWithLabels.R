@@ -9,7 +9,7 @@
 #' @export
 #' @examples
 #' x = matrix(rnorm(20*20),ncol=20)
-#' imagelabels(x)
+#' imageWithLabels(x)
 imageWithLabels = function(x, labels=colnames(x),cex=1,cex.axis=0.5,main=NULL,col = heat.colors(12))
 {
   layout(matrix(data=c(1,2), nrow=1, ncol=2), widths=c(3,1), heights=c(1,1))

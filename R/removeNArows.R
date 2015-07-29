@@ -8,7 +8,7 @@
 #' x = matrix(rnorm(10*10),ncol=10)
 #' dim(x)
 #' x[3,3] = NA
-#' x = rmNArows(x)
+#' x = removeNArows(x)
 #' dim(x)
 removeNArows <- function(obj, thresh=0 )
 {
