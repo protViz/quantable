@@ -8,11 +8,15 @@
 #' @param xlab - x axis label
 #' @param ylab - y axis label
 #' @param xlim - xlim
+#' @param cex.point - point size
+#' @param main - main title
 #' @export
 #' @examples
 #' foldchange <- rnorm(1000)
 #' pval <-rexp(1000)
-#' volcanoplot(foldchange, pval)
+#' abline(v=0.05,col=2)
+#'
+#' volcanoplot(foldchange, pval,pthresh=0.1, ratiothresh=1,main='test')
 #'
 volcanoplot = function(foldchange,
                        pvals ,
@@ -22,16 +26,18 @@ volcanoplot = function(foldchange,
                        ylab = "-log10(P)",
                        labels = NULL,
                        cex=0.6,
-                       xlim=NULL
+                       cex.point=1,
+                       xlim=NULL,
+                       main=NULL
 ){
   dataframe <- data.frame("ratio" = foldchange, "pvals" = pvals )
   rownames(dataframe) = labels
 
-  bla = tryCatch( plot(dataframe$ratio,-log10(dataframe$pvals),col="#00000033",pch=19,xlab=xlab, ylab=ylab,xlim=xlim),
+  bla = tryCatch( plot(dataframe$ratio,-log10(dataframe$pvals),col="#00000033",pch=19,xlab=xlab, ylab=ylab,xlim=xlim,main=main),
                   warning=function(bla){ dev.off(); return(1)}
   )
   if(!is.null(bla)){
-    plot(dataframe$ratio,-log10(dataframe$pvals),col=1,pch=19,xlab=xlab, ylab=ylab ,xlim=xlim)
+    plot(dataframe$ratio,-log10(dataframe$pvals),col=1,pch=19,xlab=xlab, ylab=ylab ,xlim=xlim,cex=cex.point,main=main)
   }
 
 
