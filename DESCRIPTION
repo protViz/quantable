@@ -1,13 +1,14 @@
 Package: quantable
 Type: Package
-Title: Streamline descriptive analysis of quantitative data matrices
+Title: Streamline Descriptive Analysis of Quantitative Data Matrices
 Version: 0.1
 Date: 2015-07-29
-Author: Witold Wolski
+Author: Witold Wolski <wewolski@gmail.com>
 Maintainer: Witold Wolski <wewolski@gmail.com>
-Description: Methods which streamline the descriptive analysis of quantitative matrices (i.e. protein levels in proteomic LFQ experiments)
-License: GPL
+Description: Methods which streamline the descriptive analysis of quantitative matrices.
+License: GPL-3
 LazyData: TRUE
 Imports: scales, gplots, RColorBrewer
 URL: https://github.com/wolski/quantable
 BugReports: https://github.com/wolski/quantable/issues
+Repository: CRAN

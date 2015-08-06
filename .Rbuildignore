@@ -1,3 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
+^Readme\.md$
+^\.gitignore$
+^\.Rhistory$
+^\.git$
+
