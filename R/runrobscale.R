@@ -19,7 +19,7 @@
 #' lines(y2+y,col=3,lwd=3)
 #' lines(y2-y,col=3,lwd=3)
 #'
-#' @seealso correctIntRTv2 for context
+
 runrobscale = function(arefw,k=101,scale=TRUE){
   medianref = runmed( arefw , k=k ,endrule="constant")
   # adjust intensities
