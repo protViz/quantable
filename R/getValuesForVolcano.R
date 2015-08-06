@@ -1,9 +1,8 @@
 #' running robust scaling of arefw
 #' @export
-#' @param arefw - data array to scale
-#' @param k - windows
-#' @param scale - should also scaling be applied
-#' @return list with scaled data runmed used to center the data and runmad the running MAD used for scaling
+#' @param x - one data matrix
+#' @param y - second data matrix
+#' @return list with two fields fchange (fold change) and pval
 #' @examples
 #' a <- t(replicate(200,rnorm(20,runif(1,-3,3),1)))
 #' b <- a[1:100,]
@@ -13,6 +12,7 @@
 #' res <- getValuesForVolcano(a,b)
 #' volcanoplot(res$fchange , res$pval)
 getValuesForVolcano=function(x,y){
+  stopifnot(nrow(x) == nrow(y))
   pval = rep(NA, nrow(x))
   fchange = rep(NA, nrow(x))
   for(i in 1:nrow(x)){

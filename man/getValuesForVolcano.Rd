@@ -7,14 +7,12 @@
 getValuesForVolcano(x, y)
 }
 \arguments{
-\item{arefw}{- data array to scale}
+\item{x}{- one data matrix}
 
-\item{k}{- windows}
-
-\item{scale}{- should also scaling be applied}
+\item{y}{- second data matrix}
 }
 \value{
-list with scaled data runmed used to center the data and runmad the running MAD used for scaling
+list with two fields fchange (fold change) and pval
 }
 \description{
 running robust scaling of arefw
