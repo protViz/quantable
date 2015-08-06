@@ -3,6 +3,7 @@
 export(altmanbland)
 export(colorscale)
 export(distmy)
+export(getValuesForVolcano)
 export(imageWithLabels)
 export(mypairs)
 export(pairsQQ)

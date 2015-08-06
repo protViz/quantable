@@ -6,7 +6,7 @@
 \usage{
 volcanoplot(foldchange, pvals, pthresh = 0.05, ratiothresh = 2,
   xlab = "log2(T/N)", ylab = "-log10(P)", labels = NULL, cex = 0.6,
-  xlim = NULL)
+  cex.point = 1, xlim = NULL, main = NULL)
 }
 \arguments{
 \item{foldchange}{- fold change values}
@@ -25,7 +25,11 @@ volcanoplot(foldchange, pvals, pthresh = 0.05, ratiothresh = 2,
 
 \item{cex}{size of labels}
 
+\item{cex.point}{- point size}
+
 \item{xlim}{- xlim}
+
+\item{main}{- main title}
 }
 \description{
 volcano plot
@@ -33,6 +37,8 @@ volcano plot
 \examples{
 foldchange <- rnorm(1000)
 pval <-rexp(1000)
-volcanoplot(foldchange, pval)
+abline(v=0.05,col=2)
+
+volcanoplot(foldchange, pval,pthresh=0.1, ratiothresh=1,main='test')
 }
 
