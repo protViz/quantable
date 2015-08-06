@@ -1,5 +1,5 @@
-#'A package with some utility functions for the analysis of swath data
-#'@name imsbInfer
+#'Streamline descriptive analysis of quantitative data matrices
+#'@name quantable
 #'@docType package
 #'@import RColorBrewer scales gplots
 NULL
