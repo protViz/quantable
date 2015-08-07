@@ -6,9 +6,9 @@
 #'@importFrom graphics abline axis image layout lines pairs plot points text
 #'@importFrom stats cor.test dist hclust mad median p.adjust qqplot runmed t.test
 
+
 NULL
 # hack to supress _no visible binding for global variable _ warning in R CMD check.
 
-importFrom()
 utils::globalVariables(c("ratio"), add = TRUE)
 print("loading package quantable")
