@@ -9,7 +9,15 @@ Overwiev
 
 
 ## How to install:
-```sh
+for CRAN version
+
+```r
+install.packages("quantable")
+```
+
+for development version from github
+
+```r
 install.packages("devtools")
 library(devtools)
 install_github("wolski/quantable")
