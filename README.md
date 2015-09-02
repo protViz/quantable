@@ -23,3 +23,12 @@ library(devtools)
 install_github("wolski/quantable")
 ```
 
+### for developers
+
+downlod git repo. Use roxygenize2 to document new funcitons
+
+```r
+library(devtools)
+document()
+```
+
