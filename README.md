@@ -25,7 +25,7 @@ install_github("wolski/quantable")
 
 ### for developers
 
-downlod git repo. Use roxygenize2 to document new funcitons
+downlod git repo. Use roxygenize2 to document new functions. Than run to update namespace and Rd files.
 
 ```r
 library(devtools)
