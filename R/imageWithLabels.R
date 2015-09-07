@@ -12,7 +12,7 @@
 #' rownames(x) <- 1:30
 #' colnames(x) <- letters[1:20]
 #' imageWithLabels(x)
-imageWithLabels = function(x, col.labels=colnames(x), row.labels=rownames(x), cex=1,cex.axis=0.5,main=NULL,col = heat.colors(12))
+imageWithLabels = function(x, col.labels=colnames(x), row.labels=rownames(x), cex=1,cex.axis=0.5,main=NULL,col = heat.colors(12),digits=2)
 {
   layout(matrix(data=c(1,2), nrow=1, ncol=2), widths=c(3,1), heights=c(1,1))
 
@@ -25,14 +25,14 @@ imageWithLabels = function(x, col.labels=colnames(x), row.labels=rownames(x), ce
         matrix(data=colorlevels, nrow=1),
         col=col,xlab="",ylab="",
         axes=FALSE)
-  axis( 2, at=seq(0,1,length=length((colorlevels))) , labels=round(colorlevels,digits=2),cex.axis=cex.axis, las=1, cex=cex )
+  axis( 2, at=seq(0,1,length=length((colorlevels))) , labels=round(colorlevels,digits=digits),cex.axis=cex.axis, las=1, cex=cex )
   layout(1)
 }
 #' if you need an colorscale to you imagelables use this
 #' @param data the data matrix
 #' @param colors used
 #' @export
-colorscale = function(data,colors=heat.colors(12)){
+colorscale = function(data,colors=heat.colors(12),digits=){
   nrc = length(colors)
   z  = seq( min(data) , max(data) , length=nrc)
   image(1, seq(0,1,length=nrc), matrix(z,1,nrc) ,axes=F,ylab="",xlab="")
