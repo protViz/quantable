@@ -1,7 +1,8 @@
 #' image plot with labels
 #'
 #' @param x matrix
-#' @param labels colnames(x)
+#' @param row.labels colnames(x)
+#' @param col.labels rownames(x)
 #' @param cex.axis size of axis lables
 #' @param cex size of labels
 #' @param main main title

@@ -11,6 +11,10 @@ imageWithLabels(x, col.labels = colnames(x), row.labels = rownames(x),
 \arguments{
 \item{x}{matrix}
 
+\item{col.labels}{rownames(x)}
+
+\item{row.labels}{colnames(x)}
+
 \item{cex}{size of labels}
 
 \item{cex.axis}{size of axis lables}
@@ -20,8 +24,6 @@ imageWithLabels(x, col.labels = colnames(x), row.labels = rownames(x),
 \item{col}{color map for matrix}
 
 \item{digits}{number of digits on colorscale, default 2}
-
-\item{labels}{colnames(x)}
 }
 \description{
 image plot with labels
