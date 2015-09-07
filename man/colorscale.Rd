@@ -4,12 +4,14 @@
 \alias{colorscale}
 \title{if you need an colorscale to you imagelables use this}
 \usage{
-colorscale(data, colors = heat.colors(12))
+colorscale(data, colors = heat.colors(12), digits = 2)
 }
 \arguments{
 \item{data}{the data matrix}
 
 \item{colors}{used}
+
+\item{digits}{number of digits on color scale, default 2}
 }
 \description{
 if you need an colorscale to you imagelables use this

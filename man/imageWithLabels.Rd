@@ -4,27 +4,32 @@
 \alias{imageWithLabels}
 \title{image plot with labels}
 \usage{
-imageWithLabels(x, labels = colnames(x), cex = 1, cex.axis = 0.5,
-  main = NULL, col = heat.colors(12))
+imageWithLabels(x, col.labels = colnames(x), row.labels = rownames(x),
+  cex = 1, cex.axis = 0.5, main = NULL, col = heat.colors(12),
+  digits = 2)
 }
 \arguments{
-\item{x}{- matrix}
+\item{x}{matrix}
 
-\item{labels}{- colnames(x)}
+\item{cex}{size of labels}
 
-\item{cex}{- size of labels}
+\item{cex.axis}{size of axis lables}
 
-\item{cex.axis}{- size of axis lables}
+\item{main}{main title}
 
-\item{main}{- main title}
+\item{col}{color map for matrix}
 
-\item{col}{- color map for matrix}
+\item{digits}{number of digits on colorscale, default 2}
+
+\item{labels}{colnames(x)}
 }
 \description{
 image plot with labels
 }
 \examples{
-x = matrix(rnorm(20*20),ncol=20)
+x = matrix(rnorm(20*30),ncol=20)
+rownames(x) <- 1:30
+colnames(x) <- letters[1:20]
 imageWithLabels(x)
 }
 
