@@ -1,11 +1,12 @@
 #' image plot with labels
 #'
-#' @param x - matrix
-#' @param labels - colnames(x)
-#' @param cex.axis - size of axis lables
-#' @param cex - size of labels
-#' @param main - main title
-#' @param col - color map for matrix
+#' @param x matrix
+#' @param labels colnames(x)
+#' @param cex.axis size of axis lables
+#' @param cex size of labels
+#' @param main main title
+#' @param col color map for matrix
+#' @param digits number of digits on colorscale, default 2
 #' @export
 #' @examples
 #' x = matrix(rnorm(20*30),ncol=20)
@@ -32,6 +33,7 @@ imageWithLabels = function(x, col.labels=colnames(x), row.labels=rownames(x), ce
 #' if you need an colorscale to you imagelables use this
 #' @param data the data matrix
 #' @param colors used
+#' @param digits number of digits on color scale, default 2
 #' @export
 colorscale = function(data,colors=heat.colors(12),digits=2){
   nrc = length(colors)
