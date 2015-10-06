@@ -6,7 +6,7 @@
 \usage{
 imageWithLabels(x, col.labels = colnames(x), row.labels = rownames(x),
   cex = 1, cex.axis = 0.5, main = NULL, col = heat.colors(12),
-  digits = 2)
+  digits = 2, marLeft = par()$mar, marRight = par()$mar)
 }
 \arguments{
 \item{x}{matrix}
@@ -24,6 +24,10 @@ imageWithLabels(x, col.labels = colnames(x), row.labels = rownames(x),
 \item{col}{color map for matrix}
 
 \item{digits}{number of digits on colorscale, default 2}
+
+\item{marLeft}{margins of left image see ?par for more detail}
+
+\item{marRight}{margins of right image see ?par for more detail}
 }
 \description{
 image plot with labels
@@ -32,6 +36,9 @@ image plot with labels
 x = matrix(rnorm(20*30),ncol=20)
 rownames(x) <- 1:30
 colnames(x) <- letters[1:20]
+martmp <- par()$mar
 imageWithLabels(x)
+imageWithLabels(x,marLeft = c(5,5,2,2),marRight=c(0,0,0,0))
+par(mar = martmp)
 }
 

@@ -4,10 +4,12 @@
 \alias{uppertriang}
 \title{get values of upper triangle from matrix}
 \usage{
-uppertriang(mat)
+uppertriang(mat, diag = FALSE)
 }
 \arguments{
 \item{mat}{matrix}
+
+\item{diag}{default = FALSE}
 }
 \description{
 get values of upper triangle from matrix
