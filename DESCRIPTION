@@ -8,7 +8,7 @@ Maintainer: Witold Wolski <wewolski@gmail.com>
 Description: Methods which streamline the descriptive analysis of quantitative matrices.
 License: GPL-3
 LazyData: TRUE
-Imports: scales, gplots, RColorBrewer
+Imports: scales, gplots, RColorBrewer, pROC, caret
 URL: https://github.com/wolski/quantable
 BugReports: https://github.com/wolski/quantable/issues
 Repository: CRAN
