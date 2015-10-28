@@ -15,7 +15,15 @@ for CRAN version
 install.packages("quantable")
 ```
 
-for development version from github
+Please note that the CRAN version might be heavily outdated. 
+This is because of, I find rather developer unfriendly, the [CRAN repository policies](http://CRAN.R-project.org/web/packages/policies.html) :
+
+  Submitting updates should be done responsibly and with respect for the
+  volunteers' time. Once a package is established (which may take
+  several rounds), “no more than every 1–2 months” seems appropriate.
+
+
+So for an up to date version please do: 
 
 ```r
 install.packages("devtools")
