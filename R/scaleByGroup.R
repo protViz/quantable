@@ -13,6 +13,7 @@ scaleByGroup <- function(data , protGroup, plot=FALSE){
   
   noReference = sweep(noReference,2,referenceScaled$medians,"-")
   noReference = sweep(noReference,2,referenceScaled$mads,"/")
+
   if(plot){
     par(mfrow=c(1,2))
     boxplot(noReference,main="not mitochondrial (whole)",ylim=c(-8,6),pch=".", las=2,cex.axis=0.5)
@@ -20,4 +21,6 @@ scaleByGroup <- function(data , protGroup, plot=FALSE){
     boxplot(referenceScaled$data,main="mitochondrial (whole)",ylim=c(-8,6),las=2,pch=".",cex.axis=0.5)
     abline(h=0,col=2)
   }
+  
+  return(list(reference = referenceScaled, noReference = noReference))
 }
