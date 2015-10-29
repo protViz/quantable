@@ -9,12 +9,14 @@
 #' split2table(dat,split="\\_|\\/")
 split2table <- function(names,split="\\||\\_")
 {
-  cnamessplit <- strsplit(names,split)
-  protnam <- matrix(NA, ncol=length(cnamessplit[[1]]),nrow=length(cnamessplit))
-  print(dim(protnam))
-  for(i in 1:length(cnamessplit))
-  {
-    protnam[i,] <- cnamessplit[[i]]
-  }
+  
+  cnamessplit <- strsplit(as.character(names),split)
+  protnam<-do.call("rbind",cnamessplit)
+  #protnam <- matrix(NA, ncol=length(cnamessplit[[1]]),nrow=length(cnamessplit))
+  #print(dim(protnam))
+  #for(i in 1:length(cnamessplit))
+  #{
+  #  protnam[i,] <- cnamessplit[[i]]
+  #}
   return(protnam)
 }
