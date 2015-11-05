@@ -9,6 +9,6 @@ Description: Methods which streamline the descriptive analysis of quantitative m
 License: GPL-3
 LazyData: TRUE
 Imports: scales, gplots, RColorBrewer, pROC, caret, e1071
-URL: https://github.com/wolski/quantable
-BugReports: https://github.com/wolski/quantable/issues
+URL: https://github.com/protviz/quantable
+BugReports: https://github.com/protviz/quantable/issues
 Repository: CRAN

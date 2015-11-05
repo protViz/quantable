@@ -6,7 +6,8 @@
 \usage{
 imageWithLabels(x, col.labels = colnames(x), row.labels = rownames(x),
   cex = 1, cex.axis = 0.5, main = NULL, col = heat.colors(12),
-  digits = 2, marLeft = par()$mar, marRight = par()$mar)
+  digits = 2, marLeft = par()$mar, marRight = par()$mar, xlab = "",
+  ylab = "")
 }
 \arguments{
 \item{x}{matrix}
@@ -28,6 +29,10 @@ imageWithLabels(x, col.labels = colnames(x), row.labels = rownames(x),
 \item{marLeft}{margins of left image see ?par for more detail}
 
 \item{marRight}{margins of right image see ?par for more detail}
+
+\item{xlab}{x label}
+
+\item{ylab}{y label}
 }
 \description{
 image plot with labels
@@ -38,7 +43,7 @@ rownames(x) <- 1:30
 colnames(x) <- letters[1:20]
 martmp <- par()$mar
 imageWithLabels(x)
-imageWithLabels(x,marLeft = c(5,5,2,2),marRight=c(0,0,0,0))
+imageWithLabels(x,marLeft = c(5,5,2,2),marRight=c(0,0,0,0),xlab="ttt",ylab="bbb")
 par(mar = martmp)
 }
 
