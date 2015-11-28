@@ -1,4 +1,15 @@
-#' create green color scale
+#' create blue white red palette
+#' @param  length nr of colors
+#' @export
+#' @examples 
+#' 
+#' library(scales)
+#' show_col(getBlueWhiteRed(21))
+#' 
+getBlueWhiteRed <- function(length=21){
+  div_gradient_pal(low="blue",mid="white",high="red")(seq(0, 1, length = length))
+}
+#' create divergent palette
 #' @param  length nr of colors
 #' @export
 #' @examples 

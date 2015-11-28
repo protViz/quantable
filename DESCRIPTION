@@ -5,10 +5,18 @@ Version: 0.1.3
 Date: 2015-07-29
 Author: Witold Wolski <wewolski@gmail.com>
 Maintainer: Witold Wolski <wewolski@gmail.com>
-Description: Methods which streamline the descriptive analysis of quantitative matrices.
+Description: Methods which streamline the descriptive analysis of quantitative
+    matrices.
 License: GPL-3
 LazyData: TRUE
-Imports: scales, gplots, RColorBrewer, pROC, caret, e1071
+Imports:
+    scales,
+    gplots,
+    RColorBrewer,
+    pROC,
+    caret,
+    e1071
 URL: https://github.com/protviz/quantable
 BugReports: https://github.com/protviz/quantable/issues
 Repository: CRAN
+RoxygenNote: 5.0.1
