@@ -1,4 +1,4 @@
-#' create green color scale
+#' create divergent palette
 #' @param  length nr of colors
 #' @export
 #' @examples 
