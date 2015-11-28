@@ -4,6 +4,19 @@
 #' @examples 
 #' 
 #' library(scales)
+#' show_col(getDiv(11,4))
+#' 
+getDiv <- function(length = 10, pallete=3){
+  divcol <- brewer_pal(type="div", palette = pallete)(8)
+  ygreen<-gradient_n_pal(divcol)(seq(0, 1, length.out = length))
+  return(ygreen)
+}
+#' create green color scale
+#' @param  length nr of colors
+#' @export
+#' @examples 
+#' 
+#' library(scales)
 #' show_col(getGreensScale(5))
 #' 
 getGreensScale <- function(length = 10){
