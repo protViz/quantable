@@ -4,7 +4,7 @@
 #' @examples 
 #' 
 #' library(scales)
-#' show_col(getDiv(11,4))
+#' show_col(getDiv(21,4))
 #' 
 getDiv <- function(length = 10, pallete=3){
   divcol <- brewer_pal(type="div", palette = pallete)(8)
