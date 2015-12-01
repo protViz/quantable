@@ -10,7 +10,10 @@ mypairs = function(dataframe,...){
   pairs(dataframe, panel = function(x,y){
     points(x, y, pch=".")
     abline(a=0,b=1,v=0,h=0,col=2)
+    cR2 <- cor(x,y)^2
+    text(max(x)/10,max(y)/2, paste("R^2", round(cR2, digits=2) , sep="\n"))
   }
   , lower.panel=NULL,...
   )
 }
+
