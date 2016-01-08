@@ -17,7 +17,7 @@ getBlueWhiteRed <- function(length=21){
 #' library(scales)
 #' show_col(getDiv(21,4))
 #' 
-getDiv <- function(length = 10, pallete=3){
+getDiv <- function(length = 11, pallete=3){
   divcol <- brewer_pal(type="div", palette = pallete)(8)
   ygreen<-gradient_n_pal(divcol)(seq(0, 1, length.out = length))
   return(ygreen)
