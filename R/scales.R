@@ -11,6 +11,7 @@ getBlueWhiteRed <- function(length=21){
 }
 #' create divergent palette
 #' @param  length nr of colors
+#' @param pallete there are a few divergent palletes in brewer_pal, default 1
 #' @export
 #' @examples 
 #' 
@@ -23,7 +24,7 @@ getDiv <- function(length = 11, pallete=3){
   return(ygreen)
 }
 #' create green color scale
-#' @param  length nr of colors
+#' @param length nr of colors
 #' @export
 #' @examples 
 #' 

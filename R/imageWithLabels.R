@@ -12,6 +12,7 @@
 #' @param marRight margins of right image see ?par for more detail
 #' @param xlab x label
 #' @param ylab y label
+#' @param zlim z value range, default NULL an determined from x
 #' @export
 #' @examples
 #' x = matrix(rnorm(20*30),ncol=20)
@@ -26,7 +27,6 @@ imageWithLabels = function(x, col.labels=colnames(x), row.labels=rownames(x), ce
                            col = heat.colors(12), digits=2, marLeft=par()$mar,
                            marRight = par()$mar, xlab='',ylab='', zlim=NULL)
 {
-
   layout(matrix(data=c(1,2), nrow=1, ncol=2), widths=c(3,1), heights=c(1,1))
   par(mar=marLeft)
   if(!is.null(zlim)){
