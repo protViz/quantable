@@ -6,6 +6,7 @@
 #' @param palette color palette
 #' @param main title
 #' @param labRow row labels
+#' @param margins control margins of heatmap
 #' @param ... other parameters to heatmap.2
 #' @examples
 #' tmp = matrix(rep((1:100),times = 4) + rnorm(100*4,0,3),ncol=4)

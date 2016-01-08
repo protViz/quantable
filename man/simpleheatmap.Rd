@@ -20,6 +20,8 @@ simpleheatmap(pln, main = "", distf = dist, hclustf = hclust,
 
 \item{palette}{color palette}
 
+\item{margins}{control margins of heatmap}
+
 \item{...}{other parameters to heatmap.2}
 }
 \description{

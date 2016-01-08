@@ -11,12 +11,12 @@
 #' boxplot(t(b[1:20,]))
 #' res <- getValuesForVolcano(a,b)
 #' volcanoplot(res$fchange , res$pval)
-getValuesForVolcano=function(x,y){
+getValuesForVolcano=function(x,y, paired = FALSE){
   stopifnot(nrow(x) == nrow(y))
   pval = rep(NA, nrow(x))
   fchange = rep(NA, nrow(x))
   for(i in 1:nrow(x)){
-    tmp <- t.test(x[i,],y[i,])
+    tmp <- t.test(x[i,],y[i,], paired = paired)
     pval[i] <- tmp$p.value
     fchange[i] <-tmp$estimate[1] - tmp$estimate[2]
   }
