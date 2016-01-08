@@ -23,12 +23,18 @@
 #' par(mar = martmp)
 #' 
 imageWithLabels = function(x, col.labels=colnames(x), row.labels=rownames(x), cex=1,cex.axis=0.5,main=NULL,
-                           col = heat.colors(12), digits=2, marLeft=par()$mar, marRight = par()$mar, xlab='',ylab='')
+                           col = heat.colors(12), digits=2, marLeft=par()$mar,
+                           marRight = par()$mar, xlab='',ylab='', zlim=NULL)
 {
 
   layout(matrix(data=c(1,2), nrow=1, ncol=2), widths=c(3,1), heights=c(1,1))
   par(mar=marLeft)
-  image(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab)
+  if(!is.null(zlim)){
+    image(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab,zlim=zlim)
+  }else{
+    image(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab)
+  }
+    
   axis( 2, at=seq(0,1,length=length((col.labels))) , labels=col.labels,cex.axis=cex.axis, las=2, cex=cex )
   axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
 
