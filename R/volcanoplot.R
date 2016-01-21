@@ -45,7 +45,7 @@ volcanoplot = function(foldchange,
   points(upsubset$ratio,-log10(upsubset$pvals),col=2,pch=19)
   points(upsubset$ratio,-log10(upsubset$pvals),col=1,pch=1)
   if(length(rownames(upsubset)) > 0){
-    text(upsubset$ratio, -log10(upsubset$pvals),rownames(upsubset),cex=cex,pos=4)
+    text(upsubset$ratio, -log10(upsubset$pvals),rownames(upsubset),cex=cex,pos=2)
   }
 
   abline(h=-log10(pthresh),col="gray")
@@ -53,7 +53,7 @@ volcanoplot = function(foldchange,
   points(downsubset$ratio,-log10(downsubset$pvals),col=3,pch=19)
   points(downsubset$ratio,-log10(downsubset$pvals),col=1,pch=1)
   if(length(rownames(downsubset)) > 0){
-    text(downsubset$ratio, -log10(downsubset$pvals),rownames(downsubset),cex=cex,pos=2)
+    text(downsubset$ratio, -log10(downsubset$pvals),rownames(downsubset),cex=cex,pos=4)
   }
 
   abline(v=c(-ratiothresh,ratiothresh),lty=2)
