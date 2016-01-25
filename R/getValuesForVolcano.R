@@ -2,6 +2,7 @@
 #' @export
 #' @param x - one data matrix
 #' @param y - second data matrix
+#' @param paired a logical indicating whether you want a paired t-test.
 #' @return list with two fields fchange (fold change) and pval
 #' @examples
 #' a <- t(replicate(200,rnorm(20,runif(1,-3,3),1)))
