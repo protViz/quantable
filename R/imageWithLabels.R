@@ -41,10 +41,17 @@ imageWithLabels = function(x, col.labels=colnames(x), row.labels=rownames(x), ce
   colorlevels = seq(min(x,na.rm = TRUE),max(x,na.rm = TRUE),length=length(col))
   print(marRight)
   par(mar=marRight)
-  image(1, seq(0,1,length=length(colorlevels)),
-        matrix(data=colorlevels, nrow=1),
-        col=col,xlab="",ylab="",
-        axes=FALSE)
+  if(!is.null(zlim)){
+    image(1, seq(0,1,length=length(colorlevels)),
+          matrix(data=colorlevels, nrow=1),
+          col=col,xlab="",ylab="",
+          axes=FALSE,zlim=zlim)
+  }else{
+    image(1, seq(0,1,length=length(colorlevels)),
+          matrix(data=colorlevels, nrow=1),
+          col=col,xlab="",ylab="",
+          axes=FALSE)
+  }
   axis( 2, at=seq(0,1,length=length((colorlevels))) , labels=round(colorlevels,digits=digits),cex.axis=cex.axis, las=1, cex=cex )
   layout(1)
 }
