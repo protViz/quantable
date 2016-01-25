@@ -4,12 +4,14 @@
 \alias{getValuesForVolcano}
 \title{running robust scaling of arefw}
 \usage{
-getValuesForVolcano(x, y)
+getValuesForVolcano(x, y, paired = FALSE)
 }
 \arguments{
 \item{x}{- one data matrix}
 
 \item{y}{- second data matrix}
+
+\item{paired}{a logical indicating whether you want a paired t-test.}
 }
 \value{
 list with two fields fchange (fold change) and pval

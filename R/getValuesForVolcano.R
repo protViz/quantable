@@ -23,6 +23,3 @@ getValuesForVolcano=function(x,y, paired = FALSE){
   }
   return(list(pval= p.adjust(pval, method="BH"), fchange=fchange))
 }
-
-
-
