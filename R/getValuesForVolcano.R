@@ -3,6 +3,7 @@
 #' @param x - one data matrix
 #' @param y - second data matrix
 #' @param paired a logical indicating whether you want a paired t-test.
+#' @param adjust p-values using Benjamin Hochberg
 #' @return list with two fields fchange (fold change) and pval
 #' @examples
 #' a <- t(replicate(200,rnorm(20,runif(1,-3,3),1)))
@@ -12,7 +13,7 @@
 #' boxplot(t(b[1:20,]))
 #' res <- getValuesForVolcano(a,b)
 #' volcanoplot(res$fchange , res$pval)
-getTValuesForVolcano=function(x,y, paired = FALSE){
+getTValuesForVolcano=function(x,y, paired = FALSE,adjust=TRUE){
   stopifnot(nrow(x) == nrow(y))
   pval = rep(NA, nrow(x))
   fchange = rep(NA, nrow(x))
@@ -21,13 +22,17 @@ getTValuesForVolcano=function(x,y, paired = FALSE){
     pval[i] <- tmp$p.value
     fchange[i] <-tmp$estimate[1] - tmp$estimate[2]
   }
-  return(list(pval= p.adjust(pval, method="BH"), fchange=fchange))
+  if(adjust){
+    pval <- p.adjust(pval, method="BH")
+  }
+  return(list(pval= pval, fchange=fchange))
 }
 #' get p-values of wilcoxon rank sum test for volcano
 #' @export
 #' @param x - one data matrix
 #' @param y - second data matrix
 #' @param paired a logical indicating whether you want a paired t-test.
+#' @param adjust pvalues using Benjamin Hochberg
 #' @return list with two fields fchange (fold change) and pval
 #' @examples
 #' a <- t(replicate(200,rnorm(20,runif(1,-3,3),1)))
@@ -37,7 +42,7 @@ getTValuesForVolcano=function(x,y, paired = FALSE){
 #' boxplot(t(b[1:20,]))
 #' res <- getValuesForVolcano(a,b)
 #' volcanoplot(res$fchange , res$pval)
-getWRValuesForVolcano=function(x,y, paired = FALSE){
+getWRValuesForVolcano=function(x,y, paired = FALSE, adjust=TRUE){
   stopifnot(nrow(x) == nrow(y))
   pval = rep(NA, nrow(x))
   fchange = rep(NA, nrow(x))
@@ -48,5 +53,8 @@ getWRValuesForVolcano=function(x,y, paired = FALSE){
     pval[i] <- tmp$p.value
     fchange[i] <- median( xv) - median(yv)
   }
-  return(list(pval= p.adjust(pval, method="BH"), fchange=fchange))
+  if(adjust){
+    pval <- p.adjust(pval, method="BH")
+  }
+  return(list(pval= pval, fchange=fchange))
 }

@@ -4,7 +4,7 @@
 \alias{getWRValuesForVolcano}
 \title{get p-values of wilcoxon rank sum test for volcano}
 \usage{
-getWRValuesForVolcano(x, y, paired = FALSE)
+getWRValuesForVolcano(x, y, paired = FALSE, adjust = TRUE)
 }
 \arguments{
 \item{x}{- one data matrix}
@@ -12,6 +12,8 @@ getWRValuesForVolcano(x, y, paired = FALSE)
 \item{y}{- second data matrix}
 
 \item{paired}{a logical indicating whether you want a paired t-test.}
+
+\item{adjust}{pvalues using Benjamin Hochberg}
 }
 \value{
 list with two fields fchange (fold change) and pval
