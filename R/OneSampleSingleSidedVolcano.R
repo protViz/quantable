@@ -12,7 +12,6 @@
 onesamplegreaterT <- function(ddtas,adjust=TRUE){
   p.vals <-apply(ddtas, 1, function(x){ t.test(x,alternative = "greater")$p.value })
   p.vals[is.na(p.vals)]<-1
-  
   if(adjust){
     p.vals<-p.adjust(p.vals,method = "BH")
   }
@@ -46,7 +45,7 @@ plotOneSideVolcano <- function(data,  p.thresh = 0.05, fc.thresh=2 ,main=""){
   abline(h=-log10(p.thresh),col=2)
   abline(v=c(0))
   abline(v=fc.thresh,col=2)
-  idx <- p.vals < p.thresh & fc > fc.thresh
+  idx <- p.vals <= p.thresh & fc >= fc.thresh
   if(sum(idx)>0){
     text(fc[idx],-log10(p.vals[idx]),labels = labels[idx], pos=2,cex=0.5)
     points(fc[idx],-log10(p.vals[idx]),col=2,pch=19)
