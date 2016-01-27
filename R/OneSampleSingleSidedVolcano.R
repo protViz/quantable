@@ -48,7 +48,6 @@ plotOneSideVolcano <- function(data,  p.thresh = 0.05, fc.thresh=2 ,main=""){
   abline(v=fc.thresh,col=2)
   idx <- p.vals < p.thresh & fc > fc.thresh
   if(sum(idx)>0){
-    print(idx)
     text(fc[idx],-log10(p.vals[idx]),labels = labels[idx], pos=2,cex=0.5)
     points(fc[idx],-log10(p.vals[idx]),col=2,pch=19)
     return(data[idx,])
