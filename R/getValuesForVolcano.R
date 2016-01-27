@@ -11,9 +11,9 @@
 #' a <- a[101:200,]
 #' boxplot(t(a[1:20,]))
 #' boxplot(t(b[1:20,]))
-#' res <- getValuesForVolcano(a,b)
+#' res <- getTValuesForVolcano(a,b)
 #' volcanoplot(res$fchange , res$pval)
-getTValuesForVolcano=function(x,y, paired = FALSE,adjust=TRUE){
+getTValuesForVolcano <- function(x,y, paired = FALSE,adjust=TRUE){
   stopifnot(nrow(x) == nrow(y))
   pval = rep(NA, nrow(x))
   fchange = rep(NA, nrow(x))
@@ -40,9 +40,9 @@ getTValuesForVolcano=function(x,y, paired = FALSE,adjust=TRUE){
 #' a <- a[101:200,]
 #' boxplot(t(a[1:20,]))
 #' boxplot(t(b[1:20,]))
-#' res <- getValuesForVolcano(a,b)
+#' res <- getWRValuesForVolcano(a,b)
 #' volcanoplot(res$fchange , res$pval)
-getWRValuesForVolcano=function(x,y, paired = FALSE, adjust=TRUE){
+getWRValuesForVolcano <- function(x,y, paired = FALSE, adjust=TRUE){
   stopifnot(nrow(x) == nrow(y))
   pval = rep(NA, nrow(x))
   fchange = rep(NA, nrow(x))
