@@ -31,15 +31,17 @@ volcanoplot = function(foldchange,
                        main=NULL
 ){
   dataframe <- data.frame("ratio" = foldchange, "pvals" = pvals )
-  rownames(dataframe) = labels
-
+  
+  if(!is.null(labels)){
+    rownames(dataframe) = labels
+  }
+  
   bla = tryCatch( plot(dataframe$ratio,-log10(dataframe$pvals),col="#00000033",pch=19,xlab=xlab, ylab=ylab,xlim=xlim,main=main),
                   warning=function(bla){ dev.off(); return(1)}
   )
   if(!is.null(bla)){
     plot(dataframe$ratio,-log10(dataframe$pvals),col=1,pch=19,xlab=xlab, ylab=ylab ,xlim=xlim,cex=cex.point,main=main)
   }
-
 
   upsubset<-subset(dataframe,pvals < pthresh & ratio > ratiothresh)
   points(upsubset$ratio,-log10(upsubset$pvals),col=2,pch=19)
