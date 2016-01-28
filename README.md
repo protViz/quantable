@@ -28,7 +28,7 @@ So for an up to date version please do:
 ```r
 install.packages("devtools")
 library(devtools)
-install_github("wolski/quantable")
+install_github("protViz/quantable")
 ```
 
 ### for developers
