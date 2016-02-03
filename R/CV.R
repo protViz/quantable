@@ -1,3 +1,16 @@
+#' compute CV for each row in matrix
+#' 
+#' Typically used to create and violin plot
+#' @param data matrix
+#' @param top remove top (default 30) CV
+#' @export
+#' @examples
+#' dat <- matrix(rnorm(1000,10,5), ncol=20)
+#' dim(dat)
+#' cv <- CV(dat, top=5)
+#' length(cv)
+#' stopifnot(length(cv) == 45)
+#' hist(cv)
 CV = function(data,top = 30){
   sd = apply(data,1,sd)
   mean = apply(data,1,mean)
@@ -6,8 +19,20 @@ CV = function(data,top = 30){
   res <- res[xx<=(length(xx)-top)]
   return(res)
 }
-
-#CV for log transformed data
+#' geometric coefficient of variation (CV for log transformed data)
+#' Typically used to create and violin plot
+#'
+#' @param data matrix
+#' @param top remove top (default 30) CV
+#' @export
+#' @seealso CV
+#' @examples
+#' dat <- matrix(rnorm(1000,10,5), ncol=20)
+#' dim(dat)
+#' cv <- CVlog(dat, top=5)
+#' length(cv)
+#' stopifnot(length(cv) == 45)
+#' hist(cv)
 CVlog = function(data,top=30){
   sd=apply(data,1,sd)
   res = (exp(sd)-1)
