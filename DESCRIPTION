@@ -15,7 +15,8 @@ Imports:
     RColorBrewer,
     pROC,
     caret,
-    e1071
+    e1071,
+    Matrix
 URL: https://github.com/protviz/quantable
 BugReports: https://github.com/protviz/quantable/issues
 Repository: CRAN
