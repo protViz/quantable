@@ -25,11 +25,11 @@ simpleheatmap = function(pln,
                          palette=getBlueWhiteRed(),
                          margins=c(5,5),...)
 {
-  tmp <- heatmap.2( as.matrix(pln) , trace="none" , scale="none" , col=palette ,
+  heatmap.2( as.matrix(pln) , trace="none" , scale="none" , col=palette ,
                     labRow=labRow,
                     cexRow=0.1 + 1/log10(dim(pln)[1]),
                     cexCol=0.1 + 1/log10(dim(pln)[2]),
                     distfun=distf,hclustfun=hclustf,
                     margins=margins,main=main,...=...)
-  return(tmp)
+ 
 }
