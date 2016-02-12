@@ -31,4 +31,5 @@ simpleheatmap = function(pln,
                     cexCol=0.1 + 1/log10(dim(pln)[2]),
                     distfun=distf,hclustfun=hclustf,
                     margins=margins,main=main,...=...)
+  return(tmp)
 }
