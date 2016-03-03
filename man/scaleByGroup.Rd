@@ -4,7 +4,7 @@
 \alias{scaleByGroup}
 \title{scale data given group}
 \usage{
-scaleByGroup(data, protGroup, plot = FALSE)
+scaleByGroup(data, protGroup, plot = FALSE, scale = TRUE, center = TRUE)
 }
 \arguments{
 \item{data}{matrix}
@@ -12,6 +12,10 @@ scaleByGroup(data, protGroup, plot = FALSE)
 \item{protGroup}{names matching rownames of data}
 
 \item{plot}{plot diagnostics}
+
+\item{scale}{scale default TRUE}
+
+\item{center}{center default TRUE}
 }
 \description{
 scale data given group

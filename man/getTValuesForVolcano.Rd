@@ -4,16 +4,16 @@
 \alias{getTValuesForVolcano}
 \title{get p-values of t-test values for volcano}
 \usage{
-getTValuesForVolcano(x, y, paired = FALSE, adjust = TRUE)
+getTValuesForVolcano(x, y, adjust = TRUE, alternative = "two.sided")
 }
 \arguments{
 \item{x}{- one data matrix}
 
 \item{y}{- second data matrix}
 
-\item{paired}{a logical indicating whether you want a paired t-test.}
-
 \item{adjust}{p-values using Benjamin Hochberg}
+
+\item{paired}{a logical indicating whether you want a paired t-test.}
 }
 \value{
 list with two fields fchange (fold change) and pval
