@@ -4,10 +4,12 @@
 \alias{mypairs}
 \title{normal pairs plot with different pch and plus abline}
 \usage{
-mypairs(dataframe, ...)
+mypairs(dataframe, legend = FALSE, ...)
 }
 \arguments{
 \item{dataframe}{data matrix or data.frame as normally passed to pairs}
+
+\item{legend}{add legend to plots}
 
 \item{...}{params usually passed to pairs}
 }
@@ -17,6 +19,7 @@ normal pairs plot with different pch and plus abline
 \examples{
 tmp = matrix(rep((1:100),times = 4) + rnorm(100*4,0,3),ncol=4)
 mypairs(tmp,log="xy",main="small data")
+mypairs(tmp,log="xy",main="small data", legend=TRUE)
 }
 \seealso{
 also \code{\link{pairs}}
