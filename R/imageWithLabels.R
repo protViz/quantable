@@ -65,3 +65,4 @@ colorscale = function(data,colors=heat.colors(12),digits=2){
   image(1, seq(0,1,length=nrc), matrix(z,1,nrc) ,axes=F,ylab="",xlab="")
   axis( 2, at=seq(0,1,length=nrc) , labels=round(z,digits=digits), las=2 )
 }
+
