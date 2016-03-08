@@ -39,7 +39,6 @@ imageWithLabels = function(x, col.labels=colnames(x), row.labels=rownames(x), ce
   axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
 
   colorlevels = seq(min(x,na.rm = TRUE),max(x,na.rm = TRUE),length=length(col))
-  print(marRight)
   par(mar=marRight)
   if(!is.null(zlim)){
     image(1, seq(0,1,length=length(colorlevels)),
