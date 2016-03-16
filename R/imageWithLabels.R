@@ -8,6 +8,39 @@
 #' @param main main title
 #' @param col color map for matrix
 #' @param digits number of digits on colorscale, default 2
+#' @param xlab x label
+#' @param ylab y label
+#' @param zlim z value range, default NULL an determined from x
+#' @export
+#' @examples
+#' x = matrix(rnorm(20*30),ncol=20)
+#' rownames(x) <- 1:30
+#' colnames(x) <- letters[1:20]
+#' imageWithLabelsNoLayout(x)
+#' imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb")
+#' 
+imageWithLabelsNoLayout = function(x, col.labels=colnames(x), row.labels=rownames(x), cex=1,cex.axis=0.5,main=NULL,
+                           col = heat.colors(12), digits=2, xlab='',ylab='', zlim=NULL)
+{
+  if(!is.null(zlim)){
+    image(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab,zlim=zlim)
+  }else{
+    image(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab)
+  }
+  
+  axis( 2, at=seq(0,1,length=length((col.labels))) , labels=col.labels,cex.axis=cex.axis, las=2, cex=cex )
+  axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
+}
+#' image plot with labels
+#'
+#' @param x matrix
+#' @param row.labels colnames(x)
+#' @param col.labels rownames(x)
+#' @param cex.axis size of axis lables
+#' @param cex size of labels
+#' @param main main title
+#' @param col color map for matrix
+#' @param digits number of digits on colorscale, default 2
 #' @param marLeft margins of left image see ?par for more detail
 #' @param marRight margins of right image see ?par for more detail
 #' @param xlab x label
