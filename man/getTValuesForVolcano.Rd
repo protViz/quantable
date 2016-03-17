@@ -13,7 +13,7 @@ getTValuesForVolcano(x, y, adjust = TRUE, alternative = "two.sided")
 
 \item{adjust}{p-values using Benjamin Hochberg}
 
-\item{paired}{a logical indicating whether you want a paired t-test.}
+\item{alternative}{two.sided, less, greater}
 }
 \value{
 list with two fields fchange (fold change) and pval

@@ -31,6 +31,36 @@ imageWithLabelsNoLayout = function(x, col.labels=colnames(x), row.labels=rowname
   axis( 2, at=seq(0,1,length=length((col.labels))) , labels=col.labels,cex.axis=cex.axis, las=2, cex=cex )
   axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
 }
+#' if you need an colorscale to you imagelables use this
+#' @param data the data matrix
+#' @param col colors used
+#' @param digits number of digits on color scale, default 2
+#' @param cex cex
+#' @param cex.axis cex.axis
+#' @param zlim zlim
+#' @export
+#' @examples
+#' 
+#' x = matrix(rnorm(20*30),ncol=20)
+#' rownames(x) <- 1:30
+#' colnames(x) <- letters[1:20]
+#' colorscale2(x)
+colorscale = function(x, cex = 1, cex.axis = 0.5,col = heat.colors(12), digits=2, zlim=NULL){
+  colorlevels = seq(min(x,na.rm = TRUE),max(x,na.rm = TRUE),length=length(col))
+  if(!is.null(zlim)){
+    image(1, seq(0,1,length=length(colorlevels)),
+          matrix(data=colorlevels, nrow=1),
+          col=col,xlab="",ylab="",
+          axes=FALSE,zlim=zlim)
+  }else{
+    image(1, seq(0,1,length=length(colorlevels)),
+          matrix(data=colorlevels, nrow=1),
+          col=col,xlab="",ylab="",
+          axes=FALSE)
+  }
+  axis( 2, at=seq(0,1,length=length((colorlevels))) , labels=round(colorlevels,digits=digits),cex.axis=cex.axis, las=1, cex=cex )
+}
+
 #' image plot with labels
 #'
 #' @param x matrix
@@ -62,40 +92,10 @@ imageWithLabels = function(x, col.labels=colnames(x), row.labels=rownames(x), ce
 {
   layout(matrix(data=c(1,2), nrow=1, ncol=2), widths=c(3,1), heights=c(1,1))
   par(mar=marLeft)
-  if(!is.null(zlim)){
-    image(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab,zlim=zlim)
-  }else{
-    image(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab)
-  }
-    
-  axis( 2, at=seq(0,1,length=length((col.labels))) , labels=col.labels,cex.axis=cex.axis, las=2, cex=cex )
-  axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
-
-  colorlevels = seq(min(x,na.rm = TRUE),max(x,na.rm = TRUE),length=length(col))
+  imageWithLabelsNoLayout(x,col.labels=col.labels, row.labels=row.labels, cex=cex,cex.axis=cex.axis,main=main,
+                          col = col, digits=digits, xlab=xlab,ylab=ylab, zlim=zlim)
   par(mar=marRight)
-  if(!is.null(zlim)){
-    image(1, seq(0,1,length=length(colorlevels)),
-          matrix(data=colorlevels, nrow=1),
-          col=col,xlab="",ylab="",
-          axes=FALSE,zlim=zlim)
-  }else{
-    image(1, seq(0,1,length=length(colorlevels)),
-          matrix(data=colorlevels, nrow=1),
-          col=col,xlab="",ylab="",
-          axes=FALSE)
-  }
-  axis( 2, at=seq(0,1,length=length((colorlevels))) , labels=round(colorlevels,digits=digits),cex.axis=cex.axis, las=1, cex=cex )
+  colorscale(x, cex = cex, cex.axis = cex.axis,col = col, digits=digits, zlim=zlim)  
   layout(1)
-}
-#' if you need an colorscale to you imagelables use this
-#' @param data the data matrix
-#' @param colors used
-#' @param digits number of digits on color scale, default 2
-#' @export
-colorscale = function(data,colors=heat.colors(12),digits=2){
-  nrc = length(colors)
-  z  = seq( min(data) , max(data) , length=nrc)
-  image(1, seq(0,1,length=nrc), matrix(z,1,nrc) ,axes=F,ylab="",xlab="")
-  axis( 2, at=seq(0,1,length=nrc) , labels=round(z,digits=digits), las=2 )
 }
 

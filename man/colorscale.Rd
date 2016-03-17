@@ -4,16 +4,30 @@
 \alias{colorscale}
 \title{if you need an colorscale to you imagelables use this}
 \usage{
-colorscale(data, colors = heat.colors(12), digits = 2)
+colorscale(x, cex = 1, cex.axis = 0.5, col = heat.colors(12),
+  digits = 2, zlim = NULL)
 }
 \arguments{
-\item{data}{the data matrix}
+\item{cex}{cex}
 
-\item{colors}{used}
+\item{cex.axis}{cex.axis}
+
+\item{col}{colors used}
 
 \item{digits}{number of digits on color scale, default 2}
+
+\item{zlim}{zlim}
+
+\item{data}{the data matrix}
 }
 \description{
 if you need an colorscale to you imagelables use this
+}
+\examples{
+
+x = matrix(rnorm(20*30),ncol=20)
+rownames(x) <- 1:30
+colnames(x) <- letters[1:20]
+colorscale2(x)
 }
 

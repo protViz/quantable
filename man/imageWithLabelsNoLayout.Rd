@@ -39,10 +39,8 @@ image plot with labels
 x = matrix(rnorm(20*30),ncol=20)
 rownames(x) <- 1:30
 colnames(x) <- letters[1:20]
-martmp <- par()$mar
 imageWithLabelsNoLayout(x)
 imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb")
-par(mar = martmp)
 
 }
 
