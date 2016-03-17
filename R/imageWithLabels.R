@@ -32,7 +32,7 @@ imageWithLabelsNoLayout = function(x, col.labels=colnames(x), row.labels=rowname
   axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
 }
 #' if you need an colorscale to you imagelables use this
-#' @param data the data matrix
+#' @param x data the data matrix
 #' @param col colors used
 #' @param digits number of digits on color scale, default 2
 #' @param cex cex
@@ -44,7 +44,7 @@ imageWithLabelsNoLayout = function(x, col.labels=colnames(x), row.labels=rowname
 #' x = matrix(rnorm(20*30),ncol=20)
 #' rownames(x) <- 1:30
 #' colnames(x) <- letters[1:20]
-#' colorscale2(x)
+#' colorscale(x)
 colorscale = function(x, cex = 1, cex.axis = 0.5,col = heat.colors(12), digits=2, zlim=NULL){
   colorlevels = seq(min(x,na.rm = TRUE),max(x,na.rm = TRUE),length=length(col))
   if(!is.null(zlim)){

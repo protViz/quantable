@@ -2,7 +2,7 @@
 #' @export
 #' @param x - one data matrix
 #' @param y - second data matrix
-#' @param paired a logical indicating whether you want a paired t-test.
+#' @param alternative two.sided, less, greater
 #' @param adjust p-values using Benjamin Hochberg
 #' @return list with two fields fchange (fold change) and pval
 #' @examples

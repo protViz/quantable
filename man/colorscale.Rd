@@ -8,6 +8,8 @@ colorscale(x, cex = 1, cex.axis = 0.5, col = heat.colors(12),
   digits = 2, zlim = NULL)
 }
 \arguments{
+\item{x}{data the data matrix}
+
 \item{cex}{cex}
 
 \item{cex.axis}{cex.axis}
@@ -17,8 +19,6 @@ colorscale(x, cex = 1, cex.axis = 0.5, col = heat.colors(12),
 \item{digits}{number of digits on color scale, default 2}
 
 \item{zlim}{zlim}
-
-\item{data}{the data matrix}
 }
 \description{
 if you need an colorscale to you imagelables use this
@@ -28,6 +28,6 @@ if you need an colorscale to you imagelables use this
 x = matrix(rnorm(20*30),ncol=20)
 rownames(x) <- 1:30
 colnames(x) <- letters[1:20]
-colorscale2(x)
+colorscale(x)
 }
 
