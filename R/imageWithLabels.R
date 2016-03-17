@@ -45,7 +45,7 @@ imageWithLabelsNoLayout = function(x, col.labels=colnames(x), row.labels=rowname
 #' rownames(x) <- 1:30
 #' colnames(x) <- letters[1:20]
 #' colorscale(x)
-colorscale = function(x, cex = 1, cex.axis = 0.5,col = heat.colors(12), digits=2, zlim=NULL){
+imageColorscale = function(x, cex = 1, cex.axis = 0.5,col = heat.colors(12), digits=2, zlim=NULL){
   colorlevels = seq(min(x,na.rm = TRUE),max(x,na.rm = TRUE),length=length(col))
   if(!is.null(zlim)){
     image(1, seq(0,1,length=length(colorlevels)),
@@ -95,7 +95,7 @@ imageWithLabels = function(x, col.labels=colnames(x), row.labels=rownames(x), ce
   imageWithLabelsNoLayout(x,col.labels=col.labels, row.labels=row.labels, cex=cex,cex.axis=cex.axis,main=main,
                           col = col, digits=digits, xlab=xlab,ylab=ylab, zlim=zlim)
   par(mar=marRight)
-  colorscale(x, cex = cex, cex.axis = cex.axis,col = col, digits=digits, zlim=zlim)  
+  imageColorscale(x, cex = cex, cex.axis = cex.axis,col = col, digits=digits, zlim=zlim)  
   layout(1)
 }
 
