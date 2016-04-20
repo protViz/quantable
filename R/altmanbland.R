@@ -15,6 +15,10 @@
 #' altmanbland(y,x)
 #'
 altmanbland = function(x,y,main="",pch=".",log=""){
+  nas <- (is.na(x) || is.na(y))
+  x <- x[!nas]
+  y <- y[!nas]
+  
   idx<-apply(cbind(x,y),1,function(x){sum(x==0)==0})
   mean  = (x+y)/2
   absdiff = abs( x-y )
