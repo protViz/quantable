@@ -7,7 +7,7 @@
 imageWithLabelsNoLayout(x, col.labels = colnames(x),
   row.labels = rownames(x), cex = 1, cex.axis = 0.5, main = NULL,
   col = heat.colors(12), digits = 2, xlab = "", ylab = "",
-  zlim = NULL)
+  zlim = NULL, na.color = "gray")
 }
 \arguments{
 \item{x}{matrix}
@@ -31,6 +31,8 @@ imageWithLabelsNoLayout(x, col.labels = colnames(x),
 \item{ylab}{y label}
 
 \item{zlim}{z value range, default NULL an determined from x}
+
+\item{na.color}{na.color}
 }
 \description{
 image plot with labels
@@ -39,7 +41,9 @@ image plot with labels
 x = matrix(rnorm(20*30),ncol=20)
 rownames(x) <- 1:30
 colnames(x) <- letters[1:20]
-imageWithLabelsNoLayout(x)
+imageWithLabelsNoLayout(x,col = heat.colors(13))
+imageWithLabelsNoLayout(x,col = heat.colors(12))
+range(x)
 imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb")
 
 }
