@@ -70,7 +70,6 @@ imageWithLabelsNoLayout = function(x,
   }else{
     image.nan(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab)
   }
-  
   axis( 2, at=seq(0,1,length=length((col.labels))) , labels=col.labels,cex.axis=cex.axis, las=2, cex=cex )
   axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
 }
@@ -83,11 +82,10 @@ imageWithLabelsNoLayout = function(x,
 #' @param zlim zlim
 #' @export
 #' @examples
-#' 
 #' x = matrix(rnorm(20*30),ncol=20)
 #' rownames(x) <- 1:30
 #' colnames(x) <- letters[1:20]
-#' colorscale(x)
+#' imageColorscale(x)
 imageColorscale = function(x, cex = 1,
                            cex.axis = 0.5,
                            col = heat.colors(12),
