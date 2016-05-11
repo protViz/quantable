@@ -6,7 +6,7 @@ image.nan <- function(z,
                       outside.below.color='pink',
                       outside.above.color='green',...)
 {
-  print(list(...))
+  breaks <- list(...)$breaks
   if(is.null(zlim)){
     zlim <- range(z,na.rm=TRUE)
     print(zlim)
@@ -15,7 +15,7 @@ image.nan <- function(z,
   newz.below.outside <- zlim[1] - zstep # new z for values below zlim
   newz.above.outside <- zlim[2] + zstep # new z for values above zlim
   newz.na <- zlim[2] + 2 * zstep # new z for NA
-
+  
   z[which(z < zlim[1])] <- newz.below.outside # we affect newz.below.outside
   z[which(z > zlim[2])] <- newz.above.outside # we affect newz.above.outside
   z[which(is.na(z))] <- newz.na # same for newz.na
@@ -26,7 +26,14 @@ image.nan <- function(z,
   cat('range zlim',zlim,'\n')
   col <- c(outside.below.color, col, outside.above.color, na.color) # we construct the new color range by including: na.color and na.outside
   print(length(col))
-  image(z=z, zlim=zlim, col=col, ...) # we finally call image(...)
+  if(length(breaks) > 0){
+    cat("breaks" , breaks, "\n")
+    breaks <- c( zlim[1], breaks, zlim[2]-zstep, zlim[2] )
+    list(...)$breaks<-breaks
+    image(z=z, zlim=zlim, col=col, breaks=breaks,...) # we finally call image(...)
+  }else{
+    image(z=z, zlim=zlim, col=col, ...) # we finally call image(...)
+  }
 }
 
 #' image plot with labels
@@ -65,9 +72,9 @@ imageWithLabelsNoLayout = function(x,
                                    zlim=NULL,
                                    na.color='gray',...){
   if(!is.null(zlim)){
-    image.nan(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab,zlim=zlim,...=...)
+    image.nan(x, axes = F, main = main, col=col,xlab=xlab, ylab=ylab, zlim=zlim, ...=...)
   }else{
-    image.nan(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab,...=...)
+    image.nan(x, axes = F, main = main, col=col,xlab=xlab, ylab=ylab, ...=...)
   }
   axis( 2, at=seq(0,1,length=length((col.labels))) , labels=col.labels,cex.axis=cex.axis, las=2, cex=cex )
   axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
@@ -164,7 +171,7 @@ imageWithLabels = function(x,
                           ylab=ylab,
                           zlim=zlim,
                           na.color=na.color,...=...
-                          )
+  )
   par(mar=marRight)
   imageColorscale(x, cex = cex, cex.axis = cex.axis,col = col, digits=digits, zlim=zlim)  
   layout(1)
