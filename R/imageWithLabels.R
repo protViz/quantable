@@ -64,11 +64,11 @@ imageWithLabelsNoLayout = function(x,
                                    xlab='',
                                    ylab='',
                                    zlim=NULL,
-                                   na.color='gray'){
+                                   na.color='gray',...){
   if(!is.null(zlim)){
-    image.nan(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab,zlim=zlim)
+    image.nan(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab,zlim=zlim,...=...)
   }else{
-    image.nan(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab)
+    image.nan(x, axes = F, main =main, col=col,xlab=xlab,ylab=ylab,...=...)
   }
   axis( 2, at=seq(0,1,length=length((col.labels))) , labels=col.labels,cex.axis=cex.axis, las=2, cex=cex )
   axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
@@ -150,7 +150,7 @@ imageWithLabels = function(x,
                            xlab='',
                            ylab='',
                            zlim=NULL,
-                           na.color='gray')
+                           na.color='gray',...)
 {
   layout(matrix(data=c(1,2), nrow=1, ncol=2), widths=c(3,1), heights=c(1,1))
   par(mar=marLeft)
@@ -164,7 +164,7 @@ imageWithLabels = function(x,
                           xlab=xlab,
                           ylab=ylab,
                           zlim=zlim,
-                          na.color=na.color
+                          na.color=na.color,...=...
                           )
   par(mar=marRight)
   imageColorscale(x, cex = cex, cex.axis = cex.axis,col = col, digits=digits, zlim=zlim)  
