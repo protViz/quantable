@@ -6,6 +6,7 @@ image.nan <- function(z,
                       outside.below.color='pink',
                       outside.above.color='green',...)
 {
+  print(list(...))
   if(is.null(zlim)){
     zlim <- range(z,na.rm=TRUE)
     print(zlim)
@@ -14,9 +15,7 @@ image.nan <- function(z,
   newz.below.outside <- zlim[1] - zstep # new z for values below zlim
   newz.above.outside <- zlim[2] + zstep # new z for values above zlim
   newz.na <- zlim[2] + 2 * zstep # new z for NA
-  #print(which(z < zlim[1]))
-  #print(which(z > zlim[2]))
-  
+
   z[which(z < zlim[1])] <- newz.below.outside # we affect newz.below.outside
   z[which(z > zlim[2])] <- newz.above.outside # we affect newz.above.outside
   z[which(is.na(z))] <- newz.na # same for newz.na
@@ -50,7 +49,7 @@ image.nan <- function(z,
 #' rownames(x) <- 1:30
 #' colnames(x) <- letters[1:20]
 #' imageWithLabelsNoLayout(x,col = heat.colors(13))
-#' imageWithLabelsNoLayout(x,col = heat.colors(12))
+#' imageWithLabelsNoLayout(x,col = heat.colors(12),breaks=seq(-5,5,length=13))
 #' range(x)
 #' imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb")
 #' 
