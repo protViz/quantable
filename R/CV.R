@@ -3,6 +3,7 @@
 #' Typically used to create and violin plot
 #' @param data matrix
 #' @param top remove top (default 30) CV
+#' @param na.rm default TRUE
 #' @export
 #' @examples
 #' dat <- matrix(rnorm(1000,10,5), ncol=20)
@@ -11,9 +12,12 @@
 #' length(cv)
 #' stopifnot(length(cv) == 45)
 #' hist(cv)
-CV = function(data,top = 30){
-  sd = apply(data,1,sd)
-  mean = apply(data,1,mean)
+CV <- function(data,top = 30, na.rm = TRUE){
+  sd = apply(data, 1, sd, na.rm = na.rm)
+  mean = apply(data, 1, mean, na.rm = na.rm)
+  idx <- mean==0
+  sd <- sd[!idx]
+  mean <- mean[!idx]
   res = sd/mean * 100
   xx <- rank(res)
   res <- res[xx<=(length(xx)-top)]
@@ -33,8 +37,8 @@ CV = function(data,top = 30){
 #' length(cv)
 #' stopifnot(length(cv) == 45)
 #' hist(cv)
-CVlog = function(data,top=30){
-  sd=apply(data,1,sd)
+CVlog <- function(data,top=30){
+  sd=apply(data,1,sd, na.rm=TRUE)
   res = (exp(sd)-1)
   xx <- rank(res)
   res <- res[xx<=(length(xx)-top)]
