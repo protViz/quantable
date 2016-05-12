@@ -4,10 +4,12 @@
 \alias{getRedScale}
 \title{create red color scale}
 \usage{
-getRedScale(length = 10)
+getRedScale(length = 10, increasing = FALSE)
 }
 \arguments{
 \item{length}{nr of colors}
+
+\item{increasing}{default FALSE}
 }
 \description{
 create red color scale

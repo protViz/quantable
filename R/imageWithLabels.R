@@ -22,7 +22,6 @@ image.nan <- function(z,
   zlim[2] <- zlim[2] + 2 * zstep # extend top limit to include the two new values above and na
   col <- c(outside.below.color, col, outside.above.color, na.color) # we construct the new color range by including: na.color and na.outside
   if(! missing(breaks)){
-    cat("--breaks--" , breaks, "\n")
     breaks <- c( zlim[1],
                  breaks[1]- zstep/2,
                  breaks[2:(length(breaks)-1)],
@@ -30,10 +29,6 @@ image.nan <- function(z,
                  zlim[2]-zstep,
                  zlim[2] )
     
-    cat("col ",length(col),"\n")
-    cat("breaks ",length(breaks),"\n")
-    print(zlim)
-    print(dim(z))
     image(z=z, zlim=zlim, col=col, breaks=breaks, ...) # we finally call image(...)
   }else{
     image(z=z, zlim=zlim, col=col, ...) # we finally call image(...)
@@ -101,7 +96,7 @@ imageColorscale = function(x, cex = 1,
                            cex.axis = 0.5,
                            col = heat.colors(12),
                            digits=2,
-                           zlim=NULL){
+                           zlim=NULL, breaks ){
   colorlevels = seq(min(x,na.rm = TRUE),max(x,na.rm = TRUE),length=length(col))
   if(!is.null(zlim)){
     image(1, seq(0,1,length=length(colorlevels)),
@@ -177,6 +172,7 @@ imageWithLabels = function(x,
                           zlim=zlim,
                           na.color=na.color,...=...
   )
+  
   par(mar=marRight)
   imageColorscale(x, cex = cex, cex.axis = cex.axis,col = col, digits=digits, zlim=zlim)  
   layout(1)

@@ -4,12 +4,14 @@
 \alias{CV}
 \title{compute CV for each row in matrix}
 \usage{
-CV(data, top = 30)
+CV(data, top = 30, na.rm = TRUE)
 }
 \arguments{
 \item{data}{matrix}
 
 \item{top}{remove top (default 30) CV}
+
+\item{na.rm}{default TRUE}
 }
 \description{
 Typically used to create and violin plot

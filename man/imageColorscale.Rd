@@ -5,7 +5,7 @@
 \title{if you need an colorscale to you imagelables use this}
 \usage{
 imageColorscale(x, cex = 1, cex.axis = 0.5, col = heat.colors(12),
-  digits = 2, zlim = NULL)
+  digits = 2, zlim = NULL, breaks)
 }
 \arguments{
 \item{x}{data the data matrix}

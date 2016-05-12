@@ -4,10 +4,12 @@
 \alias{getGreensScale}
 \title{create green color scale}
 \usage{
-getGreensScale(length = 10)
+getGreensScale(length = 10, increasing = FALSE)
 }
 \arguments{
 \item{length}{nr of colors}
+
+\item{increasing}{default FALSE}
 }
 \description{
 create green color scale

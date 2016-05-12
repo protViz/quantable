@@ -4,10 +4,12 @@
 \alias{getBlueScale}
 \title{create blue color scale}
 \usage{
-getBlueScale(length = 10)
+getBlueScale(length = 10, increasing = FALSE)
 }
 \arguments{
 \item{length}{nr of colors}
+
+\item{increasing}{default FALSE}
 }
 \description{
 create blue color scale

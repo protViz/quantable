@@ -4,10 +4,12 @@
 \alias{getBlueWhiteRed}
 \title{create blue white red palette}
 \usage{
-getBlueWhiteRed(length = 21)
+getBlueWhiteRed(length = 21, increasing = TRUE)
 }
 \arguments{
 \item{length}{nr of colors}
+
+\item{increasing}{default TRUE}
 }
 \description{
 create blue white red palette

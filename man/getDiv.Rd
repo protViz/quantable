@@ -4,12 +4,14 @@
 \alias{getDiv}
 \title{create divergent palette}
 \usage{
-getDiv(length = 11, pallete = 3)
+getDiv(length = 11, pallete = 3, increasing = TRUE)
 }
 \arguments{
 \item{length}{nr of colors}
 
 \item{pallete}{there are a few divergent palletes in brewer_pal, default 1}
+
+\item{increasing}{default TRUE}
 }
 \description{
 create divergent palette
@@ -18,6 +20,6 @@ create divergent palette
 
 library(scales)
 show_col(getDiv(21,4))
-
+show_col(getDiv(21,4, increasing=FALSE))
 }
 
