@@ -19,6 +19,8 @@ imageColorscale(x, cex = 1, cex.axis = 0.5, col = heat.colors(12),
 \item{digits}{number of digits on color scale, default 2}
 
 \item{zlim}{zlim}
+
+\item{breaks}{optional argument passed to image (see image for more details)}
 }
 \description{
 if you need an colorscale to you imagelables use this

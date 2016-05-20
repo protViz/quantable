@@ -37,6 +37,8 @@ imageWithLabels(x, col.labels = colnames(x), row.labels = rownames(x),
 \item{zlim}{z value range, default NULL an determined from x}
 
 \item{na.color}{na.color}
+
+\item{...}{passed to image}
 }
 \description{
 image plot with labels

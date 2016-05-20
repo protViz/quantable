@@ -49,6 +49,7 @@ image.nan <- function(z,
 #' @param ylab y label
 #' @param zlim z value range, default NULL an determined from x
 #' @param na.color na.color
+#' @param ... passed to image
 #' @export
 #' @examples
 #' x = matrix(rnorm(20*30),ncol=20)
@@ -86,6 +87,7 @@ imageWithLabelsNoLayout = function(x,
 #' @param cex cex
 #' @param cex.axis cex.axis
 #' @param zlim zlim
+#' @param breaks optional argument passed to image (see image for more details)
 #' @export
 #' @examples
 #' x = matrix(rnorm(20*30),ncol=20)
@@ -133,6 +135,7 @@ imageColorscale = function(x, cex = 1,
 #' @param ylab y label
 #' @param zlim z value range, default NULL an determined from x
 #' @param na.color na.color
+#' @param ... passed to image
 #' @export
 #' @examples
 #' x = matrix(rnorm(20*30),ncol=20)
