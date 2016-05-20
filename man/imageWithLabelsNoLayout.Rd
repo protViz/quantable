@@ -46,7 +46,9 @@ colnames(x) <- letters[1:20]
 imageWithLabelsNoLayout(x,col = heat.colors(13))
 imageWithLabelsNoLayout(x,col = heat.colors(12),breaks=seq(min(x),max(x),length=13))
 x[3,3] <- NA
-imageWithLabelsNoLayout(x,col = heat.colors(12),breaks=seq(min(x,na.rm=TRUE),max(x,na.rm=TRUE),length=13))
+imageWithLabelsNoLayout(x,col = heat.colors(12),
+breaks=seq(min(x,na.rm=TRUE),
+max(x,na.rm=TRUE),length=13))
 imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb")
 
 }
