@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/wolski/quantable.svg?branch=master)](https://travis-ci.org/wolski/quantable)
+[![Build Status](https://travis-ci.org/protViz/quantable.svg?branch=master)](https://travis-ci.org/protViz/quantable)
 [![Project Stats](https://www.ohloh.net/p/quantable/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/quantable)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/quantable)](https://cran.r-project.org/package=quantable)
 [![](http://cranlogs.r-pkg.org/badges/quantable)](https://cran.r-project.org/package=quantable)
