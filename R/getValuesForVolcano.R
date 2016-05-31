@@ -13,7 +13,7 @@
 #' boxplot(t(b[1:20,]))
 #' res <- getTValuesForVolcano(a,b)
 #' volcanoplot(res$fchange , res$pval)
-getTValuesForVolcano <- function(x, y, adjust=TRUE, alternative="two.sided"){
+getTValuesForVolcano <- function(x, alternative="two.sided"){
   stopifnot(nrow(x) == nrow(y))
   pval = rep(NA, nrow(x))
   fchange = rep(NA, nrow(x))
@@ -22,10 +22,8 @@ getTValuesForVolcano <- function(x, y, adjust=TRUE, alternative="two.sided"){
     pval[i] <- tmp$p.value
     fchange[i] <-tmp$estimate[1] - tmp$estimate[2]
   }
-  if(adjust){
-    pval <- p.adjust(pval, method="BH")
-  }
-  return(list(pval= pval, fchange=fchange))
+  pvaladj <- p.adjust(pval, method="BH")
+  return(list(pval= pval, pvaladj = pvaladj, fchange=fchange))
 }
 #' get p-values of wilcoxon rank sum test for volcano
 #' @export
