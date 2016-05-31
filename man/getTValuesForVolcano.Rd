@@ -4,19 +4,17 @@
 \alias{getTValuesForVolcano}
 \title{get p-values of t-test values for volcano}
 \usage{
-getTValuesForVolcano(x, y, adjust = TRUE, alternative = "two.sided")
+getTValuesForVolcano(x, alternative = "two.sided")
 }
 \arguments{
 \item{x}{- one data matrix}
 
-\item{y}{- second data matrix}
-
-\item{adjust}{p-values using Benjamin Hochberg}
-
 \item{alternative}{two.sided, less, greater}
+
+\item{y}{- second data matrix}
 }
 \value{
-list with two fields fchange (fold change) and pval
+list with three fields fchange (fold change) , pval and pvaladj
 }
 \description{
 get p-values of t-test values for volcano

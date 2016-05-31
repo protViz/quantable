@@ -3,8 +3,7 @@
 #' @param x - one data matrix
 #' @param y - second data matrix
 #' @param alternative two.sided, less, greater
-#' @param adjust p-values using Benjamin Hochberg
-#' @return list with two fields fchange (fold change) and pval
+#' @return list with three fields fchange (fold change) , pval and pvaladj
 #' @examples
 #' a <- t(replicate(200,rnorm(20,runif(1,-3,3),1)))
 #' b <- a[1:100,]
