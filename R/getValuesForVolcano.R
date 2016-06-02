@@ -12,7 +12,7 @@
 #' boxplot(t(b[1:20,]))
 #' res <- getTValuesForVolcano(a,b)
 #' volcanoplot(res$fchange , res$pval)
-getTValuesForVolcano <- function(x, alternative="two.sided"){
+getTValuesForVolcano <- function(x,y, alternative="two.sided"){
   stopifnot(nrow(x) == nrow(y))
   pval = rep(NA, nrow(x))
   fchange = rep(NA, nrow(x))

@@ -4,14 +4,14 @@
 \alias{getTValuesForVolcano}
 \title{get p-values of t-test values for volcano}
 \usage{
-getTValuesForVolcano(x, alternative = "two.sided")
+getTValuesForVolcano(x, y, alternative = "two.sided")
 }
 \arguments{
 \item{x}{- one data matrix}
 
-\item{alternative}{two.sided, less, greater}
-
 \item{y}{- second data matrix}
+
+\item{alternative}{two.sided, less, greater}
 }
 \value{
 list with three fields fchange (fold change) , pval and pvaladj
