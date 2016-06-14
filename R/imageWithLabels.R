@@ -6,6 +6,7 @@ image.nan <- function(z,
                       outside.below.color='green',
                       outside.above.color='green',breaks,...)
 {
+  z <- as.matrix(z)
   if(is.null(zlim)){
     zlim <- range(z,na.rm=TRUE)
   }
@@ -14,9 +15,10 @@ image.nan <- function(z,
   newz.above.outside <- zlim[2] + zstep # new z for values above zlim
   newz.na <- zlim[2] + 2 * zstep # new z for NA
   
-  z[which(z < zlim[1])] <- newz.below.outside # we affect newz.below.outside
-  z[which(z > zlim[2])] <- newz.above.outside # we affect newz.above.outside
-  z[which(is.na(z))] <- newz.na # same for newz.na
+  z[which(z < zlim[1],arr.ind=TRUE)] <- newz.below.outside # we affect newz.below.outside
+  z[which(z > zlim[2],arr.ind=TRUE)] <- newz.above.outside # we affect newz.above.outside
+  
+  z[which(is.na(z),arr.ind=TRUE)] <- newz.na # same for newz.na
   
   zlim[1] <- zlim[1] - zstep # extend lower limit to include below value
   zlim[2] <- zlim[2] + 2 * zstep # extend top limit to include the two new values above and na
