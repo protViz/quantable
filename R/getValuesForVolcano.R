@@ -46,12 +46,51 @@ getWRValuesForVolcano <- function(x,y, paired = FALSE, adjust=TRUE){
   for(i in 1:nrow(x)){
     xv<-as.numeric(x[i,])
     yv<-as.numeric(y[i,])
-    tmp <- wilcox.test(xv,yv, paired = paired)
+    tmp <- stats::wilcox.test(xv,yv, paired = paired)
     pval[i] <- tmp$p.value
     fchange[i] <- median( xv) - median(yv)
   }
   if(adjust){
     pval <- p.adjust(pval, method="BH")
   }
-  return(list(pval= pval, fchange=fchange))
+  return(list(pval= pval, pvaladj =  p.adjust(pval,method="BH") , fchange=fchange))
 }
+#' get p-values using fishers exact test for count data
+#' @export
+#' @param x - array
+#' @param y - array
+#' @param accessions accession string
+#' 
+#' @return data frame with accessions, pval, pvaldj (BH adjusted p.values), fchange (log2 FC).
+#' 
+#' @examples 
+#' accessions <- letters
+#' x <- sample(100,length(letters))
+#' y <- sample(100,length(letters))
+#' res <- fisherExact(x,y,accessions)
+#' volcanoplot(res$fchange, res$pvaladj, labels = res$accessions)
+#' 
+fisherExact <- function(x, y, accessions){
+  All <- sum(x)
+  Bll <- sum(y)
+  res <- vector(length(x), mode="list")
+  fchange = rep(NA, length(x))
+  for(i in 1:length(x)){
+    A <- x[i]
+    nA <- All - A
+    B <- y[i]
+    nB <- Bll - B
+    accession <- accessions[i]
+    C <- matrix( c(A, B, nA, nB),
+                 nrow=2,
+                 byrow=T,
+                 dimnames=list(protein=c(accession,paste("not", accession)),
+                               condition = c("control", "treated")))
+    res[[i]]<-stats::fisher.test(C)
+    fchange[i] <- log2(1+A) - log2(1+B)
+  }
+  p.value <- sapply(res, function(x){x$p.value})
+  p.value.adjust <- p.adjust(p.value, method="BH")
+  return(data.frame(accessions = accessions, pval=p.value, pvaladj= p.value.adjust, fchange = fchange))
+}
+

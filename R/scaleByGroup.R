@@ -20,10 +20,10 @@ scaleByGroup <- function(data , protGroup, plot=FALSE, scale=TRUE, center=TRUE){
     noReference = sweep(noReference,2,referenceScaled$mads,"/")
   }
   if(plot){
-    par(mfrow=c(1,2))
-    boxplot(noReference,main="noReference",ylim=c(-8,6), pch=".", las=2,cex.axis=0.5)
+    graphics::par(mfrow=c(1,2))
+    graphics::boxplot(noReference,main="noReference",ylim=c(-8,6), pch=".", las=2,cex.axis=0.5)
     abline(h=0,col=2)
-    boxplot(referenceScaled$data,main="reference",ylim=c(-8,6),las=2,pch=".",cex.axis=0.5)
+    graphics::graphics::boxplot(referenceScaled$data,main="reference",ylim=c(-8,6),las=2,pch=".",cex.axis=0.5)
     abline(h=0,col=2)
   }
   return(list(reference = referenceScaled$data, noReference = noReference))
