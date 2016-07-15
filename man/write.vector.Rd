@@ -2,7 +2,8 @@
 % Please edit documentation in R/write.vector.R
 \name{write.vector}
 \alias{write.vector}
-\title{write vector into table (usefull for exporting protein id's)
+\title{write vectors as single column table
+(usefull for exporting i.e. protein id's)
 uses write.table}
 \usage{
 write.vector(x, file)
@@ -13,7 +14,8 @@ write.vector(x, file)
 \item{file}{file to write to}
 }
 \description{
-write vector into table (usefull for exporting protein id's)
+write vectors as single column table
+(usefull for exporting i.e. protein id's)
 uses write.table
 }
 
