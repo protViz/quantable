@@ -81,8 +81,8 @@ imageWithLabelsNoLayout = function(x,
   }else{
     image.nan(x, axes = F, main = main, col=col,xlab=xlab, ylab=ylab, ...=...)
   }
-  axis( 2, at=seq(0,1,length=length((col.labels))) , labels=col.labels,cex.axis=cex.axis, las=2, cex=cex )
-  axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
+  graphics::axis( 2, at=seq(0,1,length=length((col.labels))) , labels=col.labels,cex.axis=cex.axis, las=2, cex=cex )
+  graphics::axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
 }
 #' if you need an colorscale to you imagelables use this
 #' @param x data the data matrix

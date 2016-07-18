@@ -10,11 +10,11 @@
 #' @seealso also \code{\link{pairs}}
 mypairs = function(dataframe,legend=FALSE,...){
   pairs(dataframe, panel = function(x,y){
-    points(x, y, pch=".")
-    abline(a=0,b=1,v=0,h=0,col=2)
+    graphics::points(x, y, pch=".")
+    graphics::abline(a=0,b=1,v=0,h=0,col=2)
     if(legend){
-      cR2 <- cor(x,y, use="pairwise.complete.obs")^2
-      legend("topleft", legend=paste("R^2=", round(cR2, digits=2) , sep=""),text.col=3)}
+      cR2 <- stats::cor(x,y, use="pairwise.complete.obs")^2
+      graphics::legend("topleft", legend=paste("R^2=", round(cR2, digits=2) , sep=""),text.col=3)}
     }
     , lower.panel=NULL,...
   )

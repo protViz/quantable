@@ -66,6 +66,6 @@ volcanoplot = function(foldchange,
   }
 
   abline(v=c(medianFC-foldchangethresh,medianFC+foldchangethresh),lty=2)
-  abline(v =0,lty=2,lwd=1.5)
+  abline(v =medianFC,lty=2,lwd=1.5)
   return(list(upsubset=upsubset,downsubset=downsubset))
 }
