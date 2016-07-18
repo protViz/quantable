@@ -4,9 +4,9 @@
 \alias{volcanoplot}
 \title{volcano plot}
 \usage{
-volcanoplot(foldchange, pvals, pthresh = 0.05, ratiothresh = 2,
+volcanoplot(foldchange, pvals, pthresh = 0.05, foldchangethresh = 1,
   xlab = "log2(T/N)", ylab = "-log10(P)", labels = NULL, cex = 0.6,
-  cex.point = 1, xlim = NULL, main = NULL)
+  cex.point = 1, xlim = NULL, main = NULL, biasAdjust = FALSE)
 }
 \arguments{
 \item{foldchange}{- fold change values}
@@ -15,7 +15,7 @@ volcanoplot(foldchange, pvals, pthresh = 0.05, ratiothresh = 2,
 
 \item{pthresh}{pvalue threshold}
 
-\item{ratiothresh}{threshold of foldchange}
+\item{foldchangethresh}{threshold of foldchange}
 
 \item{xlab}{- x axis label}
 
@@ -30,6 +30,8 @@ volcanoplot(foldchange, pvals, pthresh = 0.05, ratiothresh = 2,
 \item{xlim}{- xlim}
 
 \item{main}{- main title}
+
+\item{biasAdjust}{- if bias in foldchanges exists (i.e. if median of fold changes does not equal 0) you can use this option to adjust for it.}
 }
 \description{
 volcano plot
@@ -39,7 +41,7 @@ foldchange <- rnorm(1000)
 pval <-rexp(1000)
 abline(v=0.05,col=2)
 
-volcanoplot(foldchange, pval,pthresh=0.1, ratiothresh=1,main='test')
+volcanoplot(foldchange, pval,pthresh=0.1, foldchangethresh=1,main='test')
 
 }
 
