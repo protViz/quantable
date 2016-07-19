@@ -35,7 +35,7 @@ volcanoplot = function(foldchange,
   dataframe <- data.frame("foldchange" = foldchange, "pvals" = pvals )
   
   if(!is.null(labels)){
-    rownames(dataframe) = labels
+    dataframe<-data.frame(labels = labels, dataframe) 
   }
   
   bla = tryCatch( plot(dataframe$foldchange,-log10(dataframe$pvals),col="#00000033",pch=19,xlab=xlab, ylab=ylab,xlim=xlim,main=main),
@@ -67,5 +67,6 @@ volcanoplot = function(foldchange,
 
   abline(v=c(medianFC-foldchangethresh,medianFC+foldchangethresh),lty=2)
   abline(v =medianFC,lty=2,lwd=1.5)
-  return(list(upsubset=upsubset,downsubset=downsubset))
+  return(list(upsubset=data.frame(regulation= "up",upsubset),
+              downsubset=data.frame(regulation="down",downsubset)))
 }

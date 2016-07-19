@@ -1,11 +1,12 @@
 #Copy of http://stackoverflow.com/questions/20977477/how-to-assign-a-specific-color-to-na-in-an-image-plot
 image.nan <- function(z,
-                      col,
+                      col =heat.colors(12),
                       zlim=NULL,
                       na.color='gray',
                       outside.below.color='green',
                       outside.above.color='green',breaks,...)
 {
+  # TODO: add checks for missing values
   z <- as.matrix(z)
   if(is.null(zlim)){
     zlim <- range(z,na.rm=TRUE)
