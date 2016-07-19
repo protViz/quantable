@@ -151,7 +151,7 @@ imageColorscale = function(x, cex = 1,
 #' imageWithLabels(x,marLeft = c(5,5,2,2),marRight=c(0,0,0,0),xlab="ttt",ylab="bbb")
 #' par(mar = martmp)
 #' 
-imageWithLabels = function(x,
+imageWithLabels <- function(x,
                            col.labels=colnames(x),
                            row.labels=rownames(x),
                            cex=1,
@@ -159,15 +159,15 @@ imageWithLabels = function(x,
                            main=NULL,
                            col = heat.colors(12),
                            digits=2,
-                           marLeft=par()$mar,
-                           marRight = par()$mar,
+                           marLeft= graphics::par()$mar,
+                           marRight = graphics::par()$mar,
                            xlab='',
                            ylab='',
                            zlim=NULL,
                            na.color='gray',...)
 {
   layout(matrix(data=c(1,2), nrow=1, ncol=2), widths=c(3,1), heights=c(1,1))
-  par(mar=marLeft)
+  graphics::par(mar=marLeft)
   imageWithLabelsNoLayout(x,col.labels=col.labels,
                           row.labels=row.labels,
                           cex=cex,
@@ -181,7 +181,7 @@ imageWithLabels = function(x,
                           na.color=na.color,...=...
   )
   
-  par(mar=marRight)
+  graphics::par(mar=marRight)
   imageColorscale(x, cex = cex, cex.axis = cex.axis,col = col, digits=digits, zlim=zlim)  
   layout(1)
 }

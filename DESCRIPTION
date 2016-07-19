@@ -1,12 +1,12 @@
 Package: quantable
 Type: Package
 Title: Streamline Descriptive Analysis of Quantitative Data Matrices
-Version: 0.2.1
-Date: 2016-02-25
+Version: 0.2.2
+Date: 2016-07-19
 Author: Witold Wolski <wewolski@gmail.com>
 Maintainer: Witold Wolski <wewolski@gmail.com>
 Description: Methods which streamline the descriptive analysis of quantitative
-    matrices.
+    matrices. Matrix columns are samples while rows are features i.e. proteins, genes.
 License: GPL-3
 LazyData: TRUE
 Imports:
@@ -17,7 +17,7 @@ Imports:
     caret,
     e1071,
     Matrix
-URL: https://github.com/protviz/quantable
-BugReports: https://github.com/protviz/quantable/issues
+URL: https://github.com/protViz/quantable
+BugReports: https://github.com/protViz/quantable/issues
 Repository: CRAN
 RoxygenNote: 5.0.1

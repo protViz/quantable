@@ -6,8 +6,9 @@
 \usage{
 imageWithLabels(x, col.labels = colnames(x), row.labels = rownames(x),
   cex = 1, cex.axis = 0.5, main = NULL, col = heat.colors(12),
-  digits = 2, marLeft = par()$mar, marRight = par()$mar, xlab = "",
-  ylab = "", zlim = NULL, na.color = "gray", ...)
+  digits = 2, marLeft = graphics::par()$mar,
+  marRight = graphics::par()$mar, xlab = "", ylab = "", zlim = NULL,
+  na.color = "gray", ...)
 }
 \arguments{
 \item{x}{matrix}

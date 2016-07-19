@@ -2,7 +2,7 @@
 % Please edit documentation in R/roc.R
 \name{makeROCplot}
 \alias{makeROCplot}
-\title{create density and ROC plot}
+\title{create density plots of cases and controls and ROC plot}
 \usage{
 makeROCplot(cases, controls, label = "", xlim = NULL, abline = NULL)
 }
@@ -18,7 +18,7 @@ makeROCplot(cases, controls, label = "", xlim = NULL, abline = NULL)
 \item{abline}{draws vertical abline to indicate best threshold}
 }
 \description{
-create density and ROC plot
+create density plots of cases and controls and ROC plot
 }
 \examples{
 library(pROC)

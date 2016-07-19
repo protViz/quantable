@@ -5,8 +5,6 @@
 #'@importFrom grDevices dev.off heat.colors
 #'@importFrom graphics abline axis image layout lines pairs plot points text
 #'@importFrom stats cor.test dist hclust mad median p.adjust qqplot runmed t.test
-#'@importFrom caret confusionMatrix
-#'@importFrom pROC roc
 
 
 NULL
