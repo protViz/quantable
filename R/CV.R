@@ -13,6 +13,9 @@
 #' stopifnot(length(cv) == 45)
 #' hist(cv)
 CV <- function(data, top = 30, na.rm = TRUE){
+  # TODO review code - there might to many checks and filters for NA
+  idx <- apply(data,1, function(x){(ncol(data) - sum(is.na(x))) >= 2 })
+  data <- data[idx,]
   sd = apply(data, 1, sd, na.rm = na.rm)
   mean = apply(data, 1, mean, na.rm = na.rm)
   idx <- mean==0 | is.na(mean)
