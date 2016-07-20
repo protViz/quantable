@@ -15,7 +15,7 @@
 CV <- function(data, top = 30, na.rm = TRUE){
   sd = apply(data, 1, sd, na.rm = na.rm)
   mean = apply(data, 1, mean, na.rm = na.rm)
-  idx <- mean==0
+  idx <- mean==0 | is.na(mean)
   sd <- sd[!idx]
   mean <- mean[!idx]
   res = sd/mean * 100
