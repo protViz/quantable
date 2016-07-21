@@ -18,8 +18,8 @@
 #' pval <-rexp(1000)
 #' abline(v=0.05,col=2)
 #'
+#' volcanoplot(foldchange, pval,pthresh=0.1, foldchangethresh=1,main='test')
 #' volcanoplot(foldchange, pval,pthresh=0.1, foldchangethresh=3,main='test')
-#'
 volcanoplot = function(foldchange,
                        pvals ,
                        pthresh = 0.05,
@@ -50,24 +50,34 @@ volcanoplot = function(foldchange,
   }else{
     medianFC <- 0
   }
-
+  
   upsubset<-subset(dataframe,pvals < pthresh & foldchange > medianFC + foldchangethresh)
   points(upsubset$foldchange,-log10(upsubset$pvals),col=2,pch=19)
   points(upsubset$foldchange,-log10(upsubset$pvals),col=1,pch=1)
-  if(length(rownames(upsubset)) > 0){
-    text(upsubset$foldchange, -log10(upsubset$pvals),rownames(upsubset),cex=cex,pos=2)
+  if(length(upsubset$labels) > 0){
+    text(upsubset$foldchange, -log10(upsubset$pvals),upsubset$labels,cex=cex,pos=2)
   }
-
+  
   abline(h=-log10(pthresh),col="gray")
   downsubset<-subset(dataframe,pvals<pthresh & foldchange < medianFC-foldchangethresh)
   points(downsubset$foldchange,-log10(downsubset$pvals),col=3,pch=19)
   points(downsubset$foldchange,-log10(downsubset$pvals),col=1,pch=1)
-  if(length(rownames(downsubset)) > 0){
-    text(downsubset$foldchange, -log10(downsubset$pvals),rownames(downsubset),cex=cex,pos=4)
+  if(length(downsubset$labels) > 0){
+    text(downsubset$foldchange, -log10(downsubset$pvals),downsubset$labels,cex=cex,pos=4)
   }
-
+  
   abline(v=c(medianFC-foldchangethresh,medianFC+foldchangethresh),lty=2)
   abline(v =medianFC,lty=2,lwd=1.5)
-  return(list(upsubset=ifelse(nrow(upsubset)>0,data.frame(regulation= "up",upsubset),upsubset),
-              downsubset=ifelse(nrow(downsubset) >0,data.frame(regulation="down",downsubset),downsubset)))
+  if(nrow(upsubset)>0 & nrow(downsubset)>0){
+    return(list(upsubset=data.frame(regulation= "up",upsubset),
+                downsubset=data.frame(regulation="down",downsubset)))
+  }else if(nrow(upsubset)>0 & nrow(downsubset)==0 ){
+    return(list(upsubset=data.frame(regulation= "up",upsubset)))
+  }else if(nrow(upsubset)== 0 & nrow(downsubset)> 0 ){
+    return(list(downsubset=data.frame(regulation= "up",downsubset)))
+  }else{
+    return(NULL)
+  }
 }
+
+  
