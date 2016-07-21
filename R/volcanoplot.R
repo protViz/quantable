@@ -18,7 +18,7 @@
 #' pval <-rexp(1000)
 #' abline(v=0.05,col=2)
 #'
-#' volcanoplot(foldchange, pval,pthresh=0.1, foldchangethresh=1,main='test')
+#' volcanoplot(foldchange, pval,pthresh=0.1, foldchangethresh=3,main='test')
 #'
 volcanoplot = function(foldchange,
                        pvals ,
@@ -30,7 +30,8 @@ volcanoplot = function(foldchange,
                        cex=0.6,
                        cex.point=1,
                        xlim=NULL,
-                       main=NULL, biasAdjust=FALSE
+                       main=NULL,
+                       biasAdjust=FALSE
 ){
   dataframe <- data.frame("foldchange" = foldchange, "pvals" = pvals )
   
@@ -67,6 +68,6 @@ volcanoplot = function(foldchange,
 
   abline(v=c(medianFC-foldchangethresh,medianFC+foldchangethresh),lty=2)
   abline(v =medianFC,lty=2,lwd=1.5)
-  return(list(upsubset=data.frame(regulation= "up",upsubset),
-              downsubset=data.frame(regulation="down",downsubset)))
+  return(list(upsubset=ifelse(nrow(upsubset)>0,data.frame(regulation= "up",upsubset),upsubset),
+              downsubset=ifelse(nrow(downsubset) >0,data.frame(regulation="down",downsubset),downsubset)))
 }
