@@ -17,3 +17,5 @@ dat2Matrix <- function(row,col,x){
   colnames(x) <- levels(colf)
   return(x)
 }
+
+
