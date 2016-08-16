@@ -42,6 +42,6 @@ pval <-rexp(1000)
 abline(v=0.05,col=2)
 
 volcanoplot(foldchange, pval,pthresh=0.1, foldchangethresh=1,main='test')
-
+volcanoplot(foldchange, pval,pthresh=0.1, foldchangethresh=3,main='test')
 }
 
