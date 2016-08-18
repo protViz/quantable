@@ -8,7 +8,7 @@ imageWithLabels(x, col.labels = colnames(x), row.labels = rownames(x),
   cex = 1, cex.axis = 0.5, main = NULL, col = heat.colors(12),
   digits = 2, marLeft = graphics::par()$mar,
   marRight = graphics::par()$mar, xlab = "", ylab = "", zlim = NULL,
-  na.color = "gray", ...)
+  na.color = "gray", widths = c(4, 1), ...)
 }
 \arguments{
 \item{x}{matrix}
@@ -38,6 +38,8 @@ imageWithLabels(x, col.labels = colnames(x), row.labels = rownames(x),
 \item{zlim}{z value range, default NULL an determined from x}
 
 \item{na.color}{na.color}
+
+\item{widths}{controls the size of left and right pane}
 
 \item{...}{passed to image}
 }

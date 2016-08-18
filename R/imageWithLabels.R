@@ -140,6 +140,7 @@ imageColorscale = function(x, cex = 1,
 #' @param ylab y label
 #' @param zlim z value range, default NULL an determined from x
 #' @param na.color na.color
+#' @param widths controls the size of left and right pane
 #' @param ... passed to image
 #' @export
 #' @examples
@@ -164,9 +165,9 @@ imageWithLabels <- function(x,
                            xlab='',
                            ylab='',
                            zlim=NULL,
-                           na.color='gray',...)
+                           na.color='gray',widths=c(4,1),...)
 {
-  layout(matrix(data=c(1,2), nrow=1, ncol=2), widths=c(3,1), heights=c(1,1))
+  layout(matrix(data=c(1,2), nrow=1, ncol=2), widths=widths, heights=c(1,1))
   graphics::par(mar=marLeft)
   imageWithLabelsNoLayout(x,col.labels=col.labels,
                           row.labels=row.labels,
