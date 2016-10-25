@@ -34,7 +34,7 @@ volcanoplot = function(foldchange,
                        biasAdjust=FALSE
 ){
   dataframe <- data.frame("foldchange" = foldchange, "pvals" = pvals )
-  
+  colnames(dataframe)[1] <- xlab
   if(!is.null(labels)){
     dataframe<-data.frame(labels = labels, dataframe) 
   }
