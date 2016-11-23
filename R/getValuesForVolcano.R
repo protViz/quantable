@@ -12,17 +12,20 @@
 #' boxplot(t(b[1:20,]))
 #' res <- getTValuesForVolcano(a,b)
 #' volcanoplot(res$fchange , res$pval)
+#' 
 getTValuesForVolcano <- function(x,y, alternative="two.sided"){
   stopifnot(nrow(x) == nrow(y))
   pval = rep(NA, nrow(x))
   fchange = rep(NA, nrow(x))
+  meanM = rep(NA,nrow(x))
   for(i in 1:nrow(x)){
     tmp <- t.test(x[i,],y[i,], paired = FALSE, alternative=alternative)
     pval[i] <- tmp$p.value
     fchange[i] <-tmp$estimate[1] - tmp$estimate[2]
+    meanM[i] <- (tmp$estimate[1] + tmp$estimate[2])/2
   }
   pvaladj <- p.adjust(pval, method="BH")
-  return(list(pval= pval, pvaladj = pvaladj, fchange=fchange))
+  return(list(pval= pval, pvaladj = pvaladj, fchange=fchange, mean=meanM))
 }
 #' get p-values of wilcoxon rank sum test for volcano
 #' @export
@@ -43,17 +46,20 @@ getWRValuesForVolcano <- function(x,y, paired = FALSE, adjust=TRUE){
   stopifnot(nrow(x) == nrow(y))
   pval = rep(NA, nrow(x))
   fchange = rep(NA, nrow(x))
+  meanM = rep(NA,nrow(x))
   for(i in 1:nrow(x)){
     xv<-as.numeric(x[i,])
     yv<-as.numeric(y[i,])
     tmp <- stats::wilcox.test(xv,yv, paired = paired)
+    #kruskal
     pval[i] <- tmp$p.value
     fchange[i] <- median( xv) - median(yv)
+    meanM = (median( xv) + median(yv))/2 # or should it be better (median(c(xv,yv)))?
   }
   if(adjust){
     pval <- p.adjust(pval, method="BH")
   }
-  return(list(pval= pval, pvaladj =  p.adjust(pval,method="BH") , fchange=fchange))
+  return(list(pval= pval, pvaladj =  p.adjust(pval,method="BH") , fchange=fchange, mean=meanM))
 }
 #' get p-values using fishers exact test for count data
 #' @export
@@ -88,9 +94,10 @@ fisherExact <- function(x, y, accessions){
                                condition = c("control", "treated")))
     res[[i]]<-stats::fisher.test(C)
     fchange[i] <- log2(1+A) - log2(1+B)
+    meanM[i] <- (log2(1+A) - log2(1+B))/2
   }
   p.value <- sapply(res, function(x){x$p.value})
   p.value.adjust <- p.adjust(p.value, method="BH")
-  return(data.frame(accessions = accessions, pval=p.value, pvaladj= p.value.adjust, fchange = fchange))
+  return(data.frame(accessions = accessions, pval=p.value, pvaladj= p.value.adjust, fchange = fchange, mean=meanM))
 }
 
