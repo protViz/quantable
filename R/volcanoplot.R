@@ -14,12 +14,18 @@
 #' 
 #' @export
 #' @examples
+#' 
+#' library(quantable)
 #' foldchange <- rnorm(1000)
-#' pval <-rexp(1000)
+#' pvals <-rexp(1000)
+#' length(foldchange)
+#' length(pvals)
+#' volcanoplot(foldchange, pvals, pthresh=0.1, foldchangethresh=1,main='test')
+#' volcanoplot(foldchange, pvals, pthresh=0.1, foldchangethresh=1,main='test', labels=rep("abcde", length(pvals)))
+#' 
+#' volcanoplot(foldchange, pvals,pthresh=0.1, foldchangethresh=3,main='test')
 #' abline(v=0.05,col=2)
-#'
-#' volcanoplot(foldchange, pval,pthresh=0.1, foldchangethresh=1,main='test')
-#' volcanoplot(foldchange, pval,pthresh=0.1, foldchangethresh=3,main='test')
+#' 
 volcanoplot = function(foldchange,
                        pvals ,
                        pthresh = 0.05,
@@ -34,7 +40,6 @@ volcanoplot = function(foldchange,
                        biasAdjust=FALSE
 ){
   dataframe <- data.frame("foldchange" = foldchange, "pvals" = pvals )
-  colnames(dataframe)[1] <- xlab
   if(!is.null(labels)){
     dataframe<-data.frame(labels = labels, dataframe) 
   }
@@ -55,7 +60,7 @@ volcanoplot = function(foldchange,
   points(upsubset$foldchange,-log10(upsubset$pvals),col=2,pch=19)
   points(upsubset$foldchange,-log10(upsubset$pvals),col=1,pch=1)
   if(length(upsubset$labels) > 0){
-    text(upsubset$foldchange, -log10(upsubset$pvals),upsubset$labels,cex=cex,pos=2)
+    text(upsubset$foldchange, -log10(upsubset$pvals),upsubset$labels,cex=cex,pos=2, srt=-30)
   }
   
   abline(h=-log10(pthresh),col="gray")
@@ -63,7 +68,7 @@ volcanoplot = function(foldchange,
   points(downsubset$foldchange,-log10(downsubset$pvals),col=3,pch=19)
   points(downsubset$foldchange,-log10(downsubset$pvals),col=1,pch=1)
   if(length(downsubset$labels) > 0){
-    text(downsubset$foldchange, -log10(downsubset$pvals),downsubset$labels,cex=cex,pos=4)
+    text(downsubset$foldchange, -log10(downsubset$pvals),downsubset$labels,cex=cex,pos=4, srt=30)
   }
   
   abline(v=c(medianFC-foldchangethresh,medianFC+foldchangethresh),lty=2)
