@@ -81,6 +81,7 @@ fisherExact <- function(x, y, accessions){
   Bll <- sum(y)
   res <- vector(length(x), mode="list")
   fchange = rep(NA, length(x))
+  meanM = rep(NA, length(x))
   for(i in 1:length(x)){
     A <- x[i]
     nA <- All - A
