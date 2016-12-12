@@ -34,5 +34,7 @@ volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, log2FCThresh=0.5, 
   if(!is.null(main)){
     p = p + ggtitle(main)
   }
+  p = p + ggplot2::geom_hline(yintercept=-log10(pthresh), col=4) 
+  p = p + ggplot2::geom_vline(xintercept=c(-log2FCThresh,log2FCThresh), col=4) 
   return(p)
 }

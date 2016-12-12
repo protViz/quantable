@@ -11,7 +11,7 @@
 #' @param cex.point - point size
 #' @param main - main title
 #' @param biasAdjust - if bias in foldchanges exists (i.e. if median of fold changes does not equal 0) you can use this option to adjust for it.
-#' 
+#' @rdname volcanoplot
 #' @export
 #' @examples
 #' 
@@ -27,7 +27,7 @@
 #' volcanoplot(foldchange, pvals,pthresh=0.1, foldchangethresh=3,main='test')
 #' abline(v=0.05,col=2)
 #' 
-volcanoplot = function(foldchange,
+volcanoplot <- function(foldchange,
                        pvals ,
                        pthresh = 0.05,
                        foldchangethresh = 1,
