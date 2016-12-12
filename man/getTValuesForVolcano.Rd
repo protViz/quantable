@@ -27,5 +27,6 @@ boxplot(t(a[1:20,]))
 boxplot(t(b[1:20,]))
 res <- getTValuesForVolcano(a,b)
 volcanoplot(res$fchange , res$pval)
+
 }
 
