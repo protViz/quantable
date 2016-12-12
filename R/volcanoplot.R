@@ -102,8 +102,7 @@ volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, foldchangethresh=0
   fcLabel <- paste("p <", pthresh, "& |FC| >", foldchangethresh)
   
   results = mutate(results, sig=ifelse(results$pvalue<pthresh & abs(results$log2FoldChange) > foldchangethresh ,fcLabel , "Not Sig"))
-  head(results)
-
+  
   p = ggplot(results, aes(log2FoldChange, -log10(pvalue))) +
     geom_point(aes(col=sig)) +
     scale_color_manual(values=c("black", "red"))
