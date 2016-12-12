@@ -23,5 +23,6 @@ cv <- CV(dat, top=5)
 length(cv)
 stopifnot(length(cv) == 45)
 hist(cv)
+
 }
 

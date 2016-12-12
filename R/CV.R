@@ -1,6 +1,7 @@
 #' compute CV for each row in matrix
 #' 
 #' Typically used to create and violin plot
+#' 
 #' @param data matrix
 #' @param top remove top (default 30) CV
 #' @param na.rm default TRUE
@@ -12,6 +13,7 @@
 #' length(cv)
 #' stopifnot(length(cv) == 45)
 #' hist(cv)
+#' 
 CV <- function(data, top = 30, na.rm = TRUE){
   # TODO review code - there might to many checks and filters for NA
   idx <- apply(data,1, function(x){(ncol(data) - sum(is.na(x))) >= 2 })

@@ -4,7 +4,7 @@
 \alias{setdiff.data.frame}
 \title{setdiff for data frames}
 \usage{
-\method{setdiff}{data.frame}(x, y, ...)
+setdiff.data.frame(x, y, ...)
 }
 \arguments{
 \item{x}{data.frame}
