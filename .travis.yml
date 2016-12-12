@@ -6,5 +6,8 @@ r_packages:
   - scales
   - gplots
   - RColorBrewer
+  - plyr
+  - ggplots2
+  - ggrepel
 
 warnings_are_errors: true

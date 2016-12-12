@@ -4,12 +4,14 @@
 \alias{setdiff.data.frame}
 \title{setdiff for data frames}
 \usage{
-setdiff.data.frame(A, B)
+\method{setdiff}{data.frame}(x, y, ...)
 }
 \arguments{
-\item{A}{data.frame}
+\item{x}{data.frame}
 
-\item{B}{data.frame}
+\item{y}{data.frame}
+
+\item{...}{match signature of generic setdiff}
 }
 \description{
 setdiff for data frames

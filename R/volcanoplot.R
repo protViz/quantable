@@ -21,7 +21,8 @@
 #' length(foldchange)
 #' length(pvals)
 #' volcanoplot(foldchange, pvals, pthresh=0.1, foldchangethresh=1,main='test')
-#' volcanoplot(foldchange, pvals, pthresh=0.1, foldchangethresh=1,main='test', labels=rep("abcde", length(pvals)))
+#' volcanoplot(foldchange, pvals, pthresh=0.1,
+#'  foldchangethresh=1,main='test', labels=rep("abcde", length(pvals)))
 #' 
 #' volcanoplot(foldchange, pvals,pthresh=0.1, foldchangethresh=3,main='test')
 #' abline(v=0.05,col=2)
@@ -86,26 +87,37 @@ volcanoplot = function(foldchange,
 }
 
 #' Volcano plot using ggplot and ggrepel
-#' @export
+#' @param foldchange vector with fold changes
+#' @param pvals vector with pvalues
+#' @param labels vector with labels
+#' @param pthresh pvalue threshold
+#' @param log2FCThresh log2 FC threshold
+#' @param main main title
+#' @import ggplot2
+#' @import ggrepel
+#' @import plyr
 #' @examples 
 #' library(quantable)
 #' foldchange <- rnorm(1000)
 #' pvals <-rexp(1000)
-#' volcano2G(foldchange, pvals,labels=rep("abcde", length(pvals)), pthresh=0.1, foldchangethresh=0.5,main='test')
+#' volcano2G(foldchange, pvals,labels=rep("abcde", length(pvals)),
+#'   pthresh=0.1, log2FCThresh=0.5,main='test')
 #' 
-volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, foldchangethresh=0.5, main='test'){
-  library(dplyr)
-  library(ggplot2)
-  library(ggrepel)
-  
+#' @export
+volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, log2FCThresh=0.5, main=NULL){
+
   results <- data.frame(log2FoldChange = foldchange, pvalue= pvals, labels=labels )
-  fcLabel <- paste("p <", pthresh, "& |FC| >", foldchangethresh)
+  fcLabel <- paste("p <", pthresh, "& |FC| >", log2FCThresh)
   
-  results = mutate(results, sig=ifelse(results$pvalue<pthresh & abs(results$log2FoldChange) > foldchangethresh ,fcLabel , "Not Sig"))
+  results = mutate(results, sig=ifelse(results$pvalue<pthresh & abs(results$log2FoldChange) > log2FCThresh ,fcLabel , "Not Sig"))
   
   p = ggplot(results, aes(log2FoldChange, -log10(pvalue))) +
     geom_point(aes(col=sig)) +
     scale_color_manual(values=c("black", "red"))
   
-  p + geom_text_repel(data=filter(results, pvalue<pthresh & abs(log2FoldChange)>foldchangethresh ), aes(label=labels))
+  p = p + geom_text_repel(data=filter(results, pvalue<pthresh & abs(log2FoldChange)>log2FCThresh ), aes(label=labels))
+  if(!is.null(main)){
+    p = p + ggtitle(main)
+  }
+  return(p)
 }

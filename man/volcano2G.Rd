@@ -4,8 +4,21 @@
 \alias{volcano2G}
 \title{Volcano plot using ggplot and ggrepel}
 \usage{
-volcano2G(foldchange, pvals, labels, pthresh = 0.1, foldchangethresh = 0.5,
-  main = "test")
+volcano2G(foldchange, pvals, labels, pthresh = 0.1, log2FCThresh = 0.5,
+  main = NULL)
+}
+\arguments{
+\item{foldchange}{vector with fold changes}
+
+\item{pvals}{vector with pvalues}
+
+\item{labels}{vector with labels}
+
+\item{pthresh}{pvalue threshold}
+
+\item{log2FCThresh}{log2 FC threshold}
+
+\item{main}{main title}
 }
 \description{
 Volcano plot using ggplot and ggrepel
@@ -14,7 +27,8 @@ Volcano plot using ggplot and ggrepel
 library(quantable)
 foldchange <- rnorm(1000)
 pvals <-rexp(1000)
-volcano2G(foldchange, pvals,labels=rep("abcde", length(pvals)), pthresh=0.1, foldchangethresh=0.5,main='test')
+#volcano2G(foldchange, pvals,labels=rep("abcde", length(pvals)),
+#  pthresh=0.1, log2FCThresh=0.5,main='test')
 
 }
 
