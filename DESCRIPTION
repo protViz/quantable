@@ -1,7 +1,7 @@
 Package: quantable
 Type: Package
 Title: Streamline Descriptive Analysis of Quantitative Data Matrices
-Version: 0.2.2
+Version: 0.3.0
 Date: 2016-07-19
 Author: Witold Wolski <wewolski@gmail.com>
 Maintainer: Witold Wolski <wewolski@gmail.com>
@@ -18,7 +18,9 @@ Imports:
     pROC,
     caret,
     e1071,
-    Matrix
+    Matrix,
+    ggplot2,
+    ggrepel
 URL: https://github.com/protViz/quantable
 BugReports: https://github.com/protViz/quantable/issues
 Repository: CRAN

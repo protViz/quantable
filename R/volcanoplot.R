@@ -85,4 +85,28 @@ volcanoplot = function(foldchange,
   }
 }
 
+#' Volcano plot using ggplot and ggrepel
+#' @export
+#' @examples 
+#' library(quantable)
+#' foldchange <- rnorm(1000)
+#' pvals <-rexp(1000)
+#' volcano2G(foldchange, pvals,labels=rep("abcde", length(pvals)), pthresh=0.1, foldchangethresh=0.5,main='test')
+#' 
+volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, foldchangethresh=0.5, main='test'){
+  library(dplyr)
+  library(ggplot2)
+  library(ggrepel)
   
+  results <- data.frame(log2FoldChange = foldchange, pvalue= pvals, labels=labels )
+  fcLabel <- paste("p <", pthresh, "& |FC| >", foldchangethresh)
+  
+  results = mutate(results, sig=ifelse(results$pvalue<pthresh & abs(results$log2FoldChange) > foldchangethresh ,fcLabel , "Not Sig"))
+  head(results)
+
+  p = ggplot(results, aes(log2FoldChange, -log10(pvalue))) +
+    geom_point(aes(col=sig)) +
+    scale_color_manual(values=c("black", "red"))
+  
+  p + geom_text_repel(data=filter(results, pvalue<pthresh & abs(log2FoldChange)>foldchangethresh ), aes(label=labels))
+}
