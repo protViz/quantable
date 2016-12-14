@@ -16,25 +16,31 @@
 #'   pthresh=0.1, log2FCThresh=0.5,main='test')
 #' 
 #' @export
-volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, log2FCThresh=0.5, main=NULL){
+volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, log2FCThresh=0.5, main=NULL, xlab="log2 FC", ylab="-log10(p)"){
   
   results <- data.frame(log2FoldChange = foldchange, pvalue= pvals, labels=labels )
   fcLabel <- paste("p <", pthresh, "& |FC| >", log2FCThresh)
   
-  results$sig = ifelse(results$pvalue<pthresh & abs(results$log2FoldChange) > log2FCThresh ,fcLabel , "Not Sig")
+  results$significance = ifelse(results$pvalue<pthresh & abs(results$log2FoldChange) > log2FCThresh ,fcLabel , "Not Sig")
   ### hack to pass R CMD check
   log2FoldChange <- NULL
   pvalue <- NULL
   ### 
   p = ggplot(results, aes(log2FoldChange, -log10(pvalue))) +
-    geom_point(aes_string(col="sig")) +
+    geom_point(aes_string(col="significance")) +
     scale_color_manual(values=c("black", "red"))
+  
+  p = p + ggplot2::geom_hline(yintercept=-log10(pthresh), col=4, lty=2) 
+  p = p + ggplot2::geom_vline(xintercept=c(-log2FCThresh,log2FCThresh), col=4,lty=2) 
+  
   filtres <- subset(results, pvalue<pthresh & abs(log2FoldChange)>log2FCThresh )
   p = p + geom_text_repel(data=filtres, aes_string (label='labels'))
   if(!is.null(main)){
-    p = p + ggtitle(main)
+    p = p + ggtitle(main) 
   }
-  p = p + ggplot2::geom_hline(yintercept=-log10(pthresh), col=4) 
-  p = p + ggplot2::geom_vline(xintercept=c(-log2FCThresh,log2FCThresh), col=4) 
+  p = p + xlab(xlab)
+  p = p + ylab(ylab)
+  
+ 
   return(p)
 }
