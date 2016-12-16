@@ -13,13 +13,13 @@
 #' foldchange <- rnorm(1000)
 #' pvals <-rexp(1000)
 #' volcano2G(foldchange, pvals,labels=rep("abcde", length(pvals)),
-#'   pthresh=0.1, log2FCThresh=0.5,main='test')
+#'   pthresh=0.1, log2FCThresh=0.5,main='test',size=3)
 #' 
 #' @export
 volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, log2FCThresh=0.5, main=NULL,
                       xlab="log2 FC",
                       ylab="-log10(p)",
-                      xlim=c(-5,5),ylim=c(0,-log10(1e-6))){
+                      xlim=c(-5,5),ylim=c(0,-log10(1e-6)),size=1){
   
   results <- data.frame(log2FoldChange = foldchange, pvalue= pvals, labels=labels )
   fcLabel <- paste("p <", pthresh, "& |FC| >", log2FCThresh)
@@ -37,7 +37,7 @@ volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, log2FCThresh=0.5, 
   p = p + ggplot2::geom_vline(xintercept=c(-log2FCThresh,log2FCThresh), col=4,lty=2) 
   
   filtres <- subset(results, pvalue<pthresh & abs(log2FoldChange)>log2FCThresh )
-  p = p + geom_text_repel(data=filtres, aes_string (label='labels'))
+  p = p + geom_text_repel(data=filtres, aes_string(label='labels'), size=size)
   if(!is.null(main)){
     p = p + ggtitle(main) 
   }
