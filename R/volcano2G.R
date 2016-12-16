@@ -16,7 +16,10 @@
 #'   pthresh=0.1, log2FCThresh=0.5,main='test')
 #' 
 #' @export
-volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, log2FCThresh=0.5, main=NULL, xlab="log2 FC", ylab="-log10(p)"){
+volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, log2FCThresh=0.5, main=NULL,
+                      xlab="log2 FC",
+                      ylab="-log10(p)",
+                      xlim=c(-5,5),ylim=c(0,-log10(1e-6))){
   
   results <- data.frame(log2FoldChange = foldchange, pvalue= pvals, labels=labels )
   fcLabel <- paste("p <", pthresh, "& |FC| >", log2FCThresh)
@@ -40,6 +43,8 @@ volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, log2FCThresh=0.5, 
   }
   p = p + xlab(xlab)
   p = p + ylab(ylab)
+  p = p + xlim(xlim[1],xlim[2])
+  p = p + ylim(ylim[1],ylim[2])
   
  
   return(p)
