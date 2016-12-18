@@ -54,7 +54,7 @@ getWRValuesForVolcano <- function(x,y, paired = FALSE, adjust=TRUE){
     #kruskal
     pval[i] <- tmp$p.value
     fchange[i] <- median( xv) - median(yv)
-    meanM = (median( xv) + median(yv))/2 # or should it be better (median(c(xv,yv)))?
+    meanM[i] = (median( xv) + median(yv))/2 # or should it be better (median(c(xv,yv)))?
   }
   if(adjust){
     pval <- p.adjust(pval, method="BH")
