@@ -9,8 +9,7 @@
 #' split2table(dat,split="\\_|\\/")
 split2table <- function(names,split="\\||\\_")
 {
-  
-  cnamessplit <- strsplit(as.character(names),split)
+  cnamessplit <- stringr::str_split(as.character(names),pattern=split)
   protnam<-do.call("rbind",cnamessplit)
   return(protnam)
 }

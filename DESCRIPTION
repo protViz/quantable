@@ -20,7 +20,8 @@ Imports:
     e1071,
     Matrix,
     ggplot2,
-    ggrepel
+    ggrepel,
+    stringr
 URL: https://github.com/protViz/quantable
 BugReports: https://github.com/protViz/quantable/issues
 Repository: CRAN
