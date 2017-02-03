@@ -9,5 +9,6 @@ r_packages:
   - ggplots2
   - ggrepel
   - pROC
+  - stringr
 
 warnings_are_errors: true
