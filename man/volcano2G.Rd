@@ -5,7 +5,9 @@
 \title{Volcano plot using ggplot and ggrepel}
 \usage{
 volcano2G(foldchange, pvals, labels, pthresh = 0.1, log2FCThresh = 0.5,
-  main = NULL)
+  main = NULL, xlab = "log2 FC", ylab = "-log10(p)", xlim = c(-5, 5),
+  ylim = c(0, -log10(1e-06)), size = 5, segment.size = 0.3,
+  segement.alpha = 0.3)
 }
 \arguments{
 \item{foldchange}{vector with fold changes}
@@ -24,11 +26,12 @@ volcano2G(foldchange, pvals, labels, pthresh = 0.1, log2FCThresh = 0.5,
 Volcano plot using ggplot and ggrepel
 }
 \examples{
+rm(list=ls())
 library(quantable)
 foldchange <- rnorm(1000)
 pvals <-rexp(1000)
 volcano2G(foldchange, pvals,labels=rep("abcde", length(pvals)),
-  pthresh=0.1, log2FCThresh=0.5,main='test')
+  pthresh=0.1, log2FCThresh=0.5,main='test',size=2,segment.size=0.3)
 
 }
 

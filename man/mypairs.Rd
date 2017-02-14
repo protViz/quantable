@@ -4,12 +4,14 @@
 \alias{mypairs}
 \title{normal pairs plot with different pch and plus abline}
 \usage{
-mypairs(dataframe, legend = FALSE, ...)
+mypairs(dataframe, legend = FALSE, pch = ".", ...)
 }
 \arguments{
 \item{dataframe}{data matrix or data.frame as normally passed to pairs}
 
 \item{legend}{add legend to plots}
+
+\item{pch}{point type default "."}
 
 \item{...}{params usually passed to pairs}
 }

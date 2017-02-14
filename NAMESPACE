@@ -2,6 +2,8 @@
 
 export(CV)
 export(CVlog)
+export(ProgenesisBuildAnnotation)
+export(ProgenesisRead)
 export(altmanbland)
 export(colNAs)
 export(dat2Matrix)
