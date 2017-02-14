@@ -6,6 +6,13 @@
 #' @param pthresh pvalue threshold
 #' @param log2FCThresh log2 FC threshold
 #' @param main main title
+#' @param xlab xlab
+#' @param ylab ylab
+#' @param xlim xlim
+#' @param ylib ylib
+#' @param size see geom_text_repel
+#' @param segment.size see geom_text_repel
+#' @param segement.alpha see geom_text_repel
 #' @import ggplot2
 #' @import ggrepel
 #' @examples 

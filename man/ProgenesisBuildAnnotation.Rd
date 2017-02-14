@@ -7,7 +7,7 @@
 ProgenesisBuildAnnotation(data)
 }
 \arguments{
-\item{tibble}{read by ProgenesisRead}
+\item{data}{tibble returned by ProgenesisRead}
 }
 \value{
 list of tibbles data -

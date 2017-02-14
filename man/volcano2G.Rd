@@ -21,6 +21,20 @@ volcano2G(foldchange, pvals, labels, pthresh = 0.1, log2FCThresh = 0.5,
 \item{log2FCThresh}{log2 FC threshold}
 
 \item{main}{main title}
+
+\item{xlab}{xlab}
+
+\item{ylab}{ylab}
+
+\item{xlim}{xlim}
+
+\item{size}{see geom_text_repel}
+
+\item{segment.size}{see geom_text_repel}
+
+\item{segement.alpha}{see geom_text_repel}
+
+\item{ylib}{ylib}
 }
 \description{
 Volcano plot using ggplot and ggrepel

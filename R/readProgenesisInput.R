@@ -1,6 +1,8 @@
 #' reads file exportet from progenesis
 #' ProgenesisRead
 #' @export
+#' @param file path to progenesis peptide or protein file
+#' @param sep separator used (progenesis uses depending language settings a , or ;)
 #' @examples
 #' file = file.path(path.package("quantable"),"extdata/PG/PeptideMeasurement_inclSingleHits_hi3.csv" )
 #' tmp <- ProgenesisRead(file)
@@ -15,11 +17,11 @@ ProgenesisRead  <- function(file, sep=","){
   library(readr)
   library(plyr)
   tmp<-readLines(file)
-  types <- str_trim(str_split(gsub("\"","",tmp[1]),pattern=sep)[[1]])
-  annot <- str_trim(str_split(gsub("\"","",tmp[2]),pattern=sep)[[1]])
+  types <- stringr::str_trim(stringr::str_split(gsub("\"","",tmp[1]),pattern=sep)[[1]])
+  annot <- stringr::str_trim(stringr::str_split(gsub("\"","",tmp[2]),pattern=sep)[[1]])
   
   fixTypesAnnot <- function(types){
-    wtype<-which(str_length(types)> 0)
+    wtype<-which(stringr::str_length(types)> 0)
     ltype<-diff(c(wtype,length(types)+1))
     x<-rep(types[wtype],times=ltype)
     
@@ -32,7 +34,7 @@ ProgenesisRead  <- function(file, sep=","){
   types[annot == "Tags"] <-""
   
   annot <- paste(types, annot,sep="_")
-  data <-read_delim(file,delim=sep, skip=2)
+  data <- readr::read_delim(file,delim=sep, skip=2)
   
   colnames(data)<- paste(annot,colnames(data),sep="~")
   colnames(data) <- gsub("^_~","",colnames(data))
@@ -43,12 +45,12 @@ ProgenesisRead  <- function(file, sep=","){
   data$ProteinName <- data$Accession
   data$TopProteinName <- Acc
   
-  data <- rename(data,c("Unique peptides"="nrPeptides"))
+  data <- plyr::rename(data,c("Unique peptides"="nrPeptides"))
   #data <- data[,-grep("Normalized abundance",colnames(data))]
   return(data)
 }
 #' build annotation from column names
-#' @param tibble read by ProgenesisRead
+#' @param data tibble returned by ProgenesisRead
 #' @return list of tibbles data - 
 #' @export
 #' @examples

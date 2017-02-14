@@ -7,6 +7,11 @@ ProgenesisRead}
 \usage{
 ProgenesisRead(file, sep = ",")
 }
+\arguments{
+\item{file}{path to progenesis peptide or protein file}
+
+\item{sep}{separator used (progenesis uses depending language settings a , or ;)}
+}
 \description{
 reads file exportet from progenesis
 ProgenesisRead
