@@ -4,9 +4,8 @@ sudo: required
 
 r_packages:
   - scales
-  - gplots
   - RColorBrewer
-  - ggplots2
+  #- ggplots2
   - ggrepel
   - pROC
   - stringr
