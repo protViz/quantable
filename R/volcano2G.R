@@ -9,7 +9,7 @@
 #' @param xlab xlab
 #' @param ylab ylab
 #' @param xlim xlim
-#' @param ylib ylib
+#' @param ylim ylim
 #' @param size see geom_text_repel
 #' @param segment.size see geom_text_repel
 #' @param segement.alpha see geom_text_repel

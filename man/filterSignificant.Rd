@@ -14,11 +14,11 @@ filterSignificant(foldchange, pvals, labels = NULL, pthresh = 0.05,
 
 \item{labels}{e.g. protein ID's}
 
+\item{pthresh}{pvalue threshold}
+
 \item{foldchangethresh}{fold change threshold}
 
 \item{biasAdjust}{adjustment for p-values}
-
-\item{pthres}{pvalue threshold}
 }
 \description{
 filters significant values and returns them as list of data.frames

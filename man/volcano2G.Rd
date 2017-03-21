@@ -28,13 +28,13 @@ volcano2G(foldchange, pvals, labels, pthresh = 0.1, log2FCThresh = 0.5,
 
 \item{xlim}{xlim}
 
+\item{ylim}{ylim}
+
 \item{size}{see geom_text_repel}
 
 \item{segment.size}{see geom_text_repel}
 
 \item{segement.alpha}{see geom_text_repel}
-
-\item{ylib}{ylib}
 }
 \description{
 Volcano plot using ggplot and ggrepel

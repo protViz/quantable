@@ -3,6 +3,9 @@
 #' @export
 #' @param file path to progenesis peptide or protein file
 #' @param sep separator used (progenesis uses depending language settings a , or ;)
+#' @import plyr
+#' @import readr
+#' @import stringr
 #' @examples
 #' file = file.path(path.package("quantable"),"extdata/PG/PeptideMeasurement_inclSingleHits_hi3.csv" )
 #' tmp <- ProgenesisRead(file)
@@ -13,9 +16,6 @@
 #' tmp <- ProgenesisRead(file)
 #' colnames(tmp)
 ProgenesisRead  <- function(file, sep=","){
-  library(stringr)
-  library(readr)
-  library(plyr)
   tmp<-readLines(file)
   types <- stringr::str_trim(stringr::str_split(gsub("\"","",tmp[1]),pattern=sep)[[1]])
   annot <- stringr::str_trim(stringr::str_split(gsub("\"","",tmp[2]),pattern=sep)[[1]])

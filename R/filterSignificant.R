@@ -3,7 +3,7 @@
 #' @param foldchange log2 fold changes
 #' @param pvals p values
 #' @param labels e.g. protein ID's
-#' @param pthres pvalue threshold
+#' @param pthresh pvalue threshold
 #' @param foldchangethresh fold change threshold
 #' @param biasAdjust adjustment for p-values
 #' @examples
