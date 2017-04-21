@@ -12,18 +12,18 @@ Description: Methods which streamline the descriptive analysis of quantitative
 License: GPL-3
 LazyData: TRUE
 Imports:
-    scales,
-    gplots,
+    Matrix,
     RColorBrewer,
-    pROC,
     caret,
     e1071,
-    Matrix,
     ggplot2,
     ggrepel,
-    stringr,
+    gplots,
+    plyr,
+    pROC,
     readr,
-    plyr
+    scales,
+    stringr
 URL: https://github.com/protViz/quantable
 BugReports: https://github.com/protViz/quantable/issues
 Repository: CRAN
