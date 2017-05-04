@@ -13,7 +13,7 @@
 #' controls <- rnorm(300,1,1.5)
 #' makeROCplot(cases,controls)
 #' 
-makeROCplot <- function(cases,controls,label="",xlim=NULL,abline= NULL){
+makeROCplot <- function(cases,controls,label="",xlab="P(X==1)",xlim=NULL,abline= NULL){
   graphics::par(mfrow=c(1,2))
   ll = range(c(cases,controls))
   if(is.null(xlim)){
@@ -23,7 +23,7 @@ makeROCplot <- function(cases,controls,label="",xlim=NULL,abline= NULL){
   dt = stats::density(cases)
   dm = stats::density(controls)
   y = c(dt$y, dm$y)
-  graphics::plot(dt, col=1,xlab="log2(M/T)",main=label, xlim=xlim, ylim=c(0,max(y)))
+  graphics::plot(dt, col=1,xlab=xlab,main=label, xlim=xlim, ylim=c(0,max(y)))
   lines(dm, col=2)
   if(!is.null(abline)){
     graphics::abline(v=abline,col=3)
