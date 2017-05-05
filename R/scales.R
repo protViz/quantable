@@ -12,6 +12,7 @@
 #' @param  length nr of colors
 #' @param increasing default TRUE
 #' @export
+#' @importFrom scales brewer_pal gradient_n_pal div_gradient_pal
 #' @examples 
 #' 
 #' library(scales)
