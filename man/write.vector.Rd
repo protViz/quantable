@@ -18,4 +18,3 @@ write vectors as single column table
 (usefull for exporting i.e. protein id's)
 uses write.table
 }
-

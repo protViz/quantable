@@ -56,4 +56,3 @@ imageWithLabels(x,marLeft = c(5,5,2,2),marRight=c(0,0,0,0),xlab="ttt",ylab="bbb"
 par(mar = martmp)
 
 }
-

@@ -25,4 +25,3 @@ x[3,3] = NA
 x = removeNArows(x)
 dim(x)
 }
-

@@ -25,4 +25,3 @@ stopifnot(length(cv) == 45)
 hist(cv)
 
 }
-

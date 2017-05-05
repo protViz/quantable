@@ -20,4 +20,3 @@ library(scales)
 show_col(getBlueWhiteRed(21))
 
 }
-

@@ -22,4 +22,3 @@ res <- sumtop(tmp)
 stopifnot(res == c(9,9,9,9))
 
 }
-

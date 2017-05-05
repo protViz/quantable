@@ -4,7 +4,8 @@
 \alias{makeROCplot}
 \title{create density plots of cases and controls and ROC plot}
 \usage{
-makeROCplot(cases, controls, label = "", xlim = NULL, abline = NULL)
+makeROCplot(cases, controls, label = "", xlab = "P(X==1)", xlim = NULL,
+  abline = NULL)
 }
 \arguments{
 \item{cases}{a factor of predicted classes}
@@ -12,6 +13,8 @@ makeROCplot(cases, controls, label = "", xlim = NULL, abline = NULL)
 \item{controls}{a factor of classes to be used as the true results}
 
 \item{label}{image main label}
+
+\item{xlab}{label for x axis}
 
 \item{xlim}{x axis extend}
 
@@ -27,4 +30,3 @@ controls <- rnorm(300,1,1.5)
 makeROCplot(cases,controls)
 
 }
-

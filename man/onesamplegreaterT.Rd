@@ -22,4 +22,3 @@ rownames(data) <- 1:20
 onesamplegreaterT(data)
 
 }
-

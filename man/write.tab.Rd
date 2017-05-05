@@ -20,4 +20,3 @@ write table in tab delimited no quotes no row.names
 uses write.table 
 TODO : validate if not redundant with other write functions
 }
-

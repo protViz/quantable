@@ -20,4 +20,3 @@ library(scales)
 show_col(getRedScale(12))
 
 }
-

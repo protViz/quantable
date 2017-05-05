@@ -31,4 +31,3 @@ rownames(data) <- 1:20
 resM <- onesamplegreaterT(data)
 plotOneSideVolcano(resM)
 }
-

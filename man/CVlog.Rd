@@ -27,4 +27,3 @@ hist(cv)
 \seealso{
 CV
 }
-

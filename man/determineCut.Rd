@@ -26,4 +26,3 @@ cut <- determineCut(cases,controls)
 makeROCplot(cases,controls,abline=cut)
 
 }
-

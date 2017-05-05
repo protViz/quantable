@@ -35,4 +35,3 @@ lines(tic,col=3,lwd=3)
 \seealso{
 \code{\link{runmed}}
 }
-

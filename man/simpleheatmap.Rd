@@ -37,4 +37,3 @@ par(mar=c(5,5,5,5))
 simpleheatmap(tmp,ColSideColors=c("red","blue","pink","black"))
 simpleheatmap(tmp)
 }
-

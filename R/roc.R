@@ -3,6 +3,7 @@
 #' @param cases  a factor of predicted classes 
 #' @param controls  a factor of classes to be used as the true results
 #' @param label image main label
+#' @param xlab label for x axis
 #' @param xlim x axis extend
 #' @param abline draws vertical abline to indicate best threshold
 #' @importFrom pROC roc
@@ -13,7 +14,8 @@
 #' controls <- rnorm(300,1,1.5)
 #' makeROCplot(cases,controls)
 #' 
-makeROCplot <- function(cases,controls,label="",xlab="P(X==1)",xlim=NULL,abline= NULL){
+makeROCplot <- function(cases,controls,label="",
+                        xlab="P(X==1)",xlim=NULL,abline= NULL){
   graphics::par(mfrow=c(1,2))
   ll = range(c(cases,controls))
   if(is.null(xlim)){

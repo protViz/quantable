@@ -25,4 +25,3 @@ res = pvalCorMat(mat)
 image(res$pval)
 image(res$cor)
 }
-

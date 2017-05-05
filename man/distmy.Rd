@@ -33,4 +33,3 @@ hist(uppertriang(redist))
 range(uppertriang(redist))
 which(redist < 0.05 , arr.ind = TRUE)
 }
-

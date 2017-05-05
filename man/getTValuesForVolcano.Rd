@@ -29,4 +29,3 @@ res <- getTValuesForVolcano(a,b)
 volcanoplot(res$fchange , res$pval)
 
 }
-

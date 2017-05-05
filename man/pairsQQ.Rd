@@ -22,4 +22,3 @@ pairsQQ( tmp)
 \seealso{
 \code{\link{qqplot}} and  \code{\link{pairs}}
 }
-

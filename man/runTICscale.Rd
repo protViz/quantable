@@ -28,4 +28,3 @@ points(res2$scaled, pch=".",cex=3,col=2)
 \seealso{
 correctIntRTv2 for context
 }
-

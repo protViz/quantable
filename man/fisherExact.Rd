@@ -27,4 +27,3 @@ res <- fisherExact(x,y,accessions)
 volcanoplot(res$fchange, res$pvaladj, labels = res$accessions)
 
 }
-

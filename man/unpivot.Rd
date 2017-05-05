@@ -19,4 +19,3 @@ colnames(x) = letters[1:5]
 rownames(x) = LETTERS[1:5]
 unpivot(x)
 }
-

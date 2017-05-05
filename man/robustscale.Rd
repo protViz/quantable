@@ -6,16 +6,19 @@
 uses median an mad instead of mean and row
 applies the scaling to the columns (samples) by default}
 \usage{
-robustscale(data, dim = 2, center = TRUE, scale = TRUE)
+robustscale(data, dim = 2, center = TRUE, scale = TRUE,
+  preserveScale = TRUE)
 }
 \arguments{
 \item{data}{matrix or data.frame}
 
-\item{dim}{- should rows (1) or columns (2:default) be scaled}
+\item{dim}{should rows (1) or columns (2:default) be scaled}
 
-\item{center}{- subract median (default:TRUE)}
+\item{center}{subract median (default:TRUE)}
 
-\item{scale}{- scale by mad  (default:FALSE)}
+\item{scale}{scale by mad  (default:FALSE)}
+
+\item{preserveScale}{default TRUE , equalize scales but do not change them}
 }
 \description{
 robust scaling
@@ -23,6 +26,7 @@ uses median an mad instead of mean and row
 applies the scaling to the columns (samples) by default
 }
 \examples{
+library(quantable)
 tmp = matrix(rep((1:100),times = 4) + rnorm(100*4,0,3),ncol=4)
 mean = c(20,30,10,40)
 sd = c(4,3,4,5)
@@ -32,4 +36,3 @@ boxplot(tmp)
 tmp = robustscale(tmp)
 boxplot(tmp$data)
 }
-

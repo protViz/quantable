@@ -28,4 +28,3 @@ y <- y + rnorm(length(y),0,0.5)
 altmanbland(y,x)
 
 }
-

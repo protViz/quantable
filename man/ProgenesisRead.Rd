@@ -26,4 +26,3 @@ file = file.path(path.package("quantable"),"extdata/PG/ProteinMeasurement_inclSi
 tmp <- ProgenesisRead(file)
 colnames(tmp)
 }
-

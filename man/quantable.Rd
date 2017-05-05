@@ -8,4 +8,3 @@
 \description{
 Streamline descriptive analysis of quantitative data matrices
 }
-

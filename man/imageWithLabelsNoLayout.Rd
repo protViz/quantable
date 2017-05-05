@@ -52,4 +52,3 @@ max(x,na.rm=TRUE),length=13))
 imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb")
 
 }
-

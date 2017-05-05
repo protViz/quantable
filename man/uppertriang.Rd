@@ -19,4 +19,3 @@ get values of upper triangle from matrix
 t = matrix(1:25,ncol=5)
 uppertriang(t)
 }
-

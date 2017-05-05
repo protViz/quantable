@@ -12,4 +12,3 @@ colNAs(x)
 \description{
 get NR of NA's per matrix or data.frame column
 }
-

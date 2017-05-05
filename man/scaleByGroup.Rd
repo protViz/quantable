@@ -20,4 +20,3 @@ scaleByGroup(data, protGroup, plot = FALSE, scale = TRUE, center = TRUE)
 \description{
 scale data given group
 }
-

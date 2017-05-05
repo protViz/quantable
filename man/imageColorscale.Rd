@@ -31,4 +31,3 @@ rownames(x) <- 1:30
 colnames(x) <- letters[1:20]
 imageColorscale(x)
 }
-

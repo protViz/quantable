@@ -48,4 +48,3 @@ volcano2G(foldchange, pvals,labels=rep("abcde", length(pvals)),
   pthresh=0.1, log2FCThresh=0.5,main='test',size=2,segment.size=0.3)
 
 }
-

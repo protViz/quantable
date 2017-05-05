@@ -30,4 +30,3 @@ boxplot(t(b[1:20,]))
 res <- getWRValuesForVolcano(a,b)
 volcanoplot(res$fchange , res$pval)
 }
-

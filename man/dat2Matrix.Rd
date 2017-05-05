@@ -19,4 +19,3 @@ matrix
 \description{
 converts sparse representation to dense where row and col can be character vectors
 }
-

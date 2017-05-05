@@ -3,10 +3,10 @@
 #' applies the scaling to the columns (samples) by default
 #' @export
 #' @param data matrix or data.frame
-#' @param dim - should rows (1) or columns (2:default) be scaled
-#' @param center - subract median (default:TRUE)
-#' @param scale - scale by mad  (default:FALSE)
-#' @param perserveScale - 
+#' @param dim should rows (1) or columns (2:default) be scaled
+#' @param center subract median (default:TRUE)
+#' @param scale scale by mad  (default:FALSE)
+#' @param preserveScale default TRUE , equalize scales but do not change them
 #' @examples
 #' library(quantable)
 #' tmp = matrix(rep((1:100),times = 4) + rnorm(100*4,0,3),ncol=4)
@@ -17,7 +17,8 @@
 #' boxplot(tmp)
 #' tmp = robustscale(tmp)
 #' boxplot(tmp$data)
-robustscale <- function(data, dim=2, center=TRUE, scale=TRUE, preserveScale = TRUE){
+robustscale <- function(data, dim=2, center=TRUE, scale=TRUE,
+                        preserveScale = TRUE){
   medians = NULL
   if(center){
     medians <- apply(data,dim,median,na.rm=TRUE)
