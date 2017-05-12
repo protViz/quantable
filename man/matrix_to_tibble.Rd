@@ -4,7 +4,7 @@
 \alias{matrix_to_tibble}
 \title{Matrix to tibble (taken from tidyquant)}
 \usage{
-matrix_to_tibble(x, preserve_row_names = TRUE)
+matrix_to_tibble(x, preserve_row_names = TRUE, ...)
 }
 \arguments{
 \item{x}{a matrix}

@@ -5,7 +5,7 @@
 #'  
 #' @export
 #' 
-matrix_to_tibble <- function(x, preserve_row_names = TRUE)
+matrix_to_tibble <- function(x, preserve_row_names = TRUE,...)
 {
   if (!is.matrix(x)) stop("Error: `x` is not a matrix object.")
   if (preserve_row_names == TRUE) {
