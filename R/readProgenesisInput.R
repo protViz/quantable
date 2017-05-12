@@ -7,6 +7,7 @@
 #' @import readr
 #' @import stringr
 #' @examples
+#' 
 #' file = file.path(path.package("quantable"),"extdata/PG/PeptideMeasurement_inclSingleHits_hi3.csv" )
 #' tmp <- ProgenesisRead(file)
 #' colnames(tmp)
@@ -15,6 +16,8 @@
 #' file = file.path(path.package("quantable"),"extdata/PG/ProteinMeasurement_inclSingleHits_hi3.csv" )
 #' tmp <- ProgenesisRead(file)
 #' colnames(tmp)
+#' head(tmp)
+#' 
 ProgenesisRead  <- function(file, sep=","){
   tmp<-readLines(file)
   types <- stringr::str_trim(stringr::str_split(gsub("\"","",tmp[1]),pattern=sep)[[1]])

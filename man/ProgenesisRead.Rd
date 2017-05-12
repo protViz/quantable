@@ -17,6 +17,7 @@ reads file exportet from progenesis
 ProgenesisRead
 }
 \examples{
+
 file = file.path(path.package("quantable"),"extdata/PG/PeptideMeasurement_inclSingleHits_hi3.csv" )
 tmp <- ProgenesisRead(file)
 colnames(tmp)
@@ -25,4 +26,6 @@ head(tmp)
 file = file.path(path.package("quantable"),"extdata/PG/ProteinMeasurement_inclSingleHits_hi3.csv" )
 tmp <- ProgenesisRead(file)
 colnames(tmp)
+head(tmp)
+
 }
