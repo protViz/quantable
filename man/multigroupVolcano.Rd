@@ -4,7 +4,7 @@
 \alias{multigroupVolcano}
 \title{plot volcano given multiple conditions}
 \usage{
-multigroupVolcano(misspX, effect = "fc", type = "p.adjust",
+multigroupVolcano(misspX, colour, effect = "fc", type = "p.adjust",
   Condition = "condition", xintercept = c(-2, 2), pvalue = 0.05,
   label = "row.names")
 }
