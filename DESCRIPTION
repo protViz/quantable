@@ -1,7 +1,7 @@
 Package: quantable
 Type: Package
 Title: Streamline Descriptive Analysis of Quantitative Data Matrices
-Version: 0.3.1
+Version: 0.3.2
 Date: 2017-03-20
 Author: Witold Wolski <wewolski@gmail.com>
 Maintainer: Witold Wolski <wewolski@gmail.com>
