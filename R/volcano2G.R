@@ -27,7 +27,7 @@
 volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, log2FCThresh=0.5, main=NULL,
                       xlab="log2 FC",
                       ylab="-log10(p)",
-                      xlim=c(-5,5),ylim=c(0,-log10(1e-6)),size=5, segment.size=0.3,segement.alpha=0.3){
+                      xlim=c(-5,5),ylim=c(0,-log10(1e-6)),size=1, segment.size=0.3,segement.alpha=0.3){
   
   results <- data.frame(log2FoldChange = foldchange, pvalue= pvals, labels=labels )
   fcLabel <- paste("p <", pthresh, "& |FC| >", log2FCThresh)
