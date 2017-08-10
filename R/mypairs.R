@@ -35,7 +35,7 @@ panel.cor <- function(x, y, digits = 2, cex.cor, ...)
   usr <- par("usr"); on.exit(par(usr))
   par(usr = c(0, 1, 0, 1))
   # correlation coefficient
-  r <- cor(x, y)
+  r <- cor(x, y, use="pairwise.complete.obs")
   txt <- format(c(r, 0.123456789), digits = digits)[1]
   txt <- paste("r= ", txt, sep = "")
   text(0.5, 0.7, txt)
