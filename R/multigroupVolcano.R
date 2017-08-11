@@ -35,7 +35,7 @@ multigroupVolcano <- function(misspX,
   message(col)
   p <- ggplot( misspX, aes_string(x = effect , y = col  ))  + geom_point(col=colour, alpha=0.5)
   p <- p + facet_wrap(as.formula(paste("~",Condition))) + labs(y = col)
-  p <- p + geom_abline(data = ablines, aes(foldchange = fc, intercept = -log10(p),colour = Area)) + 
+  p <- p + geom_abline(data = ablines, aes(slope = fc, intercept = -log10(p),colour = Area)) + 
     geom_vline(xintercept = xintercept,linetype = "dashed", colour = "red")
   if(!is.null(label)){
     message("test")
