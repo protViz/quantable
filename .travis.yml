@@ -3,12 +3,18 @@ language: r
 sudo: required
 
 r_packages:
-  - scales
-  - RColorBrewer
-  #- ggplots2
-  - ggrepel
-  - pROC
-  - stringr
-  - readr
-
+  -  Matrix
+  -  RColorBrewer
+  -  caret
+  -  dplyr
+  -  e1071
+  -  ggplot2
+  -  ggrepel
+  -  gplots
+  -  plyr
+  -  pROC
+  -  readr
+  -  scales
+  -  stringr
+  -  tibble
 warnings_are_errors: false
