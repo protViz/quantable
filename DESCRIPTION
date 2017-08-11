@@ -15,6 +15,7 @@ Imports:
     Matrix,
     RColorBrewer,
     caret,
+    dplyr,
     e1071,
     ggplot2,
     ggrepel,

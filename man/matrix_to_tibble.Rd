@@ -9,7 +9,9 @@ matrix_to_tibble(x, preserve_row_names = TRUE, ...)
 \arguments{
 \item{x}{a matrix}
 
-\item{preserve_row_names}{}
+\item{preserve_row_names}{should rownames be kept (default TRUE)}
+
+\item{...}{further parameters passed to as_tibble}
 }
 \description{
 Matrix to tibble (taken from tidyquant)

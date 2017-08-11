@@ -6,10 +6,13 @@
 \usage{
 multigroupVolcano(misspX, colour, effect = "fc", type = "p.adjust",
   Condition = "condition", xintercept = c(-2, 2), pvalue = 0.05,
-  label = "row.names")
+  label = "row.names", size = 1, segment.size = 0.3,
+  segment.alpha = 0.3, ablines = cc)
 }
 \arguments{
 \item{misspX}{data in long format}
+
+\item{colour}{colouring of points}
 
 \item{effect}{column containing effect sizes}
 
@@ -22,7 +25,23 @@ multigroupVolcano(misspX, colour, effect = "fc", type = "p.adjust",
 \item{pvalue}{pvalue threshold}
 
 \item{label}{column containing labels}
+
+\item{size}{controls size of text}
+
+\item{segment.size}{controls size of lines}
+
+\item{segment.alpha}{controls visibility of lines}
+
+\item{ablines}{adds ablines horizontal and vertical}
 }
 \description{
 plot volcano given multiple conditions
+}
+\examples{
+cc <- data.frame(
+fc = c(0,0),
+p = c(0.01,0.05), 
+Area = c('p=0.01','p=0.05')
+)
+
 }

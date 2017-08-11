@@ -4,12 +4,16 @@
 \alias{panel.cor}
 \title{correlation panel for pairs plot function (used as default in mypairsSmooth)}
 \usage{
-panel.cor(x, y, digits = 2, cex.cor, ...)
+panel.cor(x, y, digits = 2, ...)
 }
 \arguments{
 \item{x}{numeric data}
 
 \item{y}{numeric data}
+
+\item{digits}{number of digits to display}
+
+\item{...}{not used}
 }
 \description{
 correlation panel for pairs plot function (used as default in mypairsSmooth)

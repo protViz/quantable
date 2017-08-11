@@ -6,7 +6,7 @@
 \usage{
 volcano2G(foldchange, pvals, labels, pthresh = 0.1, log2FCThresh = 0.5,
   main = NULL, xlab = "log2 FC", ylab = "-log10(p)", xlim = c(-5, 5),
-  ylim = c(0, -log10(1e-06)), size = 5, segment.size = 0.3,
+  ylim = c(0, -log10(1e-06)), size = 1, segment.size = 0.3,
   segement.alpha = 0.3)
 }
 \arguments{

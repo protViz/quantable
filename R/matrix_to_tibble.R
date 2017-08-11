@@ -1,8 +1,10 @@
 #' Matrix to tibble (taken from tidyquant)
 #' 
 #' @param x a matrix
-#' @param preserve_row_names
-#'  
+#' @param preserve_row_names should rownames be kept (default TRUE)
+#' @param ... further parameters passed to as_tibble
+#' @importFrom dplyr bind_cols
+#' @importFrom tibble tibble as_tibble
 #' @export
 #' 
 matrix_to_tibble <- function(x, preserve_row_names = TRUE,...)

@@ -8,6 +8,8 @@ panel.hist(x, ...)
 }
 \arguments{
 \item{x}{numeric data}
+
+\item{...}{additional parameters passed to rect}
 }
 \description{
 histogram panel for pairs function (used as default in mypairsSmooth)
