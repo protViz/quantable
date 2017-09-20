@@ -1,5 +1,6 @@
 #' heatmap2 facade
 #' @export
+#' @importFrom gplots heatmap.2
 #' @param pln or dataframe with numerical values
 #' @param distf distance function
 #' @param hclustf clustering function
