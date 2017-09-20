@@ -5,7 +5,8 @@
 \title{heatmap2 facade}
 \usage{
 simpleheatmap(pln, main = "", distf = dist, hclustf = hclust,
-  labRow = "", palette = getBlueWhiteRed(), margins = c(5, 5), ...)
+  labRow = "", palette = getBlueWhiteRed(), margins = c(5, 5),
+  scale = "none", ...)
 }
 \arguments{
 \item{pln}{or dataframe with numerical values}
@@ -21,6 +22,8 @@ simpleheatmap(pln, main = "", distf = dist, hclustf = hclust,
 \item{palette}{color palette}
 
 \item{margins}{control margins of heatmap}
+
+\item{scale}{c(row, column or none)}
 
 \item{...}{other parameters to heatmap.2}
 }
