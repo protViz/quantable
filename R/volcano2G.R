@@ -26,11 +26,11 @@
 #' @export
 volcano2G <- function(foldchange, pvals, labels, pthresh=0.1, log2FCThresh=0.5, main=NULL,
                       xlab="log2 FC",
-                      ylab="-log10(p)",
+                      ylab="-log10(Q Value)",
                       xlim=c(-5,5),ylim=c(0,-log10(1e-6)),size=1, segment.size=0.3,segement.alpha=0.3){
   
   results <- data.frame(log2FoldChange = foldchange, pvalue= pvals, labels=labels )
-  fcLabel <- paste("p <", pthresh, "& |FC| >", log2FCThresh)
+  fcLabel <- paste("Q Value <", pthresh, "& |FC| >", log2FCThresh)
   
   results$significance = ifelse(results$pvalue<pthresh & abs(results$log2FoldChange) > log2FCThresh ,fcLabel , "Not Sig")
   ### hack to pass R CMD check
