@@ -18,7 +18,7 @@
 #' colnames(tmp)
 #' head(tmp)
 #' 
-ProgenesisRead  <- function(file, sep=","){
+ProgenesisRead <- function(file, sep=","){
   tmp<-readLines(file)
   types <- stringr::str_trim(stringr::str_split(gsub("\"","",tmp[1]),pattern=sep)[[1]])
   annot <- stringr::str_trim(stringr::str_split(gsub("\"","",tmp[2]),pattern=sep)[[1]])
