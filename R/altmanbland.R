@@ -6,6 +6,7 @@
 #' @param main plotting parameters
 #' @param pch - plot character
 #' @param log - should the x y axis be log transformed possible values "x" "y" or "xy"
+#' @importFrom stats lowess
 #' @export
 #' @examples
 #' x <- seq(1:300)/10

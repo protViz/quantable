@@ -24,6 +24,7 @@ mypairs = function(dataframe,legend=FALSE,pch=".",...){
 #' @export
 #' @param x numeric data
 #' @param ... additional parameters passed to rect
+#' @importFrom graphics par rect hist
 panel.hist <- function(x, ...)
 {
   usr <- par("usr"); on.exit(par(usr))
@@ -39,6 +40,7 @@ panel.hist <- function(x, ...)
 #' @param y numeric data
 #' @param ... not used
 #' @param digits number of digits to display
+#' @importFrom stats cor
 panel.cor <- function(x, y, digits = 2, ...)
 {
   usr <- par("usr"); on.exit(par(usr))
