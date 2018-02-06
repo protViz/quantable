@@ -45,14 +45,18 @@ volcano2G <- function(foldchange,
   results$significance = ifelse(results$pvalue < pthresh & abs(results$log2FoldChange) > log2FCThresh ,fcLabel ,"Not Sig" )
   if(!is.null(pseudo)){
     results$significance[is.na(pseudo)] <- "pseudo"
+    colors <- c("black", "green", "red"   )
+  }else{
+    colors <- c("black", "red")
   }
+  
   ### hack to pass R CMD check
   log2FoldChange <- NULL
   pvalue <- NULL
   ### 
   p = ggplot(results, aes(log2FoldChange, -log10(pvalue))) +
     geom_point(aes_string(col="significance")) +
-    scale_color_manual(values=c("black", "green", "red" ))
+    scale_color_manual(values=colors)
   
   p = p + ggplot2::geom_hline(yintercept=-log10(pthresh), col=4, lty=2) 
   p = p + ggplot2::geom_vline(xintercept=c(-log2FCThresh,log2FCThresh), col=4,lty=2) 
