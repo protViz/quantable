@@ -65,7 +65,7 @@ image.nan <- function(z,
 #' breaks=seq(min(x,na.rm=TRUE),
 #' max(x,na.rm=TRUE),length=13))
 #' imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb")
-#' 
+#' imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb", zlim=c(0,2))
 imageWithLabelsNoLayout = function(x,
                                    col.labels=colnames(x),
                                    row.labels=rownames(x),
@@ -95,22 +95,27 @@ imageWithLabelsNoLayout = function(x,
 #' @param breaks optional argument passed to image (see image for more details)
 #' @export
 #' @examples
-#' x = matrix(rnorm(20*30),ncol=20)
+#' x = matrix(rnorm(20*30, 5),ncol=20)
 #' rownames(x) <- 1:30
 #' colnames(x) <- letters[1:20]
 #' imageColorscale(x)
-imageColorscale = function(x, cex = 1,
+#' imageColorscale(x,col=getBlueWhiteRed(), zlim=c(-1,1))
+#' imageColorscale(x,col=getBlueWhiteRed(), zlim=c(-5,5))
+imageColorscale <- function(x, cex = 1,
                            cex.axis = 0.5,
                            col = heat.colors(12),
                            digits=2,
                            zlim=NULL, breaks ){
-  colorlevels = seq(min(x,na.rm = TRUE),max(x,na.rm = TRUE),length=length(col))
   if(!is.null(zlim)){
-    image(1, seq(0,1,length=length(colorlevels)),
+    colorlevels = seq(zlim[1],zlim[2],length=length(col))
+    
+        image(1, seq(0,1,length=length(colorlevels)),
           matrix(data=colorlevels, nrow=1),
           col=col,xlab="",ylab="",
           axes=FALSE,zlim=zlim)
   }else{
+    colorlevels = seq(min(x,na.rm = TRUE),max(x,na.rm = TRUE),length=length(col))
+    
     image(1, seq(0,1,length=length(colorlevels)),
           matrix(data=colorlevels, nrow=1),
           col=col,xlab="",ylab="",
