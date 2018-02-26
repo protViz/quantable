@@ -20,6 +20,7 @@ Imports:
     ggplot2,
     ggrepel,
     gplots,
+    reshape2,
     plyr,
     pROC,
     readr,
