@@ -7,7 +7,7 @@
 imageWithLabelsNoLayout(x, col.labels = colnames(x),
   row.labels = rownames(x), cex = 1, cex.axis = 0.5, main = NULL,
   col = heat.colors(12), digits = 2, xlab = "", ylab = "",
-  zlim = NULL, na.color = "gray", ...)
+  zlim = NULL, na.color = "gray", textB = NULL, ...)
 }
 \arguments{
 \item{x}{matrix}
@@ -43,12 +43,15 @@ image plot with labels
 x = matrix(rnorm(20*30),ncol=20)
 rownames(x) <- 1:30
 colnames(x) <- letters[1:20]
-imageWithLabelsNoLayout(x,col = heat.colors(13))
+quantable:::image.nan(x,textB=1)
+
+imageWithLabelsNoLayout(x,col = heat.colors(13),textB=2)
 imageWithLabelsNoLayout(x,col = heat.colors(12),breaks=seq(min(x),max(x),length=13))
 x[3,3] <- NA
 imageWithLabelsNoLayout(x,col = heat.colors(12),
 breaks=seq(min(x,na.rm=TRUE),
 max(x,na.rm=TRUE),length=13))
 imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb")
+imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb", zlim=c(0,2))
 
 }

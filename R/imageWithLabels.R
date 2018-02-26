@@ -1,10 +1,15 @@
-#Copy of http://stackoverflow.com/questions/20977477/how-to-assign-a-specific-color-to-na-in-an-image-plot
-image.nan <- function(z,
+#' Copy of http://stackoverflow.com/questions/20977477/how-to-assign-a-specific-color-to-na-in-an-image-plot
+#' 
+#' @export
+#' @importFrom reshape2 melt
+image_nan <- function(z,
                       col =heat.colors(12),
                       zlim=NULL,
                       na.color='gray',
                       outside.below.color='green',
-                      outside.above.color='green',breaks,...)
+                      outside.above.color='green',breaks,
+                      textB=NULL,
+                      text.cex=0.8, ...)
 {
   # TODO: add checks for missing values
   z <- as.matrix(z)
@@ -36,6 +41,17 @@ image.nan <- function(z,
   }else{
     image(z=z, zlim=zlim, col=col, ...) # we finally call image(...)
   }
+  if(!is.null(textB)){
+    zz <- z
+    rownames(zz) <- NULL
+    colnames(zz) <- NULL
+    zz <<- zz
+
+    lmatrix <- reshape2::melt(zz)
+    x <- ((lmatrix$Var1-1) /max(lmatrix$Var1))
+    y <- ((lmatrix$Var2-1) /max(lmatrix$Var2))
+    graphics::text(x * 1/max(x), y * 1/max(y),labels = round(lmatrix$value, digits=textB),cex = text.cex)
+  }
 }
 
 #' image plot with labels
@@ -58,7 +74,9 @@ image.nan <- function(z,
 #' x = matrix(rnorm(20*30),ncol=20)
 #' rownames(x) <- 1:30
 #' colnames(x) <- letters[1:20]
-#' imageWithLabelsNoLayout(x,col = heat.colors(13))
+#' quantable:::image_nan(x,textB=1)
+#' 
+#' imageWithLabelsNoLayout(x,col = heat.colors(13),textB=2, text.cex=0.6)
 #' imageWithLabelsNoLayout(x,col = heat.colors(12),breaks=seq(min(x),max(x),length=13))
 #' x[3,3] <- NA
 #' imageWithLabelsNoLayout(x,col = heat.colors(12),
@@ -66,6 +84,7 @@ image.nan <- function(z,
 #' max(x,na.rm=TRUE),length=13))
 #' imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb")
 #' imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb", zlim=c(0,2))
+#' 
 imageWithLabelsNoLayout = function(x,
                                    col.labels=colnames(x),
                                    row.labels=rownames(x),
@@ -76,11 +95,14 @@ imageWithLabelsNoLayout = function(x,
                                    xlab='',
                                    ylab='',
                                    zlim=NULL,
-                                   na.color='gray',...){
+                                   na.color='gray',
+                                   textB=NULL,...){
   if(!is.null(zlim)){
-    image.nan(x, axes = F, main = main, col=col,xlab=xlab, ylab=ylab, zlim=zlim, ...=...)
+    image_nan(x, axes = F, main = main, col=col,xlab=xlab, ylab=ylab, zlim=zlim,
+              textB=textB, ...=...)
   }else{
-    image.nan(x, axes = F, main = main, col=col,xlab=xlab, ylab=ylab, ...=...)
+    image_nan(x, axes = F, main = main, col=col,xlab=xlab, ylab=ylab, 
+              textB=textB, ...=...)
   }
   graphics::axis( 2, at=seq(0,1,length=length((col.labels))) , labels=col.labels,cex.axis=cex.axis, las=2, cex=cex )
   graphics::axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )
