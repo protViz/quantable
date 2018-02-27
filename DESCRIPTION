@@ -26,7 +26,8 @@ Imports:
     readr,
     scales,
     stringr,
-    tibble
+    tibble,
+    tidyr
 URL: https://github.com/protViz/quantable
 BugReports: https://github.com/protViz/quantable/issues
 Repository: CRAN
