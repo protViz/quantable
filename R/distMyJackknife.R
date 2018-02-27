@@ -30,6 +30,7 @@ my_jackknife <- function ( xdata, .method, ...) {
 #' @param ... further parameters to method
 #' @importFrom tidyr gather spread
 #' @importFrom plyr ldply
+#' @importFrom dplyr group_by summarize
 #' @return summarizes results producced with my_jackknife
 #' @export
 #' @examples
