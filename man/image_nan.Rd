@@ -8,6 +8,27 @@ image_nan(z, col = heat.colors(12), zlim = NULL, na.color = "gray",
   outside.below.color = "green", outside.above.color = "green", breaks,
   textB = NULL, text.cex = 0.8, ...)
 }
+\arguments{
+\item{z}{matrix}
+
+\item{col}{color gradient}
+
+\item{zlim}{range}
+
+\item{na.color}{for displaying NA's.}
+
+\item{outside.below.color}{color below zlim}
+
+\item{outside.above.color}{color above zlim}
+
+\item{breaks}{do not remember (see usage in imageWithLabelsNoLayout)}
+
+\item{textB}{display numerical values of the matrix as text, default NULL no}
+
+\item{text.cex}{size of numerical values}
+
+\item{...}{further parameters for plot method}
+}
 \description{
 Copy of http://stackoverflow.com/questions/20977477/how-to-assign-a-specific-color-to-na-in-an-image-plot
 }

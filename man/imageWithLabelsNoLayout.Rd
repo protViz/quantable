@@ -34,6 +34,8 @@ imageWithLabelsNoLayout(x, col.labels = colnames(x),
 
 \item{na.color}{na.color}
 
+\item{textB}{indicate if correlation (text) should be added to heatmap. If - with how many digits. default = NULL (do not add).}
+
 \item{...}{passed to image}
 }
 \description{
@@ -43,9 +45,9 @@ image plot with labels
 x = matrix(rnorm(20*30),ncol=20)
 rownames(x) <- 1:30
 colnames(x) <- letters[1:20]
-quantable:::image.nan(x,textB=1)
+quantable:::image_nan(x,textB=1)
 
-imageWithLabelsNoLayout(x,col = heat.colors(13),textB=2)
+imageWithLabelsNoLayout(x,col = heat.colors(13),textB=2, text.cex=0.6)
 imageWithLabelsNoLayout(x,col = heat.colors(12),breaks=seq(min(x),max(x),length=13))
 x[3,3] <- NA
 imageWithLabelsNoLayout(x,col = heat.colors(12),

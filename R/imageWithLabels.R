@@ -1,13 +1,25 @@
 #' Copy of http://stackoverflow.com/questions/20977477/how-to-assign-a-specific-color-to-na-in-an-image-plot
 #' 
+#' @param z matrix
+#' @param col color gradient
+#' @param zlim range
+#' @param na.color for displaying NA's.
+#' @param outside.below.color color below zlim
+#' @param outside.above.color color above zlim
+#' @param breaks do not remember (see usage in imageWithLabelsNoLayout)
+#' @param textB display numerical values of the matrix as text, default NULL no
+#' @param text.cex size of numerical values
+#' @param ... further parameters for plot method
 #' @export
 #' @importFrom reshape2 melt
+#' 
 image_nan <- function(z,
                       col =heat.colors(12),
                       zlim=NULL,
                       na.color='gray',
                       outside.below.color='green',
-                      outside.above.color='green',breaks,
+                      outside.above.color='green',
+                      breaks,
                       textB=NULL,
                       text.cex=0.8, ...)
 {
@@ -68,6 +80,7 @@ image_nan <- function(z,
 #' @param ylab y label
 #' @param zlim z value range, default NULL an determined from x
 #' @param na.color na.color
+#' @param textB indicate if correlation (text) should be added to heatmap. If - with how many digits. default = NULL (do not add).
 #' @param ... passed to image
 #' @export
 #' @examples
