@@ -11,7 +11,7 @@ my_jackknife(xdata, .method, ...)
 
 \item{.method}{method i.e. cor, parameters}
 
-\item{...}{further parameters to method}
+\item{...}{further parameters to .method}
 }
 \value{
 list with all jackknife matrices

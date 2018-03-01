@@ -2,7 +2,7 @@
 #' copute jack knive
 #' @param xdata matrix
 #' @param .method method i.e. cor, parameters
-#' @param ... further parameters to method
+#' @param ... further parameters to .method
 #' @return list with all jackknife matrices
 #' @export
 #' @examples 
