@@ -122,19 +122,19 @@ volcano2GB <- function(dataX,
                       xlab="log2 FC",
                       ylab="-log10(Q Value)",
                       repel.text.size=1,
-                      repel.segment.size=0.3,
-                      repel.segement.alpha=0.3,
+                      repel.segment.size=0.5,
+                      repel.segement.alpha=0.5,
                       pseudo= NULL
 )
 {
   dataX <- dataX %>% mutate(yvalue = -log10(!!rlang::sym(pvalue)))
   fcLabel <- paste(pvalue, "<", pthresh, "& |",foldchange,"| >", log2FCThresh)
-  
+  colors <- NULL
   if(is.null(dataX$significance)){
     dataX$significance = ifelse(dataX[,pvalue] < pthresh & abs(dataX[,foldchange]) > log2FCThresh ,
                                   fcLabel ,"Not Sig" )
     if(!is.null(pseudo)){
-      results$significance[is.na(pseudo)] <- "pseudo"
+      dataX$significance[is.na(pseudo)] <- "pseudo"
       colors <- c("black", "green", "red" )
     }else{
       colors <- c("black", "red")
@@ -191,9 +191,12 @@ addSpecialProteins <- function(p, dataX, special, foldchange = "log2FC",
                                pvalue = "q.mod",
                                labels = "names"){
   dataX <- dataX %>% mutate(yvalue = -log10(UQ(sym(pvalue))))
-  dataX <- dataX %>% mutate(names2 = dplyr::case_when(UQ(sym(labels)) %in% special ~ names))
+  dataX <- dataX %>% mutate(names2 = dplyr::case_when(UQ(sym(labels)) %in% special ~ UQ(sym(labels))))
   xx <- dataX %>% filter(!is.na(names2))
-  p <- p + geom_point(data = xx, aes_string(foldchange, "yvalue"), col="green", shape=2)
+  if(nrow(xx) == 0){
+    return(p)
+  }
+  p <- p + geom_point(data = xx, aes_string(foldchange, "yvalue"), color="cyan", shape=2)
   p <- p + geom_text_repel(data = dataX,
                            aes(label=names2), color="blue")
   p
