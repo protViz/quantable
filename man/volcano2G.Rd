@@ -7,7 +7,8 @@
 volcano2G(foldchange, pvals, labels, pthresh = 0.1, log2FCThresh = 0.5,
   main = NULL, xlab = "log2 FC", ylab = "-log10(Q Value)", xlim = c(-5,
   5), ylim = c(0, -log10(min(pvals, na.rm = TRUE))), size = 1,
-  segment.size = 0.3, segement.alpha = 0.3, pseudo = NULL)
+  segment.size = 0.3, segement.alpha = 0.3, pseudo = NULL,
+  colors = NULL)
 }
 \arguments{
 \item{foldchange}{vector with fold changes}
@@ -37,6 +38,8 @@ volcano2G(foldchange, pvals, labels, pthresh = 0.1, log2FCThresh = 0.5,
 \item{segement.alpha}{see geom_text_repel}
 
 \item{pseudo}{usually q.mod containing NAs}
+
+\item{colors}{specify colors for specific lables.}
 }
 \description{
 Volcano plot using ggplot and ggrepel

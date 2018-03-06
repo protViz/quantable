@@ -28,11 +28,12 @@ my_jackknife <- function ( xdata, .method, ...) {
 #' @param dataX data.frame with transition intensities per peptide
 #' @param distmethod dist or correlation method working with matrix i.e. cor
 #' @param ... further parameters to method
+#' @export
 #' @importFrom tidyr gather spread
 #' @importFrom plyr ldply
 #' @importFrom dplyr group_by summarize
+#' @importFrom rlang UQ sym
 #' @return summarizes results producced with my_jackknife
-#' @export
 #' @examples
 #' dataX <- matrix(rnorm(20), ncol=4) 
 #' rownames(dataX)<- paste("R",1:nrow(dataX),sep="")
@@ -55,7 +56,7 @@ jackknifeMatrix <- function(dataX, distmethod , ... ){
     dd <- tidyr::gather(x, "col.names" , "correlation" , 3:ncol(x))
     ddd <- dd %>% group_by(row.names, col.names) %>% summarize(jcor = max(correlation))
     
-    dddd <- tidyr::spread(ddd, col.names, jcor  )
+    dddd <- tidyr::spread(ddd, col.names, UQ(sym("jcor"))  )
     dddd <- as.data.frame(dddd)
     rownames(dddd) <-dddd$row.names
     dddd <- dddd[,-1]

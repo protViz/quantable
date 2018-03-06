@@ -13,6 +13,7 @@
 #' @param segment.size see geom_text_repel
 #' @param segement.alpha see geom_text_repel
 #' @param pseudo usually q.mod containing NAs
+#' @param colors specify colors for specific lables.
 #' @import ggplot2
 #' @import ggrepel
 #' @examples 
@@ -37,17 +38,22 @@ volcano2G <- function(foldchange,
                        size=1,
                        segment.size=0.3,
                        segement.alpha=0.3,
-                       pseudo = NULL)
+                       pseudo = NULL,
+                       colors = NULL
+                      )
 {
   results <- data.frame(log2FoldChange = foldchange, pvalue= pvals, labels=labels )
   fcLabel <- paste("Q Value <", pthresh, "& |FC| >", log2FCThresh)
   
-  results$significance = ifelse(results$pvalue < pthresh & abs(results$log2FoldChange) > log2FCThresh ,fcLabel ,"Not Sig" )
-  if(!is.null(pseudo)){
-    results$significance[is.na(pseudo)] <- "pseudo"
-    colors <- c("black", "green", "red"   )
-  }else{
-    colors <- c("black", "red")
+  if(is.null(results$significance)){
+    results$significance = ifelse(results$pvalue < pthresh & abs(results$log2FoldChange) > log2FCThresh ,
+                                  fcLabel ,"Not Sig" )
+    if(!is.null(pseudo)){
+      results$significance[is.na(pseudo)] <- "pseudo"
+      colors <- c("black", "green", "red"   )
+    }else{
+      colors <- c("black", "red")
+    }
   }
   
   ### hack to pass R CMD check
@@ -74,3 +80,121 @@ volcano2G <- function(foldchange,
   return(p)
 }
 
+#' Volcano with more control
+#' @export
+#' @importFrom dplyr mutate filter
+#' @importFrom ggrepel geom_text_repel
+#' @param dataX dataX frame
+#' @param foldchange column name with fold change plotted on X
+#' @param pvalue column with pvalue or qvalue plotted as -log10 on y axes
+#' @param labels column containing lables
+#' @param pthresh horizontal abline
+#' @param log2FCThresh vertical abline
+#' @param main main plot title
+#' @param xlab xlab
+#' @param ylab ylab
+#' @param repel.text.size ggrepel parameter
+#' @param repel.segment.size ggrepel parameter
+#' @param repel.segement.alpha ggrepel parameter
+#' @examples
+#' rm(list=ls())
+#' 
+#' library(ggrepel)
+#' library(quantable)
+#' foldchange <- rnorm(1000)
+#' pvals <-rexp(1000)
+#' names <- sample(colors(),1000,replace=TRUE)
+#' 
+#' dataX <- data.frame(q.mod = pvals,
+#'  log2FC = foldchange,
+#'   names = names )
+#'   
+#' volcano2GB(dataX)
+#' b <- volcano2GB(dataX, pthresh=0.1, log2FCThresh=0.5 , main='test', repel.segment.size=0.3,repel.text.size=2)
+#' b
+volcano2GB <- function(dataX, 
+                      foldchange = "log2FC",
+                      pvalue = "q.mod",
+                      labels = "names",
+                      pthresh=0.1,
+                      log2FCThresh=0.5,
+                      main=NULL,
+                      xlab="log2 FC",
+                      ylab="-log10(Q Value)",
+                      repel.text.size=1,
+                      repel.segment.size=0.3,
+                      repel.segement.alpha=0.3,
+                      pseudo= NULL
+)
+{
+  dataX <- dataX %>% mutate(yvalue = -log10(!!rlang::sym(pvalue)))
+  fcLabel <- paste(pvalue, "<", pthresh, "& |",foldchange,"| >", log2FCThresh)
+  
+  if(is.null(dataX$significance)){
+    dataX$significance = ifelse(dataX[,pvalue] < pthresh & abs(dataX[,foldchange]) > log2FCThresh ,
+                                  fcLabel ,"Not Sig" )
+    if(!is.null(pseudo)){
+      results$significance[is.na(pseudo)] <- "pseudo"
+      colors <- c("black", "green", "red" )
+    }else{
+      colors <- c("black", "red")
+    }
+  }
+
+  p = ggplot(dataX, aes_string(foldchange, "yvalue")) +
+    geom_point(aes_string(col="significance"))
+  if(!is.null(colors)){
+    p = p + scale_color_manual(values=colors)
+  }
+  p = p + ggplot2::geom_hline(yintercept=-log10(pthresh), col=4, lty=2) 
+  p = p + ggplot2::geom_vline(xintercept=c(-log2FCThresh,log2FCThresh), col=4,lty=2) 
+
+  #cat("pthresh: " , pthresh, " log2FCThresh", log2FCThresh ,"\n")
+  filtres <- dataX %>% filter( UQ(rlang::sym(pvalue)) < pthresh & abs( UQ(sym(foldchange) )) > log2FCThresh )
+  p = p + geom_text_repel(data = filtres,
+                          aes_string(label=labels),
+                          size = repel.text.size,
+                          segment.size = repel.segment.size,
+                          segment.alpha = repel.segement.alpha)
+  if(!is.null(main)){
+    p = p + ggtitle(main)
+  }
+  p = p + xlab(xlab)
+  p = p + ylab(ylab)
+  
+  return(p)
+}
+
+#' add special labels
+#' @export
+#' @examples 
+#' 
+#' foldchange <- rnorm(1000)
+#' pvals <-rexp(1000)
+#' names <- sample(colors(),1000,replace=TRUE)
+#'
+#' dataX <- data.frame(
+#'   q.mod = pvals,
+#'   log2FC = foldchange,
+#'   names = names
+#' )
+#' library(rlang)
+#' foldchange = "log2FC"
+#' p <- volcano2GB(dataX, pthresh=0.1, log2FCThresh=0.5 , main='test',
+#'                 repel.segment.size=0.3,
+#'                 repel.text.size=2)
+#' 
+#' special <- sample(colors(),5)
+#' p<-addSpecialProteins(p, dataX, special)
+#' 
+addSpecialProteins <- function(p, dataX, special, foldchange = "log2FC",
+                               pvalue = "q.mod",
+                               labels = "names"){
+  dataX <- dataX %>% mutate(yvalue = -log10(UQ(sym(pvalue))))
+  dataX <- dataX %>% mutate(names2 = dplyr::case_when(UQ(sym(labels)) %in% special ~ names))
+  xx <- dataX %>% filter(!is.na(names2))
+  p <- p + geom_point(data = xx, aes_string(foldchange, "yvalue"), col="green", shape=2)
+  p <- p + geom_text_repel(data = dataX,
+                           aes(label=names2), color="blue")
+  p
+}

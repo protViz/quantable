@@ -3,7 +3,7 @@
 #' @export
 #' @param file path to progenesis peptide or protein file
 #' @param sep separator used (progenesis uses depending language settings a , or ;)
-#' @import plyr
+#' @importFrom  plyr rename
 #' @import readr
 #' @import stringr
 #' @examples
