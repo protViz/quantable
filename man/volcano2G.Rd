@@ -2,7 +2,7 @@
 % Please edit documentation in R/volcano2G.R
 \name{volcano2G}
 \alias{volcano2G}
-\title{Volcano plot using ggplot and ggrepel}
+\title{DEPRECATED Volcano plot using ggplot and ggrepel}
 \usage{
 volcano2G(foldchange, pvals, labels, pthresh = 0.1, log2FCThresh = 0.5,
   main = NULL, xlab = "log2 FC", ylab = "-log10(Q Value)", xlim = c(-5,
@@ -42,7 +42,7 @@ volcano2G(foldchange, pvals, labels, pthresh = 0.1, log2FCThresh = 0.5,
 \item{colors}{specify colors for specific lables.}
 }
 \description{
-Volcano plot using ggplot and ggrepel
+DEPRECATED Volcano plot using ggplot and ggrepel
 }
 \examples{
 rm(list=ls())

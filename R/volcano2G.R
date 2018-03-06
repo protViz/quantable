@@ -1,4 +1,4 @@
-#' Volcano plot using ggplot and ggrepel
+#' DEPRECATED Volcano plot using ggplot and ggrepel
 #' @param foldchange vector with fold changes
 #' @param pvals vector with pvalues
 #' @param labels vector with labels
