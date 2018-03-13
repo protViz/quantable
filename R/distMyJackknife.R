@@ -54,7 +54,9 @@ jackknifeMatrix <- function(dataX, distmethod , ... ){
     tmp <- my_jackknife( dataX, distmethod, ... )
     x <- plyr::ldply(tmp$jack.values, quantable::matrix_to_tibble)
     dd <- tidyr::gather(x, "col.names" , "correlation" , 3:ncol(x))
-    ddd <- dd %>% group_by(row.names, col.names) %>% summarize(jcor = max(correlation))
+    ddd <- dd %>%
+      group_by(UQ(sym("row.names")), UQ(sym("col.names"))) %>%
+      summarize(jcor = max(correlation))
     
     dddd <- tidyr::spread(ddd, col.names, UQ(sym("jcor"))  )
     dddd <- as.data.frame(dddd)
