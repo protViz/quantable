@@ -1,9 +1,9 @@
 #' plot volcano given multiple conditions
 #' @param misspX data in long format
-#' @param colour colouring of points
 #' @param effect column containing effect sizes
 #' @param type column containing p-values, q.values etc
 #' @param Condition column with condition
+#' @param colour colouring of points
 #' @param xintercept fc thresholds
 #' @param pvalue pvalue threshold
 #' @param label column containing labels
@@ -14,36 +14,45 @@
 #' @importFrom ggrepel geom_text_repel
 #' @export
 #' @examples 
-#' cc <- data.frame(
-#' fc = c(0,0),
-#' p = c(0.01,0.05), 
-#' Area = c('p=0.01','p=0.05')
-#' )
-#' 
+#' data(multigroupFCDATA)
+#' colnames(multigroupFCDATA)
+#' multigroupVolcano(multigroupFCDATA,effect="logFC",type="adj.P.Val",condition="Condition",colour="colour",label="Name" )
 multigroupVolcano <- function(misspX,
-                              colour,
                               effect = "fc",
                               type = "p.adjust",
-                              Condition = "condition",
+                              condition = "condition",
+                              colour = "colour",
                               xintercept=c(-2,2),
                               pvalue=0.05,
-                              label="row.names",
+                              label=NULL,
                               size=1
                               , segment.size = 0.3,
-                              segment.alpha = 0.3, ablines = cc) {
-  col = paste("-log10(", type , ")" , sep="")
-  message(col)
-  p <- ggplot( misspX, aes_string(x = effect , y = col  ))  + geom_point(col=colour, alpha=0.5)
-  p <- p + facet_wrap(as.formula(paste("~",Condition))) + labs(y = col)
-  p <- p + geom_abline(data = ablines, aes(slope = fc, intercept = -log10(p), colour = Area)) + 
+                              segment.alpha = 0.3,
+                              ablines = data.frame(
+                                fc=c(0,0),
+                                p = c(0.01,0.05), 
+                                Area = c('p=0.01','p=0.05')
+                              )) 
+{
+  colname = paste("-log10(", type , ")" , sep="")
+  p <- ggplot( misspX, aes_string(x = effect , y = colname, color=colour  )  )  +
+    geom_point(alpha=0.5)
+  p <- p + scale_colour_manual(values=c("black", "green", "blue","red"))
+  p <- p + facet_wrap(as.formula(paste("~",condition))) + labs(y = colname)
+  
+  p <- p + geom_abline(data = ablines, aes(slope = fc, intercept = -log10(p),colour = Area)) + 
     geom_vline(xintercept = xintercept,linetype = "dashed", colour = "red")
+  
   if(!is.null(label)){
-    message("test")
     effectX <-misspX[,effect]
     typeX<-misspX[,type]
-    subsetData <- subset(misspX, (effectX < xintercept[1] | xintercept[2] < effectX) & typeX < pvalue )
-    p <- p + geom_text_repel(data=subsetData, aes_string(effect , col , label=label), size=size
-                             , segment.size = segment.size, segment.alpha = segment.alpha)
+    subsetData <<- subset(misspX, (effectX < xintercept[1] | xintercept[2] < effectX) & typeX < pvalue )
+    p <- p + geom_text_repel(data=subsetData, aes_string(effect , colname , label=label),
+                             size=size
+                             , segment.size = segment.size,
+                             segment.alpha = segment.alpha)
   }
   return(p)
 }
+
+

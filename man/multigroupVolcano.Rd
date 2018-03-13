@@ -4,21 +4,20 @@
 \alias{multigroupVolcano}
 \title{plot volcano given multiple conditions}
 \usage{
-multigroupVolcano(misspX, colour, effect = "fc", type = "p.adjust",
-  Condition = "condition", xintercept = c(-2, 2), pvalue = 0.05,
-  label = "row.names", size = 1, segment.size = 0.3,
-  segment.alpha = 0.3, ablines = cc)
+multigroupVolcano(misspX, effect = "fc", type = "p.adjust",
+  condition = "condition", colour = "colour", xintercept = c(-2, 2),
+  pvalue = 0.05, label = NULL, size = 1, segment.size = 0.3,
+  segment.alpha = 0.3, ablines = data.frame(fc = c(0, 0), p = c(0.01, 0.05),
+  Area = c("p=0.01", "p=0.05")))
 }
 \arguments{
 \item{misspX}{data in long format}
-
-\item{colour}{colouring of points}
 
 \item{effect}{column containing effect sizes}
 
 \item{type}{column containing p-values, q.values etc}
 
-\item{Condition}{column with condition}
+\item{colour}{colouring of points}
 
 \item{xintercept}{fc thresholds}
 
@@ -33,15 +32,14 @@ multigroupVolcano(misspX, colour, effect = "fc", type = "p.adjust",
 \item{segment.alpha}{controls visibility of lines}
 
 \item{ablines}{adds ablines horizontal and vertical}
+
+\item{Condition}{column with condition}
 }
 \description{
 plot volcano given multiple conditions
 }
 \examples{
-cc <- data.frame(
-fc = c(0,0),
-p = c(0.01,0.05), 
-Area = c('p=0.01','p=0.05')
-)
-
+data(multigroupFCDATA)
+colnames(multigroupFCDATA)
+multigroupVolcano(multigroupFCDATA,effect="logFC",type="adj.P.Val",condition="Condition",colour="colour",label="Name" )
 }
