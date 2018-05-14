@@ -2,7 +2,7 @@
 #' @param misspX data in long format
 #' @param effect column containing effect sizes
 #' @param type column containing p-values, q.values etc
-#' @param Condition column with condition
+#' @param condition column with condition
 #' @param colour colouring of points
 #' @param xintercept fc thresholds
 #' @param pvalue pvalue threshold
@@ -12,11 +12,13 @@
 #' @param segment.alpha controls visibility of lines
 #' @param ablines adds ablines horizontal and vertical 
 #' @importFrom ggrepel geom_text_repel
+#' @importFrom stats as.formula
 #' @export
 #' @examples 
 #' data(multigroupFCDATA)
 #' colnames(multigroupFCDATA)
-#' multigroupVolcano(multigroupFCDATA,effect="logFC",type="adj.P.Val",condition="Condition",colour="colour",label="Name" )
+#' multigroupVolcano(multigroupFCDATA,effect="logFC",
+#' type="adj.P.Val",condition="Condition",colour="colour",label="Name" )
 multigroupVolcano <- function(misspX,
                               effect = "fc",
                               type = "p.adjust",
@@ -40,13 +42,14 @@ multigroupVolcano <- function(misspX,
   p <- p + scale_colour_manual(values=c("black", "green", "blue","red"))
   p <- p + facet_wrap(as.formula(paste("~",condition))) + labs(y = colname)
   
-  p <- p + geom_abline(data = ablines, aes(slope = fc, intercept = -log10(p),colour = Area)) + 
+  ablines$neg_log10p <- -log10(ablines$p)
+  p <- p + geom_abline(data = ablines, aes_string(slope = "fc", intercept = "neg_log10p",colour = "Area")) + 
     geom_vline(xintercept = xintercept,linetype = "dashed", colour = "red")
   
   if(!is.null(label)){
     effectX <-misspX[,effect]
     typeX<-misspX[,type]
-    subsetData <<- subset(misspX, (effectX < xintercept[1] | xintercept[2] < effectX) & typeX < pvalue )
+    subsetData <- subset(misspX, (effectX < xintercept[1] | xintercept[2] < effectX) & typeX < pvalue )
     p <- p + geom_text_repel(data=subsetData, aes_string(effect , colname , label=label),
                              size=size
                              , segment.size = segment.size,

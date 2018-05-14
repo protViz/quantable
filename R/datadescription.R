@@ -14,3 +14,10 @@ utils::globalVariables(c("ratio"), add = TRUE)
 .onAttach <- function(libname, pkgname) {
   packageStartupMessage("loading package quantable")
 }
+
+
+#' example data from multigroup analysis
+#' @name multigroupFCDATA
+#' @docType data
+NULL
+

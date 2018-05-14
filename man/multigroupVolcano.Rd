@@ -17,6 +17,8 @@ multigroupVolcano(misspX, effect = "fc", type = "p.adjust",
 
 \item{type}{column containing p-values, q.values etc}
 
+\item{condition}{column with condition}
+
 \item{colour}{colouring of points}
 
 \item{xintercept}{fc thresholds}
@@ -32,8 +34,6 @@ multigroupVolcano(misspX, effect = "fc", type = "p.adjust",
 \item{segment.alpha}{controls visibility of lines}
 
 \item{ablines}{adds ablines horizontal and vertical}
-
-\item{Condition}{column with condition}
 }
 \description{
 plot volcano given multiple conditions
@@ -41,5 +41,6 @@ plot volcano given multiple conditions
 \examples{
 data(multigroupFCDATA)
 colnames(multigroupFCDATA)
-multigroupVolcano(multigroupFCDATA,effect="logFC",type="adj.P.Val",condition="Condition",colour="colour",label="Name" )
+multigroupVolcano(multigroupFCDATA,effect="logFC",
+type="adj.P.Val",condition="Condition",colour="colour",label="Name" )
 }

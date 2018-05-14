@@ -33,6 +33,8 @@ volcano2GB(dataX, foldchange = "log2FC", pvalue = "q.mod",
 \item{repel.segment.size}{ggrepel parameter}
 
 \item{repel.segement.alpha}{ggrepel parameter}
+
+\item{pseudo}{add pseudo fold changes}
 }
 \description{
 Volcano with more control
@@ -51,6 +53,7 @@ dataX <- data.frame(q.mod = pvals,
   names = names )
   
 volcano2GB(dataX)
-b <- volcano2GB(dataX, pthresh=0.1, log2FCThresh=0.5 , main='test', repel.segment.size=0.3,repel.text.size=2)
+b <- volcano2GB(dataX, pthresh=0.1, log2FCThresh=0.5 ,
+ main='test', repel.segment.size=0.3,repel.text.size=2)
 b
 }

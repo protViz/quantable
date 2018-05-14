@@ -7,6 +7,19 @@
 addSpecialProteins(p, dataX, special, foldchange = "log2FC",
   pvalue = "q.mod", labels = "names")
 }
+\arguments{
+\item{p}{ggplot2}
+
+\item{dataX}{data.frame}
+
+\item{special}{additional special labels for those entries in the labels column below.}
+
+\item{foldchange}{name of fold change column}
+
+\item{pvalue}{name of p-value column}
+
+\item{labels}{name of labels column}
+}
 \description{
 add special labels
 }
@@ -26,8 +39,8 @@ foldchange = "log2FC"
 p <- volcano2GB(dataX, pthresh=0.1, log2FCThresh=0.5 , main='test',
                 repel.segment.size=0.3,
                 repel.text.size=2)
-
 special <- sample(colors(),5)
-p<-addSpecialProteins(p, dataX, special)
+p <- addSpecialProteins(p, dataX, special)
+p
 
 }

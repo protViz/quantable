@@ -1,6 +1,5 @@
 #' setdiff for data frames
+#' @export
 #' @param x data.frame
 #' @param y data.frame
-#' @param ... match signature of generic setdiff
-#' @export
-setdiff.data.frame <- function(x, y,...){ x[ !duplicated( rbind(y,x) )[ -seq_len(nrow(y))] , ] }
+setdiff_data.frame <- function(x, y){ x[ !duplicated( rbind(y,x) )[ -seq_len(nrow(y))] , ] }

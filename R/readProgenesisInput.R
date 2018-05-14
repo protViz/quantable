@@ -8,6 +8,9 @@
 #' @import stringr
 #' @examples
 #' 
+#' 
+#' if(0){
+#' print("example does not run because can't ship large files")
 #' file = file.path(path.package("quantable"),"extdata/PG/PeptideMeasurement_inclSingleHits_hi3.csv" )
 #' tmp <- ProgenesisRead(file)
 #' colnames(tmp)
@@ -17,6 +20,7 @@
 #' tmp <- ProgenesisRead(file)
 #' colnames(tmp)
 #' head(tmp)
+#' }
 #' 
 ProgenesisRead <- function(file, sep=","){
   tmp<-readLines(file)
@@ -58,6 +62,7 @@ ProgenesisRead <- function(file, sep=","){
 #' @export
 #' @examples
 #' 
+#' if(0){
 #' file = file.path(path.package("quantable"),"extdata/PG/ProteinMeasurement_inclSingleHits_hi3.csv" )
 #' tmp <- ProgenesisRead(file)
 #' colnames(tmp)
@@ -65,6 +70,7 @@ ProgenesisRead <- function(file, sep=","){
 #' head(xx$anno)
 #' colnames(xx$data)
 #' colnames(tmp)
+#' }
 ProgenesisBuildAnnotation <- function(data){
   ### Build annotation
   annV <- colnames(data)

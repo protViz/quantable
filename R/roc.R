@@ -55,7 +55,7 @@ determineCut<-function(cases, controls , plot=FALSE, scanstep=0.01){
   thresh <- seq(min(data)+ scanstep*5 , max(data) - scanstep*5, by=scanstep)
   accur <- NULL
   for(thr in thresh){
-    tmp <- caret::confusionMatrix(as.numeric(data < thr), references )
+    tmp <- caret::confusionMatrix(as.factor(as.numeric(data < thr)), as.factor(references) )
     accur <- c(accur,tmp$overall["Accuracy"])
   }
   cut <-thresh[which.max(accur)]

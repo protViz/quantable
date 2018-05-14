@@ -31,7 +31,7 @@ my_jackknife <- function ( xdata, .method, ...) {
 #' @export
 #' @importFrom tidyr gather spread
 #' @importFrom plyr ldply
-#' @importFrom dplyr group_by summarize
+#' @importFrom dplyr group_by summarize_at vars 
 #' @importFrom rlang UQ sym
 #' @return summarizes results producced with my_jackknife
 #' @examples
@@ -56,9 +56,9 @@ jackknifeMatrix <- function(dataX, distmethod , ... ){
     dd <- tidyr::gather(x, "col.names" , "correlation" , 3:ncol(x))
     ddd <- dd %>%
       group_by(UQ(sym("row.names")), UQ(sym("col.names"))) %>%
-      summarize(jcor = max(correlation))
+      summarize_at(c("jcor" = "correlation"), function(x){max(x, na.rm=TRUE)})
     
-    dddd <- tidyr::spread(ddd, col.names, UQ(sym("jcor"))  )
+    dddd <- tidyr::spread(ddd, UQ(sym("col.names")), UQ(sym("jcor"))  )
     dddd <- as.data.frame(dddd)
     rownames(dddd) <-dddd$row.names
     dddd <- dddd[,-1]

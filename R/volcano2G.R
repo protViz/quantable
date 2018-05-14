@@ -1,3 +1,5 @@
+. = NULL
+
 #' DEPRECATED Volcano plot using ggplot and ggrepel
 #' @param foldchange vector with fold changes
 #' @param pvals vector with pvalues
@@ -96,6 +98,7 @@ volcano2G <- function(foldchange,
 #' @param repel.text.size ggrepel parameter
 #' @param repel.segment.size ggrepel parameter
 #' @param repel.segement.alpha ggrepel parameter
+#' @param pseudo add pseudo fold changes
 #' @examples
 #' rm(list=ls())
 #' 
@@ -110,7 +113,8 @@ volcano2G <- function(foldchange,
 #'   names = names )
 #'   
 #' volcano2GB(dataX)
-#' b <- volcano2GB(dataX, pthresh=0.1, log2FCThresh=0.5 , main='test', repel.segment.size=0.3,repel.text.size=2)
+#' b <- volcano2GB(dataX, pthresh=0.1, log2FCThresh=0.5 ,
+#'  main='test', repel.segment.size=0.3,repel.text.size=2)
 #' b
 volcano2GB <- function(dataX, 
                       foldchange = "log2FC",
@@ -167,6 +171,14 @@ volcano2GB <- function(dataX,
 
 #' add special labels
 #' @export
+#' @importFrom ggrepel geom_text_repel
+#' @importFrom dplyr all_vars mutate_at filter_at funs
+#' @param p ggplot2
+#' @param dataX data.frame
+#' @param special additional special labels for those entries in the labels column below.
+#' @param foldchange name of fold change column
+#' @param pvalue name of p-value column
+#' @param labels name of labels column
 #' @examples 
 #' 
 #' foldchange <- rnorm(1000)
@@ -183,21 +195,30 @@ volcano2GB <- function(dataX,
 #' p <- volcano2GB(dataX, pthresh=0.1, log2FCThresh=0.5 , main='test',
 #'                 repel.segment.size=0.3,
 #'                 repel.text.size=2)
-#' 
 #' special <- sample(colors(),5)
-#' p<-addSpecialProteins(p, dataX, special)
+#' p <- addSpecialProteins(p, dataX, special)
+#' p
 #' 
-addSpecialProteins <- function(p, dataX, special, foldchange = "log2FC",
+addSpecialProteins <- function(p,
+                               dataX,
+                               special,
+                               foldchange = "log2FC",
                                pvalue = "q.mod",
                                labels = "names"){
-  dataX <- dataX %>% mutate(yvalue = -log10(UQ(sym(pvalue))))
-  dataX <- dataX %>% mutate(names2 = dplyr::case_when(UQ(sym(labels)) %in% special ~ UQ(sym(labels))))
-  xx <- dataX %>% filter(!is.na(names2))
+  #dataX <- dataX %>% mutate("yvalue" := -log10(UQ(sym(pvalue))))
+  negLog10 <- function(x){-log10(x)}
+  dataX <- dataX %>% mutate_at(c("yvalue" = pvalue), negLog10)
+  testx <- function(x, special){tmp <- x %in% special; x[!tmp] <- NA; as.character(x)}
+  dataX <- dataX %>% mutate_at(c("names2" = labels) , funs(testx(., special)))
+
+  xx <- dataX %>% filter_at("names2",all_vars(!is.na(.)))
   if(nrow(xx) == 0){
     return(p)
   }
   p <- p + geom_point(data = xx, aes_string(foldchange, "yvalue"), color="cyan", shape=2)
   p <- p + geom_text_repel(data = dataX,
-                           aes(label=names2), color="blue")
+                           aes_string(label="names2"), color="blue")
   p
 }
+
+
