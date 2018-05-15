@@ -8,8 +8,8 @@ Maintainer: Witold Wolski <wewolski@gmail.com>
 Depends: R (>= 3.1.0)
 Description: Methods which streamline the descriptive analysis of quantitative
     matrices. Matrix columns are samples while rows are features i.e. proteins, genes.
-    Includes methods for visualization (e.g. heatmaps, volcanos, pairwise QQ, altmanbland plot),
-    summary statistics (e.g. CV) data normalization methods (e.g. robustscale). Read function for Progenesis.  
+    Includes methods for visualization (e.g. Heatmaps, Volcanos, pairwise QQ, Bland-Altman plot),
+    summary statistics (e.g. CV), data normalization methods (e.g. robustscale). Read function for Progenesis.  
 License: GPL-3
 LazyData: TRUE
 Imports:
