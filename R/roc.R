@@ -34,34 +34,4 @@ makeROCplot <- function(cases,controls,label="",
   graphics::plot(rtmp)
   graphics::legend("bottomright",legend=round(rtmp$auc,digits=3))
 }
-#' determine best Accuracy cuttoff
-#' 
-#' @param cases a factor of predicted classes 
-#' @param controls a factor of classes to be used as the true results
-#' @param plot create plot of threasholds versus Accuracy
-#' @param scanstep step size for threshold estimation
-#' @importFrom caret confusionMatrix
-#' @export
-#' @examples 
-#' library(pROC)
-#' cases <- rnorm(100,-1,1.1)
-#' controls <- rnorm(500,1,1.1)
-#' cut <- determineCut(cases,controls)
-#' makeROCplot(cases,controls,abline=cut)
-#' 
-determineCut<-function(cases, controls , plot=FALSE, scanstep=0.01){
-  data <- c(cases, controls)
-  references <- c(rep(1, length(cases)), rep(0, length(controls)))
-  thresh <- seq(min(data)+ scanstep*5 , max(data) - scanstep*5, by=scanstep)
-  accur <- NULL
-  for(thr in thresh){
-    tmp <- caret::confusionMatrix(as.factor(as.numeric(data < thr)), as.factor(references) )
-    accur <- c(accur,tmp$overall["Accuracy"])
-  }
-  cut <-thresh[which.max(accur)]
-  if(plot){
-    plot(thresh,accur, type="l" )
-    abline(v=cut)
-  }
-  return(cut)
-}
+

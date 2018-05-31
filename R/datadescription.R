@@ -1,7 +1,7 @@
 #'Streamline descriptive analysis of quantitative data matrices
 #'@name quantable
 #'@docType package
-#'@import RColorBrewer e1071
+#'@import RColorBrewer
 #'@importFrom grDevices dev.off heat.colors
 #'@importFrom graphics abline axis image layout lines pairs plot points text
 #'@importFrom stats cor.test dist hclust mad median p.adjust qqplot runmed t.test
