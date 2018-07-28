@@ -34,13 +34,13 @@ multigroupVolcano <- function(misspX,
                                 fc=c(0,0),
                                 p = c(0.01,0.05), 
                                 Area = c('p=0.01','p=0.05')
-                              )) 
+                              ), scales="fixed") 
 {
   colname = paste("-log10(", type , ")" , sep="")
   p <- ggplot( misspX, aes_string(x = effect , y = colname, color=colour  )  )  +
     geom_point(alpha=0.5)
   p <- p + scale_colour_manual(values=c("black", "green", "blue","red"))
-  p <- p + facet_wrap(as.formula(paste("~",condition))) + labs(y = colname)
+  p <- p + facet_wrap(as.formula(paste("~",condition)),scales=scales) + labs(y = colname)
   
   ablines$neg_log10p <- -log10(ablines$p)
   p <- p + geom_abline(data = ablines, aes_string(slope = "fc", intercept = "neg_log10p",colour = "Area")) + 

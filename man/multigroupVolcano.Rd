@@ -8,7 +8,7 @@ multigroupVolcano(misspX, effect = "fc", type = "p.adjust",
   condition = "condition", colour = "colour", xintercept = c(-2, 2),
   pvalue = 0.05, label = NULL, size = 1, segment.size = 0.3,
   segment.alpha = 0.3, ablines = data.frame(fc = c(0, 0), p = c(0.01, 0.05),
-  Area = c("p=0.01", "p=0.05")))
+  Area = c("p=0.01", "p=0.05")), scales = "fixed")
 }
 \arguments{
 \item{misspX}{data in long format}
