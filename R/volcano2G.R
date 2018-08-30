@@ -134,7 +134,7 @@ volcano2GB <- function(dataX,
   dataX <- dataX %>% mutate(yvalue = -log10(!!rlang::sym(pvalue)))
   fcLabel <- paste(pvalue, "<", pthresh, "& |",foldchange,"| >", log2FCThresh)
   colors <- NULL
-  if(is.null(dataX$significance)){
+  if("significance" %in% colnames(dataX)){
     dataX$significance = ifelse(dataX[,pvalue] < pthresh & abs(dataX[,foldchange]) > log2FCThresh ,
                                   fcLabel ,"Not Sig" )
     if(!is.null(pseudo)){
