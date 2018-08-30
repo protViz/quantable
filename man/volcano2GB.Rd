@@ -41,7 +41,7 @@ Volcano with more control
 }
 \examples{
 rm(list=ls())
-
+library(tidyverse)
 library(ggrepel)
 library(quantable)
 foldchange <- rnorm(1000)
@@ -51,9 +51,7 @@ names <- sample(colors(),1000,replace=TRUE)
 dataX <- data.frame(q.mod = pvals,
  log2FC = foldchange,
   names = names )
-  
-volcano2GB(dataX)
+colnames(dataX)
 b <- volcano2GB(dataX, pthresh=0.1, log2FCThresh=0.5 ,
- main='test', repel.segment.size=0.3,repel.text.size=2)
-b
+main='test', repel.segment.size=0.3,repel.text.size=2)
 }

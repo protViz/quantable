@@ -13,6 +13,7 @@
 #' @param ablines adds ablines horizontal and vertical 
 #' @importFrom ggrepel geom_text_repel
 #' @importFrom stats as.formula
+#' @import ggplot2
 #' @export
 #' @examples 
 #' data(multigroupFCDATA)
