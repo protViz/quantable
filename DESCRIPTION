@@ -27,7 +27,8 @@ Imports:
     scales,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    tidyverse
 URL: https://github.com/protViz/quantable
 BugReports: https://github.com/protViz/quantable/issues
 Repository: CRAN
