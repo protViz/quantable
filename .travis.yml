@@ -6,7 +6,6 @@ r_packages:
   -  Matrix
   -  RColorBrewer
   -  caret
-  -  dplyr
   -  e1071
   -  ggplot2
   -  ggrepel
@@ -17,4 +16,5 @@ r_packages:
   -  scales
   -  stringr
   -  tibble
+  -  tidyverse
 warnings_are_errors: false
