@@ -32,6 +32,14 @@
 #' colnames(dataX)
 #' b <- volcano2GB(dataX, pthresh=0.1, log2FCThresh=0.5 ,
 #' main='test', repel.segment.size=0.3,repel.text.size=2)
+#' b
+#' dataX <- data.frame(a.q.mod = pvals,
+#'  log2FC = foldchange,
+#'   names = names )
+#' b <- volcano2GB(dataX, pvalue = "a.q.mod",pthresh=0.1, log2FCThresh=0.5 ,
+#'                main='test', repel.segment.size=0.3,repel.text.size=2)
+#' b
+
 volcano2GB <- function(dataX, 
                       foldchange = "log2FC",
                       pvalue = "q.mod",
@@ -47,25 +55,28 @@ volcano2GB <- function(dataX,
                       pseudo= NULL
 )
 {
+  notSig <- "Not Sig" 
   dataX <- dataX %>% mutate(yvalue = -log10(!!rlang::sym(pvalue)))
   fcLabel <- paste(pvalue, "<", pthresh, "& |",foldchange,"| >", log2FCThresh)
   colors <- NULL
   if(!"significance" %in% colnames(dataX)){
     dataX$significance = ifelse(dataX[,pvalue] < pthresh & abs(dataX[,foldchange]) > log2FCThresh ,
-                                  fcLabel ,"Not Sig" )
+                                  fcLabel ,notSig )
+    
     if(!is.null(pseudo)){
       dataX$significance[is.na(pseudo)] <- "pseudo"
+      dataX$significance <- factor(dataX$significance,levels=c(notSig,"pseudo", fcLabel) )
       colors <- c("black", "green", "red" )
     }else{
+      dataX$significance <- factor(dataX$significance, levels=c(notSig,fcLabel))
       colors <- c("black", "red")
     }
   }
 
   p = ggplot(dataX, aes_string(foldchange, "yvalue")) +
     geom_point(aes_string(col="significance"))
-  if(!is.null(colors)){
-    p = p + scale_color_manual(values=colors)
-  }
+  p = p + scale_color_manual(values=colors)
+  
   p = p + ggplot2::geom_hline(yintercept=-log10(pthresh), col=4, lty=2) 
   p = p + ggplot2::geom_vline(xintercept=c(-log2FCThresh,log2FCThresh), col=4,lty=2) 
 
