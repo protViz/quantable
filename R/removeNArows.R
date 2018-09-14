@@ -5,13 +5,15 @@
 #' @param thresh - maximum number of NA's / row - if more the row will be removed
 #' @examples
 #'
-#' x = matrix(rnorm(10*10),ncol=10)
-#' dim(x)
-#' x[3,3] = NA
-#' x = removeNArows(x)
-#' dim(x)
+#' obj = matrix(rnorm(10*10),ncol=10)
+#' dim(obj)
+#' obj[3,3] = NA
+#' x1 = removeNArows(obj, thresh=0)
+#' stopifnot(all(c(9,10)==dim(x1)))
+#' x2 = removeNArows(obj, thresh=1)
+#' stopifnot(all(c(10,10)==dim(x2)))
 removeNArows <- function(obj, thresh=0 )
 {
   x <- apply(obj,1,function(x){sum(is.na(x))})
-  obj <- obj[-which(x>thresh),]
+  obj <- obj[!(x>thresh),]
 }

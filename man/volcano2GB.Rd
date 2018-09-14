@@ -7,7 +7,8 @@
 volcano2GB(dataX, foldchange = "log2FC", pvalue = "q.mod",
   labels = "names", pthresh = 0.1, log2FCThresh = 0.5, main = NULL,
   xlab = "log2 FC", ylab = "-log10(Q Value)", repel.text.size = 1,
-  repel.segment.size = 0.5, repel.segement.alpha = 0.5, pseudo = NULL)
+  repel.segment.size = 0.5, repel.segement.alpha = 0.5,
+  pseudo = NULL)
 }
 \arguments{
 \item{dataX}{dataX frame}

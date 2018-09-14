@@ -41,18 +41,18 @@
 #' b
 
 volcano2GB <- function(dataX, 
-                      foldchange = "log2FC",
-                      pvalue = "q.mod",
-                      labels = "names",
-                      pthresh=0.1,
-                      log2FCThresh=0.5,
-                      main=NULL,
-                      xlab="log2 FC",
-                      ylab="-log10(Q Value)",
-                      repel.text.size=1,
-                      repel.segment.size=0.5,
-                      repel.segement.alpha=0.5,
-                      pseudo= NULL
+                       foldchange = "log2FC",
+                       pvalue = "q.mod",
+                       labels = "names",
+                       pthresh=0.1,
+                       log2FCThresh=0.5,
+                       main=NULL,
+                       xlab="log2 FC",
+                       ylab="-log10(Q Value)",
+                       repel.text.size=1,
+                       repel.segment.size=0.5,
+                       repel.segement.alpha=0.5,
+                       pseudo= NULL
 )
 {
   notSig <- "Not Sig" 
@@ -61,7 +61,7 @@ volcano2GB <- function(dataX,
   colors <- NULL
   if(!"significance" %in% colnames(dataX)){
     dataX$significance = ifelse(dataX[,pvalue] < pthresh & abs(dataX[,foldchange]) > log2FCThresh ,
-                                  fcLabel ,notSig )
+                                fcLabel ,notSig )
     
     if(!is.null(pseudo)){
       dataX$significance[is.na(pseudo)] <- "pseudo"
@@ -72,14 +72,14 @@ volcano2GB <- function(dataX,
       colors <- c("black", "red")
     }
   }
-
+  
   p = ggplot(dataX, aes_string(foldchange, "yvalue")) +
     geom_point(aes_string(col="significance"))
   p = p + scale_color_manual(values=colors)
   
   p = p + ggplot2::geom_hline(yintercept=-log10(pthresh), col=4, lty=2) 
   p = p + ggplot2::geom_vline(xintercept=c(-log2FCThresh,log2FCThresh), col=4,lty=2) 
-
+  
   #cat("pthresh: " , pthresh, " log2FCThresh", log2FCThresh ,"\n")
   filtres <- dataX %>% filter( UQ(rlang::sym(pvalue)) < pthresh & abs( UQ(sym(foldchange) )) > log2FCThresh )
   p = p + geom_text_repel(data = filtres,
@@ -137,7 +137,7 @@ addSpecialProteins <- function(p,
   dataX <- dataX %>% mutate_at(c("yvalue" = pvalue), negLog10)
   testx <- function(x, special){tmp <- x %in% special; x[!tmp] <- NA; as.character(x)}
   dataX <- dataX %>% mutate_at(c("names2" = labels) , funs(testx(., special)))
-
+  
   xx <- dataX %>% filter_at("names2",all_vars(!is.na(.)))
   if(nrow(xx) == 0){
     return(p)
@@ -149,3 +149,29 @@ addSpecialProteins <- function(p,
 }
 
 
+altmanBland <- function(dataX, 
+                       intensity = "",
+                       foldchange = "log2FC",
+                       pvalue = "q.mod",
+                       labels = "names",
+                       pthresh=0.1,
+                       log2FCThresh=0.5,
+                       main=NULL,
+                       xlab="log2 FC",
+                       ylab="-log10(Q Value)",
+                       repel.text.size=1,
+                       repel.segment.size=0.5,
+                       repel.segement.alpha=0.5,
+                       pseudo= NULL
+){
+
+  if(0){  
+  dataX %>% mutate(issignificantcolor = ifelse(P.Value < grp2$qvalue & abs(log2FC) > grp2$qfoldchange , "significant","not")) -> res
+  
+  alpha <- (length(grp2$annotation_$Condition) - res$nrNAs) / length(grp2$annotation_$Condition)/3
+  
+  altmanBland <- ggplot(res, aes(x = log2FC , y = AveExpr, colour = issignificantcolor)) +
+    geom_point(alpha = alpha) +
+    scale_colour_manual(values=c("black","red")) + theme(legend.position="bottom")
+  }
+}
