@@ -24,6 +24,7 @@ image_nan <- function(z,
                       text.cex=0.8, ...)
 {
   # TODO: add checks for missing values
+  print(na.color)
   z <- as.matrix(z)
   if(is.null(zlim)){
     zlim <- range(z,na.rm=TRUE)
@@ -95,7 +96,7 @@ image_nan <- function(z,
 #' imageWithLabelsNoLayout(x,col = heat.colors(12),
 #' breaks=seq(min(x,na.rm=TRUE),
 #' max(x,na.rm=TRUE),length=13))
-#' imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb")
+#' imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb", na.color="magenta")
 #' imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb", zlim=c(0,2))
 #' 
 imageWithLabelsNoLayout = function(x,
@@ -112,10 +113,10 @@ imageWithLabelsNoLayout = function(x,
                                    textB=NULL,...){
   if(!is.null(zlim)){
     image_nan(x, axes = F, main = main, col=col,xlab=xlab, ylab=ylab, zlim=zlim,
-              textB=textB, ...=...)
+              textB=textB,na.color = na.color, ...=...)
   }else{
     image_nan(x, axes = F, main = main, col=col,xlab=xlab, ylab=ylab, 
-              textB=textB, ...=...)
+              textB=textB, na.color=na.color, ...=...)
   }
   graphics::axis( 2, at=seq(0,1,length=length((col.labels))) , labels=col.labels,cex.axis=cex.axis, las=2, cex=cex )
   graphics::axis( 1, at=seq(0,1,length=length((row.labels))) , labels=row.labels,cex.axis=cex.axis, las=2, cex=cex )

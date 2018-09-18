@@ -53,7 +53,7 @@ x[3,3] <- NA
 imageWithLabelsNoLayout(x,col = heat.colors(12),
 breaks=seq(min(x,na.rm=TRUE),
 max(x,na.rm=TRUE),length=13))
-imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb")
+imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb", na.color="brown")
 imageWithLabelsNoLayout(x,xlab="ttt",ylab="bbb", zlim=c(0,2))
 
 }
