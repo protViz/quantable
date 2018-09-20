@@ -36,10 +36,24 @@
 #' dataX <- data.frame(a.q.mod = pvals,
 #'  log2FC = foldchange,
 #'   names = names )
-#' b <- volcano2GB(dataX, pvalue = "a.q.mod",pthresh=0.1, log2FCThresh=0.5 ,
-#'                main='test', repel.segment.size=0.3,repel.text.size=2)
+#' b <- volcano2GB(dataX,
+#'                pvalue = "a.q.mod",
+#'                pthresh=0.1,
+#'                log2FCThresh=0.5 ,
+#'                main='test',
+#'                repel.segment.size=0.3,
+#'                repel.text.size=2)
 #' b
-
+#' b <- volcano2GB(dataX,
+#'                pvalue = "a.q.mod",
+#'                pthresh=0.1,
+#'                log2FCThresh=0.5 ,
+#'                main='test',
+#'                repel.segment.size=0.3,
+#'                repel.text.size=2,
+#'                maxNrOfSignificantText=1000
+#'                )
+#' b
 volcano2GB <- function(dataX, 
                        foldchange = "log2FC",
                        pvalue = "q.mod",
@@ -52,13 +66,14 @@ volcano2GB <- function(dataX,
                        repel.text.size=1,
                        repel.segment.size=0.5,
                        repel.segement.alpha=0.5,
-                       pseudo= NULL
-)
+                       pseudo=NULL,
+                       maxNrOfSignificantText=20 )
 {
   notSig <- "Not Sig" 
   dataX <- dataX %>% mutate(yvalue = -log10(!!rlang::sym(pvalue)))
   fcLabel <- paste(pvalue, "<", pthresh, "& |",foldchange,"| >", log2FCThresh)
   colors <- NULL
+  
   if(!"significance" %in% colnames(dataX)){
     dataX$significance = ifelse(dataX[,pvalue] < pthresh & abs(dataX[,foldchange]) > log2FCThresh ,
                                 fcLabel ,notSig )
@@ -82,6 +97,7 @@ volcano2GB <- function(dataX,
   
   #cat("pthresh: " , pthresh, " log2FCThresh", log2FCThresh ,"\n")
   filtres <- dataX %>% filter( UQ(rlang::sym(pvalue)) < pthresh & abs( UQ(sym(foldchange) )) > log2FCThresh )
+  filtres<-filtres %>% arrange(desc(abs(UQ(sym(foldchange)) ))) %>% head(maxNrOfSignificantText)
   p = p + geom_text_repel(data = filtres,
                           aes_string(label=labels),
                           size = repel.text.size,
@@ -92,7 +108,6 @@ volcano2GB <- function(dataX,
   }
   p = p + xlab(xlab)
   p = p + ylab(ylab)
-  
   return(p)
 }
 
@@ -150,28 +165,28 @@ addSpecialProteins <- function(p,
 
 
 altmanBland <- function(dataX, 
-                       intensity = "",
-                       foldchange = "log2FC",
-                       pvalue = "q.mod",
-                       labels = "names",
-                       pthresh=0.1,
-                       log2FCThresh=0.5,
-                       main=NULL,
-                       xlab="log2 FC",
-                       ylab="-log10(Q Value)",
-                       repel.text.size=1,
-                       repel.segment.size=0.5,
-                       repel.segement.alpha=0.5,
-                       pseudo= NULL
+                        intensity = "",
+                        foldchange = "log2FC",
+                        pvalue = "q.mod",
+                        labels = "names",
+                        pthresh=0.1,
+                        log2FCThresh=0.5,
+                        main=NULL,
+                        xlab="log2 FC",
+                        ylab="-log10(Q Value)",
+                        repel.text.size=1,
+                        repel.segment.size=0.5,
+                        repel.segement.alpha=0.5,
+                        pseudo= NULL
 ){
-
+  
   if(0){  
-  dataX %>% mutate(issignificantcolor = ifelse(P.Value < grp2$qvalue & abs(log2FC) > grp2$qfoldchange , "significant","not")) -> res
-  
-  alpha <- (length(grp2$annotation_$Condition) - res$nrNAs) / length(grp2$annotation_$Condition)/3
-  
-  altmanBland <- ggplot(res, aes(x = log2FC , y = AveExpr, colour = issignificantcolor)) +
-    geom_point(alpha = alpha) +
-    scale_colour_manual(values=c("black","red")) + theme(legend.position="bottom")
+    dataX %>% mutate(issignificantcolor = ifelse(P.Value < grp2$qvalue & abs(log2FC) > grp2$qfoldchange , "significant","not")) -> res
+    
+    alpha <- (length(grp2$annotation_$Condition) - res$nrNAs) / length(grp2$annotation_$Condition)/3
+    
+    altmanBland <- ggplot(res, aes(x = log2FC , y = AveExpr, colour = issignificantcolor)) +
+      geom_point(alpha = alpha) +
+      scale_colour_manual(values=c("black","red")) + theme(legend.position="bottom")
   }
 }

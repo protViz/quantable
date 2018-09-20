@@ -30,7 +30,7 @@ makeROCplot <- function(cases,controls,label="",
   if(!is.null(abline)){
     graphics::abline(v=abline,col=3)
   }
-  rtmp<-pROC::roc(controls=controls, cases=cases)
+  rtmp <- pROC::roc(controls=controls, cases=cases)
   graphics::plot(rtmp)
   graphics::legend("bottomright",legend=round(rtmp$auc,digits=3))
 }

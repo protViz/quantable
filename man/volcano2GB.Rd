@@ -8,7 +8,7 @@ volcano2GB(dataX, foldchange = "log2FC", pvalue = "q.mod",
   labels = "names", pthresh = 0.1, log2FCThresh = 0.5, main = NULL,
   xlab = "log2 FC", ylab = "-log10(Q Value)", repel.text.size = 1,
   repel.segment.size = 0.5, repel.segement.alpha = 0.5,
-  pseudo = NULL)
+  pseudo = NULL, maxNrOfSignificantText = 20)
 }
 \arguments{
 \item{dataX}{dataX frame}
@@ -59,7 +59,22 @@ b
 dataX <- data.frame(a.q.mod = pvals,
  log2FC = foldchange,
   names = names )
-b <- volcano2GB(dataX, pvalue = "a.q.mod",pthresh=0.1, log2FCThresh=0.5 ,
-               main='test', repel.segment.size=0.3,repel.text.size=2)
+b <- volcano2GB(dataX,
+               pvalue = "a.q.mod",
+               pthresh=0.1,
+               log2FCThresh=0.5 ,
+               main='test',
+               repel.segment.size=0.3,
+               repel.text.size=2)
+b
+b <- volcano2GB(dataX,
+               pvalue = "a.q.mod",
+               pthresh=0.1,
+               log2FCThresh=0.5 ,
+               main='test',
+               repel.segment.size=0.3,
+               repel.text.size=2,
+               maxNrOfSignificantText=1000
+               )
 b
 }
