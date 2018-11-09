@@ -19,7 +19,7 @@
 #' # plot = F will return a data.frame
 #' # with the specified number of distinct clusters in nrOfClusters
 #' hmp3 <- simpleheatmap3(pln = df, main = "", distf = dist, hclustf = hclust, labRow = "", plot = F, nrOfClusters = 3)  
-#' plot = T will plot the heatmap with row and column dendrogram
+#' # plot = T will plot the heatmap with row and column dendrogram
 
 simpleheatmap3 <- function(pln,
                            main="",
