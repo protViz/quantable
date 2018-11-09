@@ -40,12 +40,12 @@ simpleheatmap3 <- function(pln,
               distfun=distf,hclustfun=hclustf,
               margins=margins,main=main,...=...)
     clusterIDs <- cutree(tmp$hcc, nrOfClusters)
-    return(data.frame(rowID = labCol, clusterID = clusterIDs))
+    return(data.frame(rowID = as.character(labCol), clusterID = clusterIDs))
   }
   else {
     tmp <- hclustf(distf(t(as.matrix(pln))))
     clusterIDs <- cutree(tmp, nrOfClusters)
-    return(data.frame(rowID = labCol, clusterID = clusterIDs))
+    return(data.frame(rowID = as.character(labCol), clusterID = clusterIDs))
   }
   
 }
