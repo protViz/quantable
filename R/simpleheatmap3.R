@@ -7,6 +7,7 @@
 #' @param palette color palette
 #' @param main title
 #' @param labRow row labels
+#' @param labCol column labels
 #' @param margins control margins of heatmap
 #' @param scale c(row, column or none)
 #' @param plot logical; If TRUE simpleheatmap3 returns modified heatmap3 object, if FALSE returns a data.frame with clusterIDs. Default is TRUE
@@ -25,6 +26,7 @@ simpleheatmap3 <- function(pln,
                            distf=dist,
                            hclustf=hclust,
                            labRow="",
+                           labCol="",
                            palette=getBlueWhiteRed(),
                            margins=c(5,5),scale="none",
                            plot = TRUE,
@@ -37,13 +39,13 @@ simpleheatmap3 <- function(pln,
               cexCol=0.1 + 1/log10(dim(pln)[2]),
               distfun=distf,hclustfun=hclustf,
               margins=margins,main=main,...=...)
-    clusterIDs <- cutree(tmp$hcr, nrOfClusters)
-    return(data.frame(rowID = labRow, clusterID = clusterIDs))
+    clusterIDs <- cutree(tmp$hcc, nrOfClusters)
+    return(data.frame(rowID = labCol, clusterID = clusterIDs))
   }
   else {
-    tmp <- hclustf(distf(as.matrix(pln)))
+    tmp <- hclustf(distf(t(as.matrix(pln))))
     clusterIDs <- cutree(tmp, nrOfClusters)
-    return(data.frame(rowID = labRow, clusterID = clusterIDs))
+    return(data.frame(rowID = labCol, clusterID = clusterIDs))
   }
   
 }
