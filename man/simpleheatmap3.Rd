@@ -6,8 +6,8 @@
 \usage{
 simpleheatmap3(pln, main = "", distf = dist, hclustf = hclust,
   labRow = "", labCol = "", palette = getBlueWhiteRed(),
-  margins = c(5, 5), scale = "none", plot = TRUE, nrOfClusters = 3,
-  ...)
+  margins = c(5, 5), scale = "none", plot = TRUE,
+  nrOfClustersCol = 3, nrOfClustersRow = 3, ...)
 }
 \arguments{
 \item{pln}{matrix or dataframe with numerical values}
@@ -30,7 +30,9 @@ simpleheatmap3(pln, main = "", distf = dist, hclustf = hclust,
 
 \item{plot}{logical; If TRUE simpleheatmap3 returns modified heatmap3 object, if FALSE returns a data.frame with clusterIDs. Default is TRUE}
 
-\item{nrOfClusters}{number of distinct clusters for cutree function. Default is 3}
+\item{nrOfClustersCol}{number of distinct clusters for cutree function on columns. Default is 3}
+
+\item{nrOfClustersRow}{number of distinct clusters for cutree function on rows. Default is 3}
 
 \item{...}{other parameters to heatmap3}
 }
@@ -45,15 +47,15 @@ clust <- simpleheatmap3(pln = df,
  hclustf = hclust,
  labRow = "",
  plot = FALSE,
- nrOfClusters = 3) 
-# plot = F will return a data.frame
-# with the specified number of distinct clusters in nrOfClusters
+ nrOfClustersRow = 3) 
+# plot = F will return a list containing two data.frames 
+# with the specified number of distinct clusters in nrOfClustersRow
+# and nrOfClustersCol
 hmp3 <- simpleheatmap3(pln = df,
  main = "",
  distf = dist,
  hclustf = hclust,
  labRow = "",
  plot = FALSE,
- nrOfClusters = 3)  
-# plot = T will plot the heatmap with row and column dendrogram
+ nrOfClustersRow = 3)  
 }

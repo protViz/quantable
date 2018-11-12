@@ -11,7 +11,8 @@
 #' @param margins control margins of heatmap
 #' @param scale c(row, column or none)
 #' @param plot logical; If TRUE simpleheatmap3 returns modified heatmap3 object, if FALSE returns a data.frame with clusterIDs. Default is TRUE
-#' @param nrOfClusters number of distinct clusters for cutree function. Default is 3
+#' @param nrOfClustersRow number of distinct clusters for cutree function on rows. Default is 3
+#' @param nrOfClustersCol number of distinct clusters for cutree function on columns. Default is 3
 #' @param ... other parameters to heatmap3
 #' @examples
 #' df <- matrix(rnorm(150), ncol = 10) # 15x10 matrix
@@ -22,8 +23,9 @@
 #'  labRow = "",
 #'  plot = FALSE,
 #'  nrOfClustersRow = 3) 
-#' # plot = F will return a list containing 
-#' # with the specified number of distinct clusters in nrOfClusters
+#' # plot = F will return a list containing two data.frames 
+#' # with the specified number of distinct clusters in nrOfClustersRow
+#' # and nrOfClustersCol
 #' hmp3 <- simpleheatmap3(pln = df,
 #'  main = "",
 #'  distf = dist,
@@ -31,7 +33,7 @@
 #'  labRow = "",
 #'  plot = FALSE,
 #'  nrOfClustersRow = 3)  
-#' # plot = T will plot the heatmap with row and column dendrogram
+
 
 simpleheatmap3 <- function(pln,
                            main="",
