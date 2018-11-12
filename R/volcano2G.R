@@ -17,6 +17,7 @@
 #' @param repel.segment.size ggrepel parameter
 #' @param repel.segement.alpha ggrepel parameter
 #' @param pseudo add pseudo fold changes
+#' @param maxNrOfSignificantText numeric - how many text labels to display - default = 20.
 #' @examples
 #' rm(list=ls())
 #' library(tidyverse)
@@ -96,8 +97,8 @@ volcano2GB <- function(dataX,
   p = p + ggplot2::geom_vline(xintercept=c(-log2FCThresh,log2FCThresh), col=4,lty=2) 
   
   #cat("pthresh: " , pthresh, " log2FCThresh", log2FCThresh ,"\n")
-  filtres <- dataX %>% filter( UQ(rlang::sym(pvalue)) < pthresh & abs( UQ(sym(foldchange) )) > log2FCThresh )
-  filtres<-filtres %>% arrange(desc(abs(UQ(sym(foldchange)) ))) %>% head(maxNrOfSignificantText)
+  filtres <- dataX %>% dplyr::filter( UQ(rlang::sym(pvalue)) < pthresh & abs( UQ(sym(foldchange) )) > log2FCThresh )
+  filtres<-filtres %>% dplyr::arrange(desc(abs(UQ(sym(foldchange)) ))) %>% head(maxNrOfSignificantText)
   p = p + geom_text_repel(data = filtres,
                           aes_string(label=labels),
                           size = repel.text.size,
