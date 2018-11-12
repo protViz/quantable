@@ -31,6 +31,7 @@
 #'  labRow = "",
 #'  plot = FALSE,
 #'  nrOfClusters = 3)  
+#' hmp3 <- simpleheatmap3(pln = df, main = "", distf = dist, hclustf = hclust, labRow = "", plot = F, nrOfClusters = 3)  
 #' # plot = T will plot the heatmap with row and column dendrogram
 
 simpleheatmap3 <- function(pln,
