@@ -21,8 +21,8 @@
 #'  hclustf = hclust,
 #'  labRow = "",
 #'  plot = FALSE,
-#'  nrOfClusters = 3) 
-#' # plot = F will return a data.frame
+#'  nrOfClustersRow = 3) 
+#' # plot = F will return a list containing 
 #' # with the specified number of distinct clusters in nrOfClusters
 #' hmp3 <- simpleheatmap3(pln = df,
 #'  main = "",
@@ -30,8 +30,7 @@
 #'  hclustf = hclust,
 #'  labRow = "",
 #'  plot = FALSE,
-#'  nrOfClusters = 3)  
-#' hmp3 <- simpleheatmap3(pln = df, main = "", distf = dist, hclustf = hclust, labRow = "", plot = F, nrOfClusters = 3)  
+#'  nrOfClustersRow = 3)  
 #' # plot = T will plot the heatmap with row and column dendrogram
 
 simpleheatmap3 <- function(pln,
@@ -43,22 +42,39 @@ simpleheatmap3 <- function(pln,
                            palette=getBlueWhiteRed(),
                            margins=c(5,5),scale="none",
                            plot = TRUE,
-                           nrOfClusters = 3, ...)
+                           nrOfClustersCol = 3,
+                           nrOfClustersRow = 3, ...)
 {
   if(plot) {
-    tmp <- heatmap3( as.matrix(pln) , scale=scale  , col=palette ,
+    tmp <- heatmap3::heatmap3( as.matrix(pln) , scale=scale  , col=palette ,
               labRow=labRow,
+              labCol = labCol,
               cexRow=0.1 + 1/log10(dim(pln)[1]),
               cexCol=0.1 + 1/log10(dim(pln)[2]),
               distfun=distf,hclustfun=hclustf,
-              margins=margins,main=main,...=...)
-    clusterIDs <- cutree(tmp$hcc, nrOfClusters)
-    return(data.frame(rowID = labCol, clusterID = clusterIDs, stringsAsFactors = F))
+              margins=margins,main=main,
+              keep.dendro = TRUE,
+              ...=...)
+    clusterIDsRow <- cutree(as.hclust(tmp$Rowv), nrOfClustersRow)
+    clusterIDsCol <- cutree(as.hclust(tmp$Colv), nrOfClustersCol)
+    return(list(Row = data.frame(rowID = labRow,
+                                 clusterID = clusterIDsRow,
+                                 stringsAsFactors = F),
+                Col = data.frame(colID = labCol,
+                                 clusterID = clusterIDsCol,
+                                 stringsAsFactors = F)))
   }
   else {
     tmp <- hclustf(distf(t(as.matrix(pln))))
-    clusterIDs <- cutree(tmp, nrOfClusters)
-    return(data.frame(rowID = labCol, clusterID = clusterIDs, stringsAsFactors = F))
+    clusterIDsCol <- cutree(tmp, nrOfClustersCol)
+    tmp <- hclustf(distf(as.matrix(pln)))
+    clusterIDsRow <- cutree(tmp, nrOfClustersRow)
+    return(list(Row = data.frame(rowID = labRow,
+                                 clusterID = clusterIDsRow,
+                                 stringsAsFactors = F),
+                Col = data.frame(colID = labCol,
+                                 clusterID = clusterIDsCol,
+                                 stringsAsFactors = F)))
   }
   
 }
