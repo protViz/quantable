@@ -28,8 +28,9 @@ Imports:
     stringr,
     tibble,
     tidyr,
-    tidyverse
+    tidyverse,
+    heatmap3
 URL: https://github.com/protViz/quantable
 BugReports: https://github.com/protViz/quantable/issues
 Repository: CRAN
-RoxygenNote: 6.1.0.9000
+RoxygenNote: 6.1.1
