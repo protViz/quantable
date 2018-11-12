@@ -5,8 +5,9 @@
 \title{heatmap3 facade}
 \usage{
 simpleheatmap3(pln, main = "", distf = dist, hclustf = hclust,
-  labRow = "", palette = getBlueWhiteRed(), margins = c(5, 5),
-  scale = "none", plot = TRUE, nrOfClusters = 3, ...)
+  labRow = "", labCol = "", palette = getBlueWhiteRed(),
+  margins = c(5, 5), scale = "none", plot = TRUE, nrOfClusters = 3,
+  ...)
 }
 \arguments{
 \item{pln}{matrix or dataframe with numerical values}
@@ -18,6 +19,8 @@ simpleheatmap3(pln, main = "", distf = dist, hclustf = hclust,
 \item{hclustf}{clustering function}
 
 \item{labRow}{row labels}
+
+\item{labCol}{column labels}
 
 \item{palette}{color palette}
 
@@ -36,7 +39,21 @@ heatmap3 facade
 }
 \examples{
 df <- matrix(rnorm(150), ncol = 10) # 15x10 matrix
-clust <- simpleheatmap3(pln = df, main = "", distf = dist, hclustf = hclust, labRow = "", plot = F, nrOfClusters = 3) # plot = F will return a data.frame
+clust <- simpleheatmap3(pln = df,
+ main = "",
+ distf = dist,
+ hclustf = hclust,
+ labRow = "",
+ plot = FALSE,
+ nrOfClusters = 3) 
+# plot = F will return a data.frame
 # with the specified number of distinct clusters in nrOfClusters
-hmp3 <- simpleheatmap3(pln = df, main = "", distf = dist, hclustf = hclust, labRow = "", plot = F, nrOfClusters = 3)  plot = T will plot the heatmap with row and column dendrogram
+hmp3 <- simpleheatmap3(pln = df,
+ main = "",
+ distf = dist,
+ hclustf = hclust,
+ labRow = "",
+ plot = FALSE,
+ nrOfClusters = 3)  
+# plot = T will plot the heatmap with row and column dendrogram
 }
