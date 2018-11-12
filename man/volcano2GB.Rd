@@ -36,6 +36,8 @@ volcano2GB(dataX, foldchange = "log2FC", pvalue = "q.mod",
 \item{repel.segement.alpha}{ggrepel parameter}
 
 \item{pseudo}{add pseudo fold changes}
+
+\item{maxNrOfSignificantText}{numeric - how many text labels to display - default = 20.}
 }
 \description{
 Volcano with more control

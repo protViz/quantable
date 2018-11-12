@@ -11,6 +11,7 @@
 #' @param segment.size controls size of lines
 #' @param segment.alpha controls visibility of lines
 #' @param ablines adds ablines horizontal and vertical 
+#' @param scales parameter to ggplot2::facet_wrap
 #' @importFrom ggrepel geom_text_repel
 #' @importFrom stats as.formula
 #' @import ggplot2

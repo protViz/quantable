@@ -34,6 +34,8 @@ multigroupVolcano(misspX, effect = "fc", type = "p.adjust",
 \item{segment.alpha}{controls visibility of lines}
 
 \item{ablines}{adds ablines horizontal and vertical}
+
+\item{scales}{parameter to ggplot2::facet_wrap}
 }
 \description{
 plot volcano given multiple conditions
