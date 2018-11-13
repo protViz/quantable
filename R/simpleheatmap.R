@@ -20,18 +20,24 @@
 #' simpleheatmap(tmp,ColSideColors=c("red","blue","pink","black"))
 #' simpleheatmap(tmp)
 simpleheatmap <- function(pln,
-                         main="",
-                         distf=dist,
-                         hclustf=hclust,
-                         labRow="",
-                         palette=getBlueWhiteRed(),
-                         margins=c(5,5),scale="none",...)
+                          main="",
+                          distf=dist,
+                          hclustf=hclust,
+                          labRow="",
+                          palette=getBlueWhiteRed(),
+                          margins=c(5,5),scale="none",...)
 {
-  heatmap.2( as.matrix(pln) , trace="none" , scale=scale  , col=palette ,
-                    labRow=labRow,
-                    cexRow=0.1 + 1/log10(dim(pln)[1]),
-                    cexCol=0.1 + 1/log10(dim(pln)[2]),
-                    distfun=distf,hclustfun=hclustf,
-                    margins=margins,main=main,...=...)
- 
+  heatmap.2(as.matrix(pln),
+            trace="none",
+            scale=scale,
+            col=palette,
+            labRow=labRow,
+            cexRow=0.1 + 1/log10(dim(pln)[1]),
+            cexCol=0.1 + 1/log10(dim(pln)[2]),
+            distfun=distf,
+            hclustfun=hclustf,
+            margins=margins,
+            main=main,
+            ...=...)
+  
 }
