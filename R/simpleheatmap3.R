@@ -47,8 +47,9 @@ simpleheatmap3 <- function(pln,
                            nrOfClustersCol = 3,
                            nrOfClustersRow = 3, ...)
 {
+  pln <- na.omit(as.matrix(pln))
   if(plot) {
-    tmp <- heatmap3::heatmap3( as.matrix(pln) , scale=scale  , col=palette ,
+    tmp <- heatmap3::heatmap3( pln , scale=scale  , col=palette ,
               labRow=labRow,
               labCol = labCol,
               cexRow=0.1 + 1/log10(dim(pln)[1]),
