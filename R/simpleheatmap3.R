@@ -13,6 +13,7 @@
 #' @param plot logical; If TRUE simpleheatmap3 returns modified heatmap3 object, if FALSE returns a data.frame with clusterIDs. Default is TRUE
 #' @param nrOfClustersRow number of distinct clusters for cutree function on rows. Default is 3
 #' @param nrOfClustersCol number of distinct clusters for cutree function on columns. Default is 3
+#' @param suppressColSideCols Option to suppress color side labelling per default
 #' @param ... other parameters to heatmap3
 #' @examples
 #' df <- matrix(rnorm(150), ncol = 10) # 15x10 matrix
