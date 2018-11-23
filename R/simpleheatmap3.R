@@ -48,6 +48,8 @@ simpleheatmap3 <- function(pln,
                            nrOfClustersRow = 3, ...)
 {
   if(plot) {
+    tmp0 <- cutree(hclustf(distf(t(as.matrix(pln)))), nrOfClustersCol)
+    colsidecolors <- rainbow(nrOfClustersCol)[tmp0]
     tmp <- heatmap3::heatmap3(as.matrix(pln), scale=scale, col=palette,
               labRow=labRow,
               labCol = labCol,
@@ -56,6 +58,9 @@ simpleheatmap3 <- function(pln,
               distfun=distf,hclustfun=hclustf,
               margins=margins,main=main,
               keep.dendro = TRUE,
+              ColSideColors = colsidecolors,
+              ColSideLabs = "",
+              RowSideLabs = "",
               ...=...)
     clusterIDsRow <- cutree(as.hclust(tmp$Rowv), nrOfClustersRow)
     clusterIDsCol <- cutree(as.hclust(tmp$Colv), nrOfClustersCol)
