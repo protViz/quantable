@@ -45,9 +45,10 @@ simpleheatmap3 <- function(pln,
                            margins=c(5,5),scale="none",
                            plot = TRUE,
                            nrOfClustersCol = 3,
-                           nrOfClustersRow = 3, ...)
+                           nrOfClustersRow = 3,
+                           suppressColSideCols = FALSE, ...)
 {
-  if(plot) {
+  if(plot&!suppressColSideCols) {
     tmp0 <- cutree(hclustf(distf(t(as.matrix(pln)))), nrOfClustersCol)
     colsidecolors <- rainbow(nrOfClustersCol)[tmp0]
     tmp <- heatmap3::heatmap3(as.matrix(pln), scale=scale, col=palette,
@@ -62,6 +63,27 @@ simpleheatmap3 <- function(pln,
               ColSideLabs = "",
               RowSideLabs = "",
               ...=...)
+    clusterIDsRow <- cutree(as.hclust(tmp$Rowv), nrOfClustersRow)
+    clusterIDsCol <- cutree(as.hclust(tmp$Colv), nrOfClustersCol)
+    return(list(Row = data.frame(rowID = labRow,
+                                 clusterID = clusterIDsRow,
+                                 stringsAsFactors = F),
+                Col = data.frame(colID = labCol,
+                                 clusterID = clusterIDsCol,
+                                 stringsAsFactors = F)))
+  }
+  else if(plot&suppressColSideCols) {
+    tmp <- heatmap3::heatmap3(as.matrix(pln), scale=scale, col=palette,
+                              labRow=labRow,
+                              labCol = labCol,
+                              cexRow=0.1 + 1/log10(dim(pln)[1]),
+                              cexCol=0.1 + 1/log10(dim(pln)[2]),
+                              distfun=distf,hclustfun=hclustf,
+                              margins=margins,main=main,
+                              keep.dendro = TRUE,
+                              ColSideLabs = "",
+                              RowSideLabs = "",
+                              ...=...)
     clusterIDsRow <- cutree(as.hclust(tmp$Rowv), nrOfClustersRow)
     clusterIDsCol <- cutree(as.hclust(tmp$Colv), nrOfClustersCol)
     return(list(Row = data.frame(rowID = labRow,
