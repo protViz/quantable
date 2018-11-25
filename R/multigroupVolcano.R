@@ -17,10 +17,12 @@
 #' @import ggplot2
 #' @export
 #' @examples 
+#' library(ggplot2)
+#' library(tidyverse)
+#' library(ggrepel)
 #' data(multigroupFCDATA)
 #' colnames(multigroupFCDATA)
-#' multigroupVolcano(multigroupFCDATA,effect="logFC",
-#' type="adj.P.Val",condition="Condition",colour="colour",label="Name" )
+#' multigroupVolcano(multigroupFCDATA,effect="logFC",type="adj.P.Val",condition="Condition",colour="colour",label="Name" )
 multigroupVolcano <- function(misspX,
                               effect = "fc",
                               type = "p.adjust",
@@ -36,7 +38,8 @@ multigroupVolcano <- function(misspX,
                                 fc=c(0,0),
                                 p = c(0.01,0.05), 
                                 Area = c('p=0.01','p=0.05')
-                              ), scales="fixed") 
+                              ), scales="fixed",
+                              maxNrOfSignificantText = 20) 
 {
   colname = paste("-log10(", type , ")" , sep="")
   p <- ggplot( misspX, aes_string(x = effect , y = colname, color=colour  )  )  +
@@ -51,7 +54,7 @@ multigroupVolcano <- function(misspX,
   if(!is.null(label)){
     effectX <-misspX[,effect]
     typeX<-misspX[,type]
-    subsetData <- subset(misspX, (effectX < xintercept[1] | xintercept[2] < effectX) & typeX < pvalue )
+    subsetData <- subset(misspX, (effectX < xintercept[1] | xintercept[2] < effectX) & typeX < pvalue ) %>% head(maxNrOfSignificantText)
     if(nrow(subsetData) > 0){
       p <- p + geom_text_repel(data=subsetData, aes_string(effect , colname , label=label),
                                size=size
