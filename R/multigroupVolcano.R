@@ -52,10 +52,12 @@ multigroupVolcano <- function(misspX,
     effectX <-misspX[,effect]
     typeX<-misspX[,type]
     subsetData <- subset(misspX, (effectX < xintercept[1] | xintercept[2] < effectX) & typeX < pvalue )
-    p <- p + geom_text_repel(data=subsetData, aes_string(effect , colname , label=label),
-                             size=size
-                             , segment.size = segment.size,
-                             segment.alpha = segment.alpha)
+    if(nrow(subsetData) > 0){
+      p <- p + geom_text_repel(data=subsetData, aes_string(effect , colname , label=label),
+                               size=size
+                               , segment.size = segment.size,
+                               segment.alpha = segment.alpha)
+    }
   }
   return(p)
 }
