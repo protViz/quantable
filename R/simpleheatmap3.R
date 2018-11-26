@@ -52,7 +52,7 @@
 #'                        plot = TRUE,
 #'                        nrOfClustersRow = 3, 
 #'                        nrOfClustersCol = 3, 
-#'                        suppressColSideCols = FALSE)
+#'                        suppressColSideCols = TRUE)
 #' # Since line 3 contained more than ncol(df)/2 missing values 
 #' it is removed from the clustering.
 #' 
@@ -71,7 +71,7 @@ simpleheatmap3 <- function(pln,
                            suppressColSideCols = FALSE, ...)
 {
   pln <- as.matrix(pln[rowNAs(pln) < (ncol(pln)/2),])
-  if(plot) {
+  if(plot & !suppressColSideCols) {
     tmp0 <- cutree(hclustf(distf(t(as.matrix(pln)))), nrOfClustersCol)
     colsidecolors <- rainbow(nrOfClustersCol)[tmp0]
     tmp <- heatmap3::heatmap3(as.matrix(pln), scale=scale, col=palette,
@@ -84,7 +84,28 @@ simpleheatmap3 <- function(pln,
                               keep.dendro = TRUE,
                               ColSideLabs = "",
                               RowSideLabs = "",
-                              ColSideColors = get(ifelse(suppressColSideCols, NULL, "colsidecolors")),
+                              ColSideColors = colsidecolors,
+                              ...=...)
+    clusterIDsRow <- cutree(as.hclust(tmp$Rowv), nrOfClustersRow)
+    clusterIDsCol <- cutree(as.hclust(tmp$Colv), nrOfClustersCol)
+    return(list(Row = data.frame(rowID = labRow,
+                                 clusterID = clusterIDsRow,
+                                 stringsAsFactors = F),
+                Col = data.frame(colID = labCol,
+                                 clusterID = clusterIDsCol,
+                                 stringsAsFactors = F)))
+  }
+  else if(plot & suppressColSideCols) {
+    tmp <- heatmap3::heatmap3(as.matrix(pln), scale=scale, col=palette,
+                              labRow=labRow,
+                              labCol = labCol,
+                              cexRow=0.1 + 1/log10(dim(pln)[1]),
+                              cexCol=0.1 + 1/log10(dim(pln)[2]),
+                              distfun=distf,hclustfun=hclustf,
+                              margins=margins,main=main,
+                              keep.dendro = TRUE,
+                              ColSideLabs = "",
+                              RowSideLabs = "",
                               ...=...)
     clusterIDsRow <- cutree(as.hclust(tmp$Rowv), nrOfClustersRow)
     clusterIDsCol <- cutree(as.hclust(tmp$Colv), nrOfClustersCol)
