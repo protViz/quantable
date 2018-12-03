@@ -7,7 +7,9 @@
 simpleheatmap3(pln, main = "", distf = dist, hclustf = hclust,
   labRow = "", labCol = "", palette = getBlueWhiteRed(),
   margins = c(5, 5), scale = "none", plot = TRUE,
-  nrOfClustersCol = 3, nrOfClustersRow = 3, ...)
+  nrOfClustersCol = 3, nrOfClustersRow = 3,
+  suppressColSideCols = FALSE, ColSideLabs = "", RowSideLabs = "",
+  ...)
 }
 \arguments{
 \item{pln}{matrix or dataframe with numerical values}
@@ -34,28 +36,70 @@ simpleheatmap3(pln, main = "", distf = dist, hclustf = hclust,
 
 \item{nrOfClustersRow}{number of distinct clusters for cutree function on rows. Default is 3}
 
+\item{suppressColSideCols}{Option to suppress color side labelling per default}
+
+\item{ColSideLabs}{label for ColSideColors}
+
+\item{RowSideLabs}{label for RowSideColors}
+
 \item{...}{other parameters to heatmap3}
 }
 \description{
 heatmap3 facade
 }
 \examples{
-df <- matrix(rnorm(150), ncol = 10) # 15x10 matrix
+df <- matrix(rnorm(150), ncol = 10) # 15x10 matrix without NAs
+
 clust <- simpleheatmap3(pln = df,
- main = "",
- distf = dist,
- hclustf = hclust,
- labRow = "",
- plot = FALSE,
- nrOfClustersRow = 3) 
+                        main = "",
+                        distf = dist,
+                        hclustf = hclust,
+                        labRow = "",
+                        plot = FALSE,
+                        nrOfClustersRow = 3,
+                        suppressColSideCols = TRUE) 
 # plot = F will return a list containing two data.frames 
 # with the specified number of distinct clusters in nrOfClustersRow
 # and nrOfClustersCol
+clust
 hmp3 <- simpleheatmap3(pln = df,
- main = "",
- distf = dist,
- hclustf = hclust,
- labRow = "",
- plot = FALSE,
- nrOfClustersRow = 3)  
+                       main = "",
+                       distf = dist,
+                       hclustf = hclust,
+                       labRow = "",
+                       plot = TRUE,
+                       nrOfClustersRow = 3, 
+                       nrOfClustersCol = 3, 
+                       suppressColSideCols = FALSE)
+# plot = TRUE will result in the same list and additionally plot the heatmap. 
+# suppressColSideCols = FALSE will leave the heatmap with ColSideColors
+
+stopifnot(all(clust$Row$clusterID==hmp3$Row$clusterID))
+
+df[3,1:7] <- NA # Seed some missing values in line 3
+
+hmp3_withNAs <- simpleheatmap3(pln = df,
+                       main = "",
+                       distf = dist,
+                       hclustf = hclust,
+                       labRow = paste0("ABC", 1:nrow(df)),
+                       plot = TRUE,
+                       nrOfClustersRow = 3, 
+                       nrOfClustersCol = 3, 
+                       suppressColSideCols = TRUE)
+                       
+# Since line 3 contained more than ncol(df)/2 missing values 
+# it is removed from the clustering.
+
+stopifnot(! 3 \%in\% hmp3_withNAs$Row$rowID)
+hmp3_withNAs <- simpleheatmap3(pln = df,
+                       main = "",
+                       distf = dist,
+                       hclustf = hclust,
+                       labRow = paste0("ABC", 1:nrow(df)),
+                       plot = TRUE,
+                       nrOfClustersRow = 3, 
+                       nrOfClustersCol = 3, 
+                       suppressColSideCols = FALSE)
+                       
 }
