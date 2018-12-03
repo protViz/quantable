@@ -14,6 +14,8 @@
 #' @param nrOfClustersRow number of distinct clusters for cutree function on rows. Default is 3
 #' @param nrOfClustersCol number of distinct clusters for cutree function on columns. Default is 3
 #' @param suppressColSideCols Option to suppress color side labelling per default
+#' @param ColSideLabs label for ColSideColors
+#' @param RowSideLabs label for RowSideColors
 #' @param ... other parameters to heatmap3
 #' @examples
 #' df <- matrix(rnorm(150), ncol = 10) # 15x10 matrix without NAs
@@ -60,6 +62,16 @@
 #' # it is removed from the clustering.
 #' 
 #' stopifnot(! 3 %in% hmp3_withNAs$Row$rowID)
+#' hmp3_withNAs <- simpleheatmap3(pln = df,
+#'                        main = "",
+#'                        distf = dist,
+#'                        hclustf = hclust,
+#'                        labRow = paste0("ABC", 1:nrow(df)),
+#'                        plot = TRUE,
+#'                        nrOfClustersRow = 3, 
+#'                        nrOfClustersCol = 3, 
+#'                        suppressColSideCols = FALSE)
+#'                        
 
 simpleheatmap3 <- function(pln,
                            main="",

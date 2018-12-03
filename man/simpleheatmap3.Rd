@@ -38,6 +38,10 @@ simpleheatmap3(pln, main = "", distf = dist, hclustf = hclust,
 
 \item{suppressColSideCols}{Option to suppress color side labelling per default}
 
+\item{ColSideLabs}{label for ColSideColors}
+
+\item{RowSideLabs}{label for RowSideColors}
+
 \item{...}{other parameters to heatmap3}
 }
 \description{
@@ -88,4 +92,14 @@ hmp3_withNAs <- simpleheatmap3(pln = df,
 # it is removed from the clustering.
 
 stopifnot(! 3 \%in\% hmp3_withNAs$Row$rowID)
+hmp3_withNAs <- simpleheatmap3(pln = df,
+                       main = "",
+                       distf = dist,
+                       hclustf = hclust,
+                       labRow = paste0("ABC", 1:nrow(df)),
+                       plot = TRUE,
+                       nrOfClustersRow = 3, 
+                       nrOfClustersCol = 3, 
+                       suppressColSideCols = FALSE)
+                       
 }
