@@ -4,7 +4,7 @@
 \alias{multigroupVolcano}
 \title{plot volcano given multiple conditions}
 \usage{
-multigroupVolcano(misspX, effect = "fc", type = "p.adjust",
+multigroupVolcano(misspX, effect = "fc", p.value = "p.adjust",
   condition = "condition", colour = "colour", xintercept = c(-2, 2),
   pvalue = 0.05, label = NULL, size = 1, segment.size = 0.3,
   segment.alpha = 0.3, ablines = data.frame(fc = c(0, 0), p = c(0.01,
@@ -16,7 +16,7 @@ multigroupVolcano(misspX, effect = "fc", type = "p.adjust",
 
 \item{effect}{column containing effect sizes}
 
-\item{type}{column containing p-values, q.values etc}
+\item{p.value}{column containing p-values, q.values etc}
 
 \item{condition}{column with condition}
 
@@ -47,5 +47,5 @@ library(tidyverse)
 library(ggrepel)
 data(multigroupFCDATA)
 colnames(multigroupFCDATA)
-multigroupVolcano(multigroupFCDATA,effect="logFC",type="adj.P.Val",condition="Condition",colour="colour",label="Name" )
+multigroupVolcano(multigroupFCDATA,effect="logFC",p.value="adj.P.Val",condition="Condition",colour="colour",label="Name" )
 }

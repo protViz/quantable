@@ -1,7 +1,7 @@
 #' plot volcano given multiple conditions
 #' @param misspX data in long format
 #' @param effect column containing effect sizes
-#' @param type column containing p-values, q.values etc
+#' @param p.value column containing p-values, q.values etc
 #' @param condition column with condition
 #' @param colour colouring of points
 #' @param xintercept fc thresholds
@@ -22,17 +22,17 @@
 #' library(ggrepel)
 #' data(multigroupFCDATA)
 #' colnames(multigroupFCDATA)
-#' multigroupVolcano(multigroupFCDATA,effect="logFC",type="adj.P.Val",condition="Condition",colour="colour",label="Name" )
+#' multigroupVolcano(multigroupFCDATA,effect="logFC",p.value="adj.P.Val",condition="Condition",colour="colour",label="Name" )
 multigroupVolcano <- function(misspX,
                               effect = "fc",
-                              type = "p.adjust",
+                              p.value = "p.adjust",
                               condition = "condition",
                               colour = "colour",
                               xintercept=c(-2,2),
                               pvalue=0.05,
                               label=NULL,
-                              size=1
-                              , segment.size = 0.3,
+                              size=1,
+                              segment.size = 0.3,
                               segment.alpha = 0.3,
                               ablines = data.frame(
                                 fc=c(0,0),
@@ -41,7 +41,8 @@ multigroupVolcano <- function(misspX,
                               ), scales="fixed",
                               maxNrOfSignificantText = 20) 
 {
-  colname = paste("-log10(", type , ")" , sep="")
+  misspX <- tidyr::unite(misspX, "label", label)
+  colname = paste("-log10(", p.value , ")" , sep="")
   p <- ggplot( misspX, aes_string(x = effect , y = colname, color=colour  )  )  +
     geom_point(alpha=0.5)
   p <- p + scale_colour_manual(values=c("black", "green", "blue","red"))
@@ -53,13 +54,13 @@ multigroupVolcano <- function(misspX,
   
   if(!is.null(label)){
     effectX <-misspX[,effect]
-    typeX<-misspX[,type]
+    typeX<-misspX[,p.value]
     subsetData <- subset(misspX, (effectX < xintercept[1] | xintercept[2] < effectX) & typeX < pvalue ) %>% head(maxNrOfSignificantText)
     if(nrow(subsetData) > 0){
-      p <- p + geom_text_repel(data=subsetData, aes_string(effect , colname , label=label),
-                               size=size
-                               , segment.size = segment.size,
-                               segment.alpha = segment.alpha)
+      p <- p + ggrepel::geom_text_repel(data=subsetData, aes_string(effect , colname , label="label"),
+                                        size=size
+                                        , segment.size = segment.size,
+                                        segment.alpha = segment.alpha)
     }
   }
   return(p)

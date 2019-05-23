@@ -72,7 +72,6 @@
 #'                        nrOfClustersCol = 3, 
 #'                        suppressColSideCols = FALSE)
 #'                        
-
 simpleheatmap3 <- function(pln,
                            main="",
                            distf=dist,
