@@ -13,7 +13,7 @@
 #' x <- x + rnorm(length(x),0,0.5)
 #' y <- seq(1:300)/10
 #' y <- y + rnorm(length(y),0,0.5)
-#' altmanbland(y,x)
+#' altmanbland(y,x, pch="*")
 #'
 altmanbland = function(x,y,main="",pch=".",log=""){
   nas <- (is.na(x) || is.na(y))
@@ -22,6 +22,6 @@ altmanbland = function(x,y,main="",pch=".",log=""){
   
   mean  = (x+y)/2
   absdiff = abs( x-y )
-  plot(mean,absdiff,log=log,xlab="(y+x)/2",ylab="abs(x-y)",pch="x",cex=0.5,main=main)
+  plot(mean,absdiff,log=log,xlab="(y+x)/2",ylab="abs(x-y)",pch=pch,cex=0.5,main=main)
   lines(lowess(mean,absdiff),col=2,lwd=2)
 }
