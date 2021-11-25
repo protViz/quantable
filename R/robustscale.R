@@ -5,7 +5,7 @@
 #' @param data matrix or data.frame
 #' @param dim should rows (1) or columns (2:default) be scaled
 #' @param center subract median (default:TRUE)
-#' @param scale scale by mad  (default:FALSE)
+#' @param scale scale by mad  (default:TRUE)
 #' @param preserveScale default TRUE , equalize scales but do not change them
 #' @examples
 #' library(quantable)
